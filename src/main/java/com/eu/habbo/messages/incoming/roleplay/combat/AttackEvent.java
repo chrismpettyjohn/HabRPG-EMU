@@ -3,11 +3,9 @@ package com.eu.habbo.messages.incoming.roleplay.combat;
 import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.bots.Bot;
 import com.eu.habbo.habbohotel.rooms.RoomTile;
-import com.eu.habbo.habbohotel.rooms.RoomUnit;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.incoming.MessageHandler;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AttackEvent extends MessageHandler {
@@ -58,23 +56,12 @@ public class AttackEvent extends MessageHandler {
                 bot.getRoleplayCharacter().depleteHealth(damage);
                 bot.shout(
                         Emulator.getTexts().getValue("rp.damage_received")
+                                .replace(":username", this.client.getHabbo().getHabboInfo().getUsername())
                                 .replace(":healthNow", String.valueOf(bot.getRoleplayCharacter().getHealthNow()))
                                 .replace(":healthMax", String.valueOf(bot.getRoleplayCharacter().getHealthMax()))
 
                 );
             }
-        }
-        
-        List<RoomUnit> targetedUnits = new ArrayList<>(this.client.getHabbo().getRoomUnit().getRoom().getHabbosAndBotsAt(tile));
-
-        if (targetedUnits.isEmpty()) {
-            this.client.getHabbo().whisper(Emulator.getTexts().getValue("rp.not_possible"));
-            return;
-        }
-
-        for (RoomUnit targetedUnit : targetedUnits) {
-
-            this.client.getHabbo().shout("i attacked " + targetedUnit.getId());
         }
 
     }
