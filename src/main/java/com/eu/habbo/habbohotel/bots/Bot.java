@@ -175,7 +175,7 @@ public class Bot implements Runnable {
 
     public void cycle(boolean allowBotsWalk) {
         if (this.roomUnit != null) {
-            if (allowBotsWalk && this.canWalk) {
+            if (allowBotsWalk && this.canWalk && this.getRoleplayCharacter().canMove()) {
                 if (!this.roomUnit.isWalking()) {
                     if (this.roomUnit.getWalkTimeOut() < Emulator.getIntUnixTimestamp() && this.followingHabboId == 0) {
                         this.roomUnit.setGoalLocation(
@@ -190,11 +190,7 @@ public class Bot implements Runnable {
                         int timeOut = Emulator.getRandom().nextInt(20) * 2;
                         this.roomUnit.setWalkTimeOut((timeOut < 10 ? 5 : timeOut) + Emulator.getIntUnixTimestamp());
                     }
-                }/* else {
-                    for (RoomTile t : this.room.getLayout().getTilesAround(this.room.getLayout().getTile(this.getRoomUnit().getX(), this.getRoomUnit().getY()))) {
-                        WiredHandler.handle(WiredTriggerType.BOT_REACHED_STF, this.roomUnit, this.room, this.room.getItemsAt(t).toArray());
-                    }
-                }*/
+                }
             }
 
             if (!this.chatLines.isEmpty() && this.chatTimeOut <= Emulator.getIntUnixTimestamp() && this.chatAuto) {

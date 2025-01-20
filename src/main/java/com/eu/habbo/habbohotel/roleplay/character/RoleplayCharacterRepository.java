@@ -18,7 +18,7 @@ public class RoleplayCharacterRepository {
 
             try (ResultSet set = statement.executeQuery()) {
                 if (set.next()) {
-                    return new RoleplayCharacter(set);
+                    return new RoleplayCharacter(set, bot, null);
                 }
             }
         } catch (SQLException e) {
@@ -34,7 +34,7 @@ public class RoleplayCharacterRepository {
 
             try (ResultSet set = statement.executeQuery()) {
                 if (set.next()) {
-                    return new RoleplayCharacter(set);
+                    return new RoleplayCharacter(set, null, habbo);
                 }
             }
         } catch (SQLException e) {

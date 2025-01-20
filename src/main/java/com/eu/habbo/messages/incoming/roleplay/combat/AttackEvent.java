@@ -39,13 +39,22 @@ public class AttackEvent extends MessageHandler {
 
         if (!habbosAtTile.isEmpty()) {
             for (Habbo habbo : habbosAtTile) {
+                if (habbo.getRoleplayCharacter().isDead()) {
+                    this.client.getHabbo().whisper( Emulator.getTexts()
+                            .getValue("rp.cant_attack")
+                            .replace(":username", habbo.getHabboInfo().getUsername())
+                    );
+                    continue;
+                }
                 habbo.getRoleplayCharacter().depleteHealth(damage);
-                habbo.shout(
-                        Emulator.getTexts().getValue("rp.damage_received")
-                                .replace(":username", this.client.getHabbo().getHabboInfo().getUsername())
-                                .replace(":healthNow", String.valueOf(habbo.getRoleplayCharacter().getHealthNow()))
-                                .replace(":healthMax", String.valueOf(habbo.getRoleplayCharacter().getHealthMax()))
-                );
+                if (!habbo.getRoleplayCharacter().isDead()) {
+                    habbo.shout(
+                            Emulator.getTexts().getValue("rp.damage_received")
+                                    .replace(":username", this.client.getHabbo().getHabboInfo().getUsername())
+                                    .replace(":healthNow", String.valueOf(habbo.getRoleplayCharacter().getHealthNow()))
+                                    .replace(":healthMax", String.valueOf(habbo.getRoleplayCharacter().getHealthMax()))
+                    );
+                }
             }
         }
 
@@ -53,14 +62,22 @@ public class AttackEvent extends MessageHandler {
 
         if (!botsAtTile.isEmpty()) {
             for (Bot bot : botsAtTile) {
+                if (bot.getRoleplayCharacter().isDead()) {
+                    this.client.getHabbo().whisper( Emulator.getTexts()
+                            .getValue("rp.cant_attack")
+                            .replace(":username", bot.getName())
+                    );
+                    continue;
+                }
                 bot.getRoleplayCharacter().depleteHealth(damage);
-                bot.shout(
-                        Emulator.getTexts().getValue("rp.damage_received")
-                                .replace(":username", this.client.getHabbo().getHabboInfo().getUsername())
-                                .replace(":healthNow", String.valueOf(bot.getRoleplayCharacter().getHealthNow()))
-                                .replace(":healthMax", String.valueOf(bot.getRoleplayCharacter().getHealthMax()))
-
-                );
+                if (!bot.getRoleplayCharacter().isDead()) {
+                    bot.shout(
+                            Emulator.getTexts().getValue("rp.damage_received")
+                                    .replace(":username", this.client.getHabbo().getHabboInfo().getUsername())
+                                    .replace(":healthNow", String.valueOf(bot.getRoleplayCharacter().getHealthNow()))
+                                    .replace(":healthMax", String.valueOf(bot.getRoleplayCharacter().getHealthMax()))
+                    );
+                }
             }
         }
 

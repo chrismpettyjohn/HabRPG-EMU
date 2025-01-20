@@ -3911,7 +3911,16 @@ public class Room implements Comparable<Room>, ISerialize, Runnable {
         return null;
     }
 
-    public void sendComposer(ServerMessage message) {
+    public void sendResponse(MessageComposer composer) {
+        for (Habbo habbo : this.getHabbos()) {
+        if (habbo.getClient() == null) continue;
+
+        habbo.getClient().sendResponse(composer);
+    }
+}
+
+
+public void sendComposer(ServerMessage message) {
         for (Habbo habbo : this.getHabbos()) {
             if (habbo.getClient() == null) continue;
 
