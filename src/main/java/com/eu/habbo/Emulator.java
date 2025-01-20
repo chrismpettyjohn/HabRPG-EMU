@@ -40,16 +40,8 @@ public final class Emulator {
     public final static int BUILD = 4;
     public final static String PREVIEW = "";
 
-    public static final String version = "Arcturus Morningstar" + " " + MAJOR + "." + MINOR + "." + BUILD + " " + PREVIEW;
-    private static final String logo =
-            "\n" +
-                    "███╗   ███╗ ██████╗ ██████╗ ███╗   ██╗██╗███╗   ██╗ ██████╗ ███████╗████████╗ █████╗ ██████╗ \n" +
-                    "████╗ ████║██╔═══██╗██╔══██╗████╗  ██║██║████╗  ██║██╔════╝ ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗\n" +
-                    "██╔████╔██║██║   ██║██████╔╝██╔██╗ ██║██║██╔██╗ ██║██║  ███╗███████╗   ██║   ███████║██████╔╝\n" +
-                    "██║╚██╔╝██║██║   ██║██╔══██╗██║╚██╗██║██║██║╚██╗██║██║   ██║╚════██║   ██║   ██╔══██║██╔══██╗\n" +
-                    "██║ ╚═╝ ██║╚██████╔╝██║  ██║██║ ╚████║██║██║ ╚████║╚██████╔╝███████║   ██║   ██║  ██║██║  ██║\n" +
-                    "╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝\n" +
-                    "Still Rocking in 2024.\n";
+    public static final String version = "ArcturusRP" + " " + MAJOR + "." + MINOR + "." + BUILD + " " + PREVIEW;
+    private static final String logo = "ArcturusRP\n";
 
     public static String build = "";
     public static boolean isReady = false;
@@ -115,13 +107,7 @@ public final class Emulator {
                 System.out.println("Warning, this is a beta build, this means that there may be unintended consequences so make sure you take regular backups while using this build. If you notice any issues you should make an issue on the Krews Git.");
                 promptEnterKey();
             }
-            System.out.println("");
-            LOGGER.warn("Arcturus Morningstar 3.x is no longer accepting merge requests. Please target MS4 branches if you wish to contribute.");
-            LOGGER.info("Follow our development at https://git.krews.org/morningstar/Arcturus-Community, ");
-            System.out.println("");
-            LOGGER.info("This project is for educational purposes only. This Emulator is an open-source fork of Arcturus created by TheGeneral.");
             LOGGER.info("Version: {}", version);
-            LOGGER.info("Build: {}", build);
 
             long startTime = System.nanoTime();
 
@@ -154,7 +140,7 @@ public final class Emulator {
             Emulator.rconServer.connect();
             Emulator.badgeImager = new BadgeImager();
 
-            LOGGER.info("Arcturus Morningstar has successfully loaded.");
+            LOGGER.info("ArcturusRP has successfully loaded.");
             LOGGER.info("System launched in: {}ms. Using {} threads!", (System.nanoTime() - startTime) / 1e6, Runtime.getRuntime().availableProcessors() * 2);
             LOGGER.info("Memory: {}/{}MB", (runtime.totalMemory() - runtime.freeMemory()) / (1024 * 1024), (runtime.freeMemory()) / (1024 * 1024));
 
@@ -236,7 +222,7 @@ public final class Emulator {
         Emulator.isShuttingDown = true;
         Emulator.isReady = false;
 
-        LOGGER.info("Stopping Arcturus Morningstar {}", version);
+        LOGGER.info("Stopping ArcturusRP {}", version);
 
         try {
             if (Emulator.getPluginManager() != null)
@@ -287,7 +273,7 @@ public final class Emulator {
         } catch (Exception e) {
         }
 
-        LOGGER.info("Stopped Arcturus Morningstar {}", version);
+        LOGGER.info("Stopped ArcturusRP {}", version);
 
         if (Emulator.database != null) {
             Emulator.getDatabase().dispose();
