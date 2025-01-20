@@ -16,18 +16,22 @@ public class RoleplayCharacter {
     private final Habbo habbo;
     private final Pet pet;
 
-    private int botId;
-    private int userId;
-    private int petId;
+    private final int id;
+    private final int botId;
+    private final int userId;
+    private final int petId;
     private int healthNow;
     private int healthMax;
     private int energyNow;
     private int energyMax;
 
+    private RoleplayCharacterSkills skills;
+
     public RoleplayCharacter(ResultSet set, Bot bot, Habbo habbo, Pet pet) throws SQLException {
         this.bot = bot;
         this.habbo = habbo;
         this.pet = pet;
+        this.id = set.getInt("id");
         this.botId = set.getInt("bots_id");
         this.userId = set.getInt("users_id");
         this.petId = set.getInt("pets_id");
@@ -35,6 +39,8 @@ public class RoleplayCharacter {
         this.healthMax = set.getInt("health_max");
         this.energyNow = set.getInt("energy_now");
         this.energyMax = set.getInt("energy_max");
+
+        this.skills = RoleplayCharacterSkillsRepository.loadByCharacter(this);
     }
     public Bot getBot() {
         return this.bot;
@@ -45,6 +51,10 @@ public class RoleplayCharacter {
     }
     public Pet getPet() {
         return this.pet;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     public int getBotId() {
@@ -109,6 +119,10 @@ public class RoleplayCharacter {
 
     public boolean canMove() {
         return !this.isDead();
+    }
+
+    public RoleplayCharacterSkills getSkills() {
+        return this.skills;
     }
 
     private void notifyRoom() {

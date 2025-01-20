@@ -15,7 +15,10 @@ public class CharacterDataComposer extends MessageComposer {
     @Override
     protected ServerMessage composeInternal() {
         this.response.init(Outgoing.CharacterDataComposer);
+        this.response.appendInt(this.character.getId());
+        this.response.appendInt(this.character.getBotId());
         this.response.appendInt(this.character.getUserId());
+        this.response.appendInt(this.character.getPetId());
         this.response.appendInt(this.character.getHealthNow());
         this.response.appendInt(this.character.getHealthMax());
         this.response.appendInt(this.character.getEnergyNow());

@@ -3,7 +3,7 @@ package com.eu.habbo.messages.incoming.roleplay.character;
 import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.incoming.MessageHandler;
-import com.eu.habbo.messages.outgoing.roleplay.character.CharacterAttributesDataComposer;
+import com.eu.habbo.messages.outgoing.roleplay.character.CharacterSkillsDataComposer;
 
 public class CharacterAttributesLookupEvent extends MessageHandler {
     @Override
@@ -15,6 +15,6 @@ public class CharacterAttributesLookupEvent extends MessageHandler {
             return;
         }
 
-        this.client.sendResponse(new CharacterAttributesDataComposer(this.client.getHabbo().getRoleplayCharacterAttributes()));
+        this.client.sendResponse(new CharacterSkillsDataComposer(this.client.getHabbo().getRoleplayCharacter().getSkills()));
     }
 }
