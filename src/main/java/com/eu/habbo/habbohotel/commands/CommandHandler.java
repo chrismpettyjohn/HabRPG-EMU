@@ -183,7 +183,6 @@ public class CommandHandler {
         addCommand(new BanCommand());
         addCommand(new BlockAlertCommand());
         addCommand(new BotsCommand());
-        addCommand(new CalendarCommand());
         addCommand(new ChangeNameCommand());
         addCommand(new ChatTypeCommand());
         addCommand(new CommandsCommand());
@@ -275,7 +274,6 @@ public class CommandHandler {
         addCommand(new UnmuteCommand());
         addCommand(new UpdateAchievements());
         addCommand(new UpdateBotsCommand());
-        addCommand(new UpdateCalendarCommand());
         addCommand(new UpdateCatalogCommand());
         addCommand(new UpdateConfigCommand());
         addCommand(new UpdateGuildPartsCommand());

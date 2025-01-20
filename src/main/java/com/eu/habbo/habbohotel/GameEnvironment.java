@@ -4,7 +4,6 @@ import com.eu.habbo.Emulator;
 import com.eu.habbo.core.*;
 import com.eu.habbo.habbohotel.achievements.AchievementManager;
 import com.eu.habbo.habbohotel.bots.BotManager;
-import com.eu.habbo.habbohotel.campaign.calendar.CalendarManager;
 import com.eu.habbo.habbohotel.catalog.CatalogManager;
 import com.eu.habbo.habbohotel.commands.CommandHandler;
 import com.eu.habbo.habbohotel.crafting.CraftingManager;
@@ -56,7 +55,6 @@ public class GameEnvironment {
     private CraftingManager craftingManager;
     private PollManager pollManager;
     private SubscriptionManager subscriptionManager;
-    private CalendarManager calendarManager;
     private RoomChatBubbleManager roomChatBubbleManager;
 
     public void load() throws Exception {
@@ -82,7 +80,6 @@ public class GameEnvironment {
         this.wordFilter = new WordFilter();
         this.craftingManager = new CraftingManager();
         this.pollManager = new PollManager();
-        this.calendarManager = new CalendarManager();
         this.roomChatBubbleManager = new RoomChatBubbleManager();
 
         this.roomManager.loadPublicRooms();
@@ -120,7 +117,6 @@ public class GameEnvironment {
         this.itemManager.dispose();
         this.hotelViewManager.dispose();
         this.subscriptionManager.dispose();
-        this.calendarManager.dispose();
         LOGGER.info("GameEnvironment -> Disposed!");
     }
 
@@ -213,8 +209,6 @@ public class GameEnvironment {
     public SubscriptionManager getSubscriptionManager() {
         return this.subscriptionManager;
     }
-
-    public CalendarManager getCalendarManager() { return this.calendarManager; }
 
     public RoomChatBubbleManager getRoomChatBubbleManager() {
         return roomChatBubbleManager;

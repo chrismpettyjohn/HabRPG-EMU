@@ -16,8 +16,6 @@ import com.eu.habbo.messages.incoming.catalog.recycler.RecycleEvent;
 import com.eu.habbo.messages.incoming.catalog.recycler.ReloadRecyclerEvent;
 import com.eu.habbo.messages.incoming.catalog.recycler.RequestRecyclerLogicEvent;
 import com.eu.habbo.messages.incoming.crafting.*;
-import com.eu.habbo.messages.incoming.events.calendar.AdventCalendarForceOpenEvent;
-import com.eu.habbo.messages.incoming.events.calendar.AdventCalendarOpenDayEvent;
 import com.eu.habbo.messages.incoming.floorplaneditor.FloorPlanEditorRequestBlockedTilesEvent;
 import com.eu.habbo.messages.incoming.floorplaneditor.FloorPlanEditorRequestDoorSettingsEvent;
 import com.eu.habbo.messages.incoming.floorplaneditor.FloorPlanEditorSaveEvent;
@@ -96,7 +94,6 @@ public class PacketManager {
 
         this.registerHandshake();
         this.registerCatalog();
-        this.registerEvent();
         this.registerFriends();
         this.registerNavigator();
         this.registerUsers();
@@ -260,11 +257,6 @@ public class PacketManager {
         this.registerHandler(Incoming.RequestClubCenterEvent, RequestClubCenterEvent.class);
         this.registerHandler(Incoming.CatalogRequestClubDiscountEvent, CatalogRequestClubDiscountEvent.class);
         this.registerHandler(Incoming.CatalogBuyClubDiscountEvent, CatalogBuyClubDiscountEvent.class);
-    }
-
-    private void registerEvent() throws Exception {
-        this.registerHandler(Incoming.AdventCalendarOpenDayEvent, AdventCalendarOpenDayEvent.class);
-        this.registerHandler(Incoming.AdventCalendarForceOpenEvent, AdventCalendarForceOpenEvent.class);
     }
 
     private void registerHandshake() throws Exception {
