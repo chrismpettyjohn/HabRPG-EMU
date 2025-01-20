@@ -2,6 +2,8 @@ package com.eu.habbo.messages.incoming.roleplay.combat;
 
 import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.bots.Bot;
+import com.eu.habbo.habbohotel.pets.Pet;
+import com.eu.habbo.habbohotel.pets.PetVocal;
 import com.eu.habbo.habbohotel.rooms.RoomTile;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.incoming.MessageHandler;
@@ -76,6 +78,30 @@ public class AttackEvent extends MessageHandler {
                                     .replace(":username", this.client.getHabbo().getHabboInfo().getUsername())
                                     .replace(":healthNow", String.valueOf(bot.getRoleplayCharacter().getHealthNow()))
                                     .replace(":healthMax", String.valueOf(bot.getRoleplayCharacter().getHealthMax()))
+                    );
+                }
+            }
+        }
+
+        List<Pet> petsAtTile = this.client.getHabbo().getRoomUnit().getRoom().getPetsAt(tile).stream().toList();
+
+        if (!petsAtTile.isEmpty()) {
+            for (Pet pet : petsAtTile) {
+                if (pet.getRoleplayCharacter().isDead()) {
+                    this.client.getHabbo().whisper( Emulator.getTexts()
+                            .getValue("rp.cant_attack")
+                            .replace(":username", pet.getName())
+                    );
+                    continue;
+                }
+                pet.getRoleplayCharacter().depleteHealth(damage);
+                if (!pet.getRoleplayCharacter().isDead()) {
+                    pet.say(new PetVocal(
+                            Emulator.getTexts().getValue("rp.damage_received")
+                                    .replace(":username", this.client.getHabbo().getHabboInfo().getUsername())
+                                    .replace(":healthNow", String.valueOf(pet.getRoleplayCharacter().getHealthNow()))
+                                    .replace(":healthMax", String.valueOf(pet.getRoleplayCharacter().getHealthMax()))
+                            )
                     );
                 }
             }

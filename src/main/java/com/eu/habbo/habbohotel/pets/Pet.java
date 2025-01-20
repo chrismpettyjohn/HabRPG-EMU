@@ -2,6 +2,8 @@ package com.eu.habbo.habbohotel.pets;
 
 import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.achievements.AchievementManager;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterRepository;
 import com.eu.habbo.habbohotel.rooms.*;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.habbohotel.users.HabboItem;
@@ -57,6 +59,8 @@ public class Pet implements ISerialize, Runnable {
 
     private boolean muted = false;
 
+    private RoleplayCharacter character;
+
     public Pet(ResultSet set) throws SQLException {
         super();
         this.id = set.getInt("id");
@@ -78,6 +82,8 @@ public class Pet implements ISerialize, Runnable {
         this.levelThirst = set.getInt("thirst");
         this.levelHunger = set.getInt("hunger");
         this.level = PetManager.getLevel(this.experience);
+
+        this.character = RoleplayCharacterRepository.loadByPet(this);
     }
 
     public Pet(int type, int race, String color, String name, int userId) {
@@ -101,6 +107,8 @@ public class Pet implements ISerialize, Runnable {
         this.levelHunger = 0;
         this.created = Emulator.getIntUnixTimestamp();
         this.level = 1;
+
+        this.character = RoleplayCharacterRepository.loadByPet(this);
     }
 
 
@@ -753,5 +761,9 @@ public class Pet implements ISerialize, Runnable {
 
     public void setStayStartedAt(int stayStartedAt) {
         this.stayStartedAt = stayStartedAt;
+    }
+
+    public RoleplayCharacter getRoleplayCharacter() {
+        return this.character;
     }
 }

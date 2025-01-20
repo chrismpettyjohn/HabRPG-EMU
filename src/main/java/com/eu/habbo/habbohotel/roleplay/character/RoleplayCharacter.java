@@ -1,6 +1,7 @@
 package com.eu.habbo.habbohotel.roleplay.character;
 
 import com.eu.habbo.habbohotel.bots.Bot;
+import com.eu.habbo.habbohotel.pets.Pet;
 import com.eu.habbo.habbohotel.roleplay.character.events.CharacterDiedEvent;
 import com.eu.habbo.habbohotel.roleplay.character.events.CharacterExhaustedEvent;
 import com.eu.habbo.habbohotel.users.Habbo;
@@ -13,19 +14,23 @@ public class RoleplayCharacter {
 
     private final Bot bot;
     private final Habbo habbo;
+    private final Pet pet;
 
     private int botId;
     private int userId;
+    private int petId;
     private int healthNow;
     private int healthMax;
     private int energyNow;
     private int energyMax;
 
-    public RoleplayCharacter(ResultSet set, Bot bot, Habbo habbo) throws SQLException {
+    public RoleplayCharacter(ResultSet set, Bot bot, Habbo habbo, Pet pet) throws SQLException {
         this.bot = bot;
         this.habbo = habbo;
+        this.pet = pet;
         this.botId = set.getInt("bots_id");
         this.userId = set.getInt("users_id");
+        this.petId = set.getInt("pets_id");
         this.healthNow = set.getInt("health_now");
         this.healthMax = set.getInt("health_max");
         this.energyNow = set.getInt("energy_now");
@@ -38,6 +43,9 @@ public class RoleplayCharacter {
     public Habbo getHabbo() {
         return this.habbo;
     }
+    public Pet getPet() {
+        return this.pet;
+    }
 
     public int getBotId() {
         return this.botId;
@@ -45,6 +53,10 @@ public class RoleplayCharacter {
 
     public int getUserId() {
         return this.userId;
+    }
+
+    public int getPetId() {
+        return this.petId;
     }
 
     public int getHealthNow() {
