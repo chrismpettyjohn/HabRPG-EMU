@@ -1,6 +1,8 @@
 package com.eu.habbo.habbohotel.bots;
 
 import com.eu.habbo.Emulator;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterRepository;
 import com.eu.habbo.habbohotel.rooms.*;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.habbohotel.users.HabboGender;
@@ -48,19 +50,17 @@ public class Bot implements Runnable {
     private int lastChatIndex;
     private int bubble;
 
-
     private final String type;
-
 
     private int effect;
 
     private transient boolean canWalk = true;
 
-
     private boolean needsUpdate;
 
-
     private transient int followingHabboId;
+
+    private RoleplayCharacter character;
 
     public Bot(int id, String name, String motto, String figure, HabboGender gender, int ownerId, String ownerName) {
         this.id = id;
@@ -77,6 +77,8 @@ public class Bot implements Runnable {
         this.type = "generic_bot";
         this.room = null;
         this.bubble = RoomChatMessageBubbles.BOT_RENTABLE.getType();
+
+        this.character = RoleplayCharacterRepository.loadByBot(this);
     }
 
     public Bot(ResultSet set) throws SQLException {
@@ -99,6 +101,8 @@ public class Bot implements Runnable {
         this.chatTimeOut = Emulator.getIntUnixTimestamp() + this.chatDelay;
         this.needsUpdate = false;
         this.bubble = set.getInt("bubble_id");
+
+        this.character = RoleplayCharacterRepository.loadByBot(this);
     }
 
     public Bot(Bot bot) {
@@ -116,6 +120,8 @@ public class Bot implements Runnable {
         this.type = bot.getType();
         this.effect = bot.getEffect();
         this.bubble = bot.getBubbleId();
+
+        this.character = RoleplayCharacterRepository.loadByBot(this);
 
         this.needsUpdate = false;
     }
@@ -532,6 +538,10 @@ public class Bot implements Runnable {
         } catch (SQLException e) {
             LOGGER.error("Caught SQL exception", e);
         }
+    }
+
+    public RoleplayCharacter getRoleplayCharacter() {
+        return this.character;
     }
 
 
