@@ -246,7 +246,7 @@ public class Pet implements ISerialize, Runnable {
                 }
             }
 
-            if (!this.roomUnit.isWalking()) {
+            if (!this.roomUnit.isWalking() && this.character.canMove()) {
                 if (this.roomUnit.getWalkTimeOut() < time && this.canWalk()) {
                     RoomTile tile = this.room.getRandomWalkableTile();
 
