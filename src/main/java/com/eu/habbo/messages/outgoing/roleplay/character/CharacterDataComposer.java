@@ -5,16 +5,16 @@ import com.eu.habbo.messages.ServerMessage;
 import com.eu.habbo.messages.outgoing.MessageComposer;
 import com.eu.habbo.messages.outgoing.Outgoing;
 
-public class CharacterComposer extends MessageComposer {
+public class CharacterDataComposer extends MessageComposer {
     private final RoleplayCharacter character;
 
-    public CharacterComposer(RoleplayCharacter character) {
+    public CharacterDataComposer(RoleplayCharacter character) {
         this.character = character;
     }
 
     @Override
     protected ServerMessage composeInternal() {
-        this.response.init(Outgoing.RoleplayCharacterComposer);
+        this.response.init(Outgoing.CharacterDataComposer);
         this.response.appendInt(this.character.getUserId());
         this.response.appendInt(this.character.getHealthNow());
         this.response.appendInt(this.character.getHealthMax());

@@ -448,7 +448,7 @@ public class Outgoing {
 
     public final static int GameCenterGameComposer = 3805;
 
-    public final static int RoleplayCharacterComposer = 4001;
+    public final static int CharacterDataComposer = 4001;
 
 
 }

@@ -90,7 +90,6 @@ public class HabboInfo implements Runnable {
 
         this.loadCurrencies();
         this.loadSavedSearches();
-        this.loadMessengerCategories();
     }
 
     private void loadCurrencies() {

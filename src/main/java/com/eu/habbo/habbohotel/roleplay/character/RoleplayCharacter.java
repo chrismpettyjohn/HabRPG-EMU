@@ -17,7 +17,7 @@ public class RoleplayCharacter {
     private int energyMax;
 
     private RoleplayCharacter(ResultSet set) throws SQLException {
-        this.userId = set.getInt("user_id");
+        this.userId = set.getInt("users_id");
         this.healthNow = set.getInt("health_now");
         this.healthMax = set.getInt("health_max");
         this.energyNow = set.getInt("energy_now");
@@ -26,7 +26,7 @@ public class RoleplayCharacter {
 
     public static RoleplayCharacter loadByHabbo(Habbo habbo) {
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM rp_characters WHERE user_id = ?")) {
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM rp_characters WHERE users_id = ?")) {
             statement.setInt(1, habbo.getHabboInfo().getId());
 
             try (ResultSet set = statement.executeQuery()) {
