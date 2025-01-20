@@ -1,6 +1,7 @@
 package com.eu.habbo.habbohotel.roleplay.character.events;
 
 import com.eu.habbo.Emulator;
+import com.eu.habbo.habbohotel.pets.PetVocal;
 import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
 
 public class CharacterDiedEvent {
@@ -13,6 +14,10 @@ public class CharacterDiedEvent {
 
         if (character.getHabbo() != null) {
             character.getHabbo().shout(Emulator.getTexts().getValue("rp.died"));
+        }
+
+        if (character.getPet() != null) {
+            character.getPet().say(new PetVocal(Emulator.getTexts().getValue("rp.died")));
         }
     }
 
