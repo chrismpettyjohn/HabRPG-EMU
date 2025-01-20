@@ -32,6 +32,11 @@ public class RoomUserWalkEvent extends MessageHandler {
             // Get Habbo object
             Habbo habbo = this.client.getHabbo();
 
+            if (!habbo.getRoleplayCharacter().canMove()) {
+                habbo.whisper(Emulator.getTexts().getValue("rp.cant_move"));
+                return;
+            }
+
             // Get Room Habbo object (Unique GUID?)
             RoomUnit roomUnit = this.client.getHabbo().getRoomUnit();
 

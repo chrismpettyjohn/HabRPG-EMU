@@ -40,6 +40,18 @@ public class RoleplayCharacter {
         return null;
     }
 
+    public boolean isDead() {
+        return this.healthNow <= 0;
+    }
+
+    public boolean canInteract() {
+        return !this.isDead();
+    }
+
+    public boolean canMove() {
+        return !this.isDead();
+    }
+
     public int getUserId() {
         return this.userId;
     }
