@@ -7,6 +7,7 @@ import com.eu.habbo.habbohotel.gameclients.GameClient;
 import com.eu.habbo.habbohotel.messenger.Messenger;
 import com.eu.habbo.habbohotel.pets.Pet;
 import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterAttributes;
 import com.eu.habbo.habbohotel.rooms.*;
 import com.eu.habbo.habbohotel.users.inventory.BadgesComponent;
 import com.eu.habbo.messages.outgoing.generic.alerts.*;
@@ -41,6 +42,7 @@ public class Habbo implements Runnable {
     private final Messenger messenger;
     private final HabboInventory habboInventory;
     private final RoleplayCharacter roleplayCharacter;
+    private final RoleplayCharacterAttributes roleplayCharacterAttributes;
     private GameClient client;
     private RoomUnit roomUnit;
 
@@ -54,6 +56,7 @@ public class Habbo implements Runnable {
         this.habboStats = HabboStats.load(this.habboInfo);
         this.habboInventory = new HabboInventory(this);
         this.roleplayCharacter = RoleplayCharacter.loadByHabbo(this);
+        this.roleplayCharacterAttributes = RoleplayCharacterAttributes.loadByHabbo(this);
 
         this.messenger = new Messenger();
         this.messenger.loadFriends(this);
@@ -104,6 +107,9 @@ public class Habbo implements Runnable {
 
     public RoleplayCharacter getRoleplayCharacter() {
         return this.roleplayCharacter;
+    }
+    public RoleplayCharacterAttributes getRoleplayCharacterAttributes() {
+        return this.roleplayCharacterAttributes;
     }
 
     public RoomUnit getRoomUnit() {

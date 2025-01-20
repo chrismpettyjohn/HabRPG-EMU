@@ -40,6 +40,7 @@ import com.eu.habbo.messages.incoming.navigator.*;
 import com.eu.habbo.messages.incoming.polls.AnswerPollEvent;
 import com.eu.habbo.messages.incoming.polls.CancelPollEvent;
 import com.eu.habbo.messages.incoming.polls.GetPollDataEvent;
+import com.eu.habbo.messages.incoming.roleplay.character.CharacterAttributesLookupEvent;
 import com.eu.habbo.messages.incoming.roleplay.character.CharacterLookupEvent;
 import com.eu.habbo.messages.incoming.rooms.*;
 import com.eu.habbo.messages.incoming.rooms.bots.BotPickupEvent;
@@ -634,5 +635,6 @@ public class PacketManager {
 
     void registerRoleplay() throws Exception {
         this.registerHandler(Incoming.CharacterLookupEvent, CharacterLookupEvent.class);
+        this.registerHandler(Incoming.CharacterAttributesLookupEvent, CharacterAttributesLookupEvent.class);
     }
 }
