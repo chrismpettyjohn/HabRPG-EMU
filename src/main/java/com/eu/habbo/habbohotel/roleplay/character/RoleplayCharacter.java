@@ -17,9 +17,9 @@ public class RoleplayCharacter {
     private final Pet pet;
 
     private final int id;
-    private final int botId;
-    private final int userId;
-    private final int petId;
+    private final Integer botId;
+    private final Integer userId;
+    private final Integer petId;
     private int healthNow;
     private int healthMax;
     private int energyNow;
@@ -57,15 +57,15 @@ public class RoleplayCharacter {
         return this.id;
     }
 
-    public int getBotId() {
+    public Integer getBotId() {
         return this.botId;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return this.userId;
     }
 
-    public int getPetId() {
+    public Integer getPetId() {
         return this.petId;
     }
 
