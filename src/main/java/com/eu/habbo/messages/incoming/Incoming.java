@@ -117,7 +117,6 @@ public class Incoming {
     public static final int CompleteDiffieHandshake = 773;
     public static final int SearchRoomsMyFavoriteEvent = 2578;
     public static final int TradeStartEvent = 1481;
-    public static final int RequestTargetOfferEvent = 2487;
     public static final int ChangeRelationEvent = 3768;
     public static final int RoomUserSitEvent = 2235;
     public static final int RequestCanCreateRoomEvent = 2128;
@@ -142,7 +141,6 @@ public class Incoming {
     public static final int HotelViewInventoryEvent = 3500;
     public static final int RequestPetBreedsEvent = 1756;
     public static final int GuildChangeBadgeEvent = 1991;
-    public static final int ModToolBanEvent = -1;
     public static final int SaveWardrobeEvent = 800;
     public static final int HotelViewEvent = 105;
     public static final int ModToolPickTicketEvent = 15;
@@ -150,7 +148,6 @@ public class Incoming {
     public static final int ModToolCloseTicketEvent = 2067;
     public static final int TriggerColorWheelEvent = 2144;
     public static final int SearchRoomsByTagEvent = -1;//1956
-    public static final int RequestPublicRoomsEvent = 1229;
     public static final int RequestResolutionEvent = 359;
     public static final int RequestInventoryItemsEvent = 3150;
     public static final int ModToolRoomAlertEvent = 3842;
@@ -259,7 +256,6 @@ public class Incoming {
     public static final int JukeBoxEventOne = 2304;
     public static final int JukeBoxEventTwo = 1435;
     public static final int RoomUserMuteEvent = 3485;
-    //public static final int JukeBoxEventThree = 3846;
     public static final int RequestDeleteRoomEvent = 532;
     public static final int RequestPromotionRoomsEvent = 1075;
     public static final int BuyRoomPromotionEvent = 777;
@@ -284,10 +280,6 @@ public class Incoming {
     public static final int CameraRoomPictureEvent = 3226;
     public static final int CameraRoomThumbnailEvent = 1982;
     public static final int SavePostItStickyPoleEvent = 3283;
-    public static final int HotelViewClaimBadgeEvent = 3077;
-    public static final int HotelViewRequestCommunityGoalEvent = 1145;
-    public static final int HotelViewRequestConcurrentUsersEvent = 1343;
-    public static final int HotelViewConcurrentUsersButtonEvent = 3872;
     public static final int IgnoreRoomUserEvent = 1117;
     public static final int UnIgnoreRoomUserEvent = 2061;
     public static final int UnbanRoomUserEvent = 992;
@@ -308,8 +300,6 @@ public class Incoming {
     public static final int CraftingCraftItemEvent = 3591;
     public static final int CraftingCraftSecretEvent = 1251;
 
-    public static final int AdventCalendarOpenDayEvent = 2257;
-    public static final int AdventCalendarForceOpenEvent = 3889;
     public static final int CameraPurchaseEvent = 2408;
     public static final int RoomFavoriteEvent = 3817;
     public static final int RoomUnFavoriteEvent = 309;
@@ -371,34 +361,7 @@ public class Incoming {
     public static final int GuildForumModerateMessageEvent = 286;
     public static final int GuildForumModerateThreadEvent = 1397;
     public static final int GuildForumThreadUpdateEvent = 3045;
-    public static final int GuildForumMarkAsReadEvent = 1855;
 
 
-    public static final int UNKNOWN_SNOWSTORM_6000 = 6000;
-    public static final int UNKNOWN_SNOWSTORM_6001 = 6001;
-    public static final int UNKNOWN_SNOWSTORM_6002 = 6002;
-    public static final int UNKNOWN_SNOWSTORM_6003 = 6003;
-    public static final int UNKNOWN_SNOWSTORM_6004 = 6004;
-    public static final int UNKNOWN_SNOWSTORM_6005 = 6005;
-    public static final int UNKNOWN_SNOWSTORM_6006 = 6006;
-    public static final int UNKNOWN_SNOWSTORM_6007 = 6007;
-    public static final int UNKNOWN_SNOWSTORM_6008 = 6008;
-    public static final int UNKNOWN_SNOWSTORM_6009 = 6009;
-    public static final int UNKNOWN_SNOWSTORM_6010 = 6010;
-    public static final int UNKNOWN_SNOWSTORM_6011 = 6011;
-    public static final int SnowStormJoinQueueEvent = 6012;
-    public static final int UNKNOWN_SNOWSTORM_6013 = 6013;
-    public static final int UNKNOWN_SNOWSTORM_6014 = 6014;
-    public static final int UNKNOWN_SNOWSTORM_6015 = 6015;
-    public static final int UNKNOWN_SNOWSTORM_6016 = 6016;
-    public static final int UNKNOWN_SNOWSTORM_6017 = 6017;
-    public static final int UNKNOWN_SNOWSTORM_6018 = 6018;
-    public static final int UNKNOWN_SNOWSTORM_6019 = 6019;
-    public static final int UNKNOWN_SNOWSTORM_6020 = 6020;
-    public static final int UNKNOWN_SNOWSTORM_6021 = 6021;
-    public static final int UNKNOWN_SNOWSTORM_6022 = 6022;
-    public static final int UNKNOWN_SNOWSTORM_6023 = 6023;
-    public static final int UNKNOWN_SNOWSTORM_6024 = 6024;
-    public static final int UNKNOWN_SNOWSTORM_6025 = 6025;
-    public static final int SnowStormUserPickSnowballEvent = 6026;
+    public static final int CharacterLookupEvent = 4001;
 }

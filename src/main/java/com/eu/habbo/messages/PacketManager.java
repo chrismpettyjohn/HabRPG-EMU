@@ -40,6 +40,7 @@ import com.eu.habbo.messages.incoming.navigator.*;
 import com.eu.habbo.messages.incoming.polls.AnswerPollEvent;
 import com.eu.habbo.messages.incoming.polls.CancelPollEvent;
 import com.eu.habbo.messages.incoming.polls.GetPollDataEvent;
+import com.eu.habbo.messages.incoming.roleplay.character.CharacterLookupEvent;
 import com.eu.habbo.messages.incoming.rooms.*;
 import com.eu.habbo.messages.incoming.rooms.bots.BotPickupEvent;
 import com.eu.habbo.messages.incoming.rooms.bots.BotPlaceEvent;
@@ -114,6 +115,7 @@ public class PacketManager {
         this.registerCrafting();
         this.registerCamera();
         this.registerGameCenter();
+        this.registerRoleplay();
     }
 
     public PacketNames getNames() {
@@ -541,13 +543,6 @@ public class PacketManager {
         this.registerHandler(Incoming.GuildForumModerateThreadEvent, GuildForumModerateThreadEvent.class);
         this.registerHandler(Incoming.GuildForumThreadUpdateEvent, GuildForumThreadUpdateEvent.class);
         this.registerHandler(Incoming.GetHabboGuildBadgesMessageEvent, GetHabboGuildBadgesMessageEvent.class);
-
-//        this.registerHandler(Incoming.GuildForumDataEvent,              GuildForumModerateMessageEvent.class);
-//        this.registerHandler(Incoming.GuildForumDataEvent,              GuildForumModerateThreadEvent.class);
-//        this.registerHandler(Incoming.GuildForumDataEvent,              GuildForumPostThreadEvent.class);
-//        this.registerHandler(Incoming.GuildForumDataEvent,              GuildForumThreadsEvent.class);
-//        this.registerHandler(Incoming.GuildForumDataEvent,              GuildForumThreadsMessagesEvent.class);
-//        this.registerHandler(Incoming.GuildForumDataEvent,              GuildForumUpdateSettingsEvent.class);
     }
 
     void registerPets() throws Exception {
@@ -635,5 +630,9 @@ public class PacketManager {
         this.registerHandler(Incoming.GameCenterLeaveGameEvent, GameCenterLeaveGameEvent.class);
         this.registerHandler(Incoming.GameCenterEvent, GameCenterEvent.class);
         this.registerHandler(Incoming.GameCenterRequestGameStatusEvent, GameCenterRequestGameStatusEvent.class);
+    }
+
+    void registerRoleplay() throws Exception {
+        this.registerHandler(Incoming.CharacterLookupEvent, CharacterLookupEvent.class);
     }
 }
