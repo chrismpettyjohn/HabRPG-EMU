@@ -19,6 +19,8 @@ public class CharacterDataComposer extends MessageComposer {
         this.response.appendInt(this.character.getBotId());
         this.response.appendInt(this.character.getUserId());
         this.response.appendInt(this.character.getPetId());
+        this.response.appendBoolean(this.character.isDead());
+        this.response.appendBoolean(this.character.isExhausted());
         this.response.appendInt(this.character.getHealthNow());
         this.response.appendInt(this.character.getHealthMax());
         this.response.appendInt(this.character.getEnergyNow());

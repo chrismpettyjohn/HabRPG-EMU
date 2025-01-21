@@ -345,6 +345,10 @@ public class HabboInfo implements Runnable {
         this.credits = credits;
         this.run();
     }
+    public void depleteCredits(int credits) {
+        this.credits -= credits;
+        this.run();
+    }
 
     public void addCredits(int credits) {
         this.credits += credits;

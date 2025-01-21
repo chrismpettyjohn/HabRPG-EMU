@@ -43,6 +43,7 @@ import com.eu.habbo.messages.incoming.polls.GetPollDataEvent;
 import com.eu.habbo.messages.incoming.roleplay.character.CharacterAttributesLookupEvent;
 import com.eu.habbo.messages.incoming.roleplay.character.CharacterLookupEvent;
 import com.eu.habbo.messages.incoming.roleplay.combat.AttackEvent;
+import com.eu.habbo.messages.incoming.roleplay.paramedic.CallParamedicEvent;
 import com.eu.habbo.messages.incoming.rooms.*;
 import com.eu.habbo.messages.incoming.rooms.bots.BotPickupEvent;
 import com.eu.habbo.messages.incoming.rooms.bots.BotPlaceEvent;
@@ -638,5 +639,6 @@ public class PacketManager {
         this.registerHandler(Incoming.CharacterLookupEvent, CharacterLookupEvent.class);
         this.registerHandler(Incoming.CharacterAttributesLookupEvent, CharacterAttributesLookupEvent.class);
         this.registerHandler(Incoming.AttackEvent, AttackEvent.class);
+        this.registerHandler(Incoming.CallParamedicEvent, CallParamedicEvent.class);
     }
 }

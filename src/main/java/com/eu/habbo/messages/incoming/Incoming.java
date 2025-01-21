@@ -366,4 +366,5 @@ public class Incoming {
     public static final int CharacterLookupEvent = 4001;
     public static final int CharacterAttributesLookupEvent = 4002;
     public static final int AttackEvent = 4003;
+    public static final int CallParamedicEvent = 4004;
 }
