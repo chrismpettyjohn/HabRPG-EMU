@@ -19,7 +19,7 @@ public class CallParamedicAction {
         try {
             HabboInfo systemUser = Emulator.getGameEnvironment().getHabboManager().getHabboInfo(Emulator.getConfig().getInt("rp.system_user_id"));
             Bot baseBot = new Bot(0, "Paramedic", "[Working] Paramedic", Emulator.getConfig().getValue("rp.paramedic_figure"), HabboGender.M, systemUser.getId(), systemUser.getUsername());
-            baseBot.setOwnerId(1); // System user
+            baseBot.setOwnerId(systemUser.getId()); // System user
 
             ParamedicBot paramedicBot = new ParamedicBot(baseBot);
 
