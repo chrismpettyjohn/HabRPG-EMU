@@ -39,6 +39,7 @@ import com.eu.habbo.habbohotel.items.interactions.games.tag.icetag.InteractionIc
 import com.eu.habbo.habbohotel.items.interactions.games.tag.icetag.InteractionIceTagPole;
 import com.eu.habbo.habbohotel.items.interactions.games.tag.rollerskate.InteractionRollerskateField;
 import com.eu.habbo.habbohotel.items.interactions.pets.*;
+import com.eu.habbo.habbohotel.items.interactions.roleplay.InteractionFirstAidKit;
 import com.eu.habbo.habbohotel.items.interactions.totems.InteractionTotemHead;
 import com.eu.habbo.habbohotel.items.interactions.totems.InteractionTotemLegs;
 import com.eu.habbo.habbohotel.items.interactions.totems.InteractionTotemPlanet;
@@ -345,6 +346,8 @@ public class ItemManager {
         this.interactionsList.add(new ItemInteraction("totem_leg", InteractionTotemLegs.class));
         this.interactionsList.add(new ItemInteraction("totem_head", InteractionTotemHead.class));
         this.interactionsList.add(new ItemInteraction("totem_planet", InteractionTotemPlanet.class));
+
+        this.interactionsList.add(new ItemInteraction(InteractionFirstAidKit.INTERACTION_TYPE, InteractionFirstAidKit.class));
     }
 
 

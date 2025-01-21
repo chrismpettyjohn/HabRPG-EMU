@@ -80,9 +80,9 @@ public class RoleplayCharacter {
 
     public void addHealth(int points) {
         int healthBefore = this.healthNow;
-        this.healthNow += points;
+        this.healthNow = Math.min(this.healthNow + points, this.healthMax);
 
-        if (healthBefore <= 0) {
+        if (healthBefore <= 0 && this.healthNow > 0) {
             new CharacterHealedAction(this);
         }
 
@@ -90,7 +90,7 @@ public class RoleplayCharacter {
     }
 
     public void depleteHealth(int points) {
-        this.healthNow -= points;
+        this.healthNow = Math.max(this.healthNow - points, 0);
 
         if (this.isDead()) {
             new CharacterDiedAction(this);
