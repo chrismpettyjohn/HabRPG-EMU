@@ -77,8 +77,13 @@ public class RoleplayCharacter {
         return this.healthMax;
     }
 
-    public void depleteHealth(int damage) {
-        this.healthNow -= damage;
+    public void addHealth(int points) {
+        this.healthNow += points;
+        this.notifyRoom();
+    }
+
+    public void depleteHealth(int points) {
+        this.healthNow -= points;
 
         if (this.isDead()) {
             new CharacterDiedEvent(this);
@@ -93,6 +98,11 @@ public class RoleplayCharacter {
 
     public int getEnergyMax() {
         return this.energyMax;
+    }
+
+    public void addEnergy(int points) {
+        this.energyNow += points;
+        this.notifyRoom();
     }
 
     public void depleteEnergy(int points) {

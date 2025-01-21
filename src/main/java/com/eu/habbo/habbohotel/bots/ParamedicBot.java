@@ -51,6 +51,16 @@ public class ParamedicBot extends Bot {
     @Override
     public void onPlace(Habbo habbo, Room room) {
         super.onPlace(habbo, room);
-        this.shout("I WILL HEAL YOU SUH");
+        this.shout("*Arrives with medical equipment*");
+    }
+
+    public void heal(Habbo habbo) {
+        if (habbo != null && this.getRoom() != null && habbo.getHabboInfo().getCurrentRoom() == this.getRoom()) {
+            if (habbo.getRoleplayCharacter() != null) {
+                habbo.getRoleplayCharacter().addHealth(habbo.getRoleplayCharacter().getHealthMax());
+                this.talk("*Heals " + habbo.getHabboInfo().getUsername() + "*");
+                this.talk("You're all patched up now!");
+            }
+        }
     }
 }

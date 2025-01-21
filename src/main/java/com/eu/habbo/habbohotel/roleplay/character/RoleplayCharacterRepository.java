@@ -13,50 +13,82 @@ import java.sql.SQLException;
 public class RoleplayCharacterRepository {
 
     public static RoleplayCharacter loadByBot(Bot bot) {
+        RoleplayCharacter character = null;
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM rp_characters WHERE type = 'bot' AND bots_id = ?")) {
             statement.setInt(1, bot.getId());
 
             try (ResultSet set = statement.executeQuery()) {
                 if (set.next()) {
-                    return new RoleplayCharacter(set, bot, null, null);
+                    character = new RoleplayCharacter(set, bot, null, null);
                 }
             }
         } catch (SQLException e) {
             System.err.println("Caught SQL exception: " + e.getMessage());
         }
-        return null;
+
+        if (character == null) {
+            createDefaultCharacter("bot", bot.getId());
+            character = loadByBot(bot); // Reload after creation
+        }
+        return character;
     }
 
     public static RoleplayCharacter loadByHabbo(Habbo habbo) {
+        RoleplayCharacter character = null;
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM rp_characters WHERE type = 'user' AND users_id = ?")) {
             statement.setInt(1, habbo.getHabboInfo().getId());
 
             try (ResultSet set = statement.executeQuery()) {
                 if (set.next()) {
-                    return new RoleplayCharacter(set, null, habbo, null);
+                    character = new RoleplayCharacter(set, null, habbo, null);
                 }
             }
         } catch (SQLException e) {
             System.err.println("Caught SQL exception: " + e.getMessage());
         }
-        return null;
+
+        if (character == null) {
+            createDefaultCharacter("user", habbo.getHabboInfo().getId());
+            character = loadByHabbo(habbo); // Reload after creation
+        }
+        return character;
     }
 
     public static RoleplayCharacter loadByPet(Pet pet) {
+        RoleplayCharacter character = null;
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM rp_characters WHERE type = 'pet' AND pets_id = ?")) {
             statement.setInt(1, pet.getId());
 
             try (ResultSet set = statement.executeQuery()) {
                 if (set.next()) {
-                    return new RoleplayCharacter(set, null, null, pet);
+                    character = new RoleplayCharacter(set, null, null, pet);
                 }
             }
         } catch (SQLException e) {
             System.err.println("Caught SQL exception: " + e.getMessage());
         }
-        return null;
+
+        if (character == null) {
+            createDefaultCharacter("pet", pet.getId());
+            character = loadByPet(pet); // Reload after creation
+        }
+        return character;
+    }
+
+    private static void createDefaultCharacter(String type, int id) {
+        try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                     "INSERT INTO rp_characters (type, bots_id, users_id, pets_id) VALUES (?, ?, ?, ?)")) {
+            statement.setString(1, type);
+            statement.setInt(2, "bot".equals(type) ? id : 0);
+            statement.setInt(3, "user".equals(type) ? id : 0);
+            statement.setInt(4, "pet".equals(type) ? id : 0);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Caught SQL exception: " + e.getMessage());
+        }
     }
 }
