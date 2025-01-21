@@ -1,4 +1,4 @@
-package com.eu.habbo.habbohotel.roleplay.character.events;
+package com.eu.habbo.habbohotel.roleplay.character.actions;
 
 import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.pets.PetVocal;
@@ -6,9 +6,9 @@ import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
 import com.eu.habbo.habbohotel.rooms.RoomUnitStatus;
 import com.eu.habbo.messages.outgoing.rooms.users.RoomUserStatusComposer;
 
-public class CharacterDiedEvent {
+public class CharacterDiedAction {
 
-    public CharacterDiedEvent(RoleplayCharacter character) {
+    public CharacterDiedAction(RoleplayCharacter character) {
         if (character.getBot() != null) {
             character.getBot().shout(Emulator.getTexts().getValue("rp.died"));
             character.getBot().getRoomUnit().setStatus(RoomUnitStatus.LAY, 0.5 + "");
