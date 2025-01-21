@@ -4,6 +4,7 @@ import com.eu.habbo.habbohotel.bots.Bot;
 import com.eu.habbo.habbohotel.pets.Pet;
 import com.eu.habbo.habbohotel.roleplay.character.actions.CharacterDiedAction;
 import com.eu.habbo.habbohotel.roleplay.character.actions.CharacterExhaustedAction;
+import com.eu.habbo.habbohotel.roleplay.character.actions.CharacterHealedAction;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.outgoing.roleplay.character.CharacterDataComposer;
 
@@ -78,7 +79,13 @@ public class RoleplayCharacter {
     }
 
     public void addHealth(int points) {
+        int healthBefore = this.healthNow;
         this.healthNow += points;
+
+        if (healthBefore <= 0) {
+            new CharacterHealedAction(this);
+        }
+
         this.notifyRoom();
     }
 

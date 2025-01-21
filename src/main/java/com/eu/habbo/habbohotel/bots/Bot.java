@@ -28,7 +28,7 @@ public class Bot implements Runnable {
     private static final Logger LOGGER = LoggerFactory.getLogger(Bot.class);
 
     public static final String NO_CHAT_SET = "${bot.skill.chatter.configuration.text.placeholder}";
-    public static String[] PLACEMENT_MESSAGES = "Yo!;Hello I'm a real party animal!;Hello!".split(";");
+    public static String[] PLACEMENT_MESSAGES = "Yo!".split(";");
     public static boolean BOT_LIMIT_WALKING_DISTANCE = true;
     public static int BOT_WALKING_DISTANCE_RADIUS = 5;
 
