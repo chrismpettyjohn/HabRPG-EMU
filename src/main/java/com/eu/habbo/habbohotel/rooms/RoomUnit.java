@@ -7,6 +7,8 @@ import com.eu.habbo.habbohotel.items.interactions.*;
 import com.eu.habbo.habbohotel.items.interactions.interfaces.ConditionalGate;
 import com.eu.habbo.habbohotel.pets.Pet;
 import com.eu.habbo.habbohotel.pets.RideablePet;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterRepository;
 import com.eu.habbo.habbohotel.users.DanceType;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.habbohotel.users.HabboItem;
@@ -60,7 +62,6 @@ public class RoomUnit {
     private boolean fastWalk = false;
     private boolean statusUpdate = false;
     private boolean invisible = false;
-    private boolean lastCycleStatus = false;
     private boolean canLeaveRoomByDoor = true;
     private RoomUserRotation bodyRotation = RoomUserRotation.NORTH;
     private RoomUserRotation headRotation = RoomUserRotation.NORTH;
@@ -114,16 +115,17 @@ public class RoomUnit {
 
     public boolean cycle(Room room) {
         try {
+
             Habbo rider = null;
             if (this.getRoomUnitType() == RoomUnitType.PET) {
                 Pet pet = room.getPet(this);
+
                 if (pet instanceof RideablePet) {
                     rider = ((RideablePet) pet).getRider();
                 }
             }
 
             if (rider != null) {
-                // copy things from rider
                 if (this.status.containsKey(RoomUnitStatus.MOVE) && !rider.getRoomUnit().getStatusMap().containsKey(RoomUnitStatus.MOVE)) {
                     this.status.remove(RoomUnitStatus.MOVE);
                 }
@@ -190,7 +192,6 @@ public class RoomUnit {
                 if (path.isEmpty()) return true;
 
                 path.pop();
-                //peekPath.pop(); //Start
                 peekPath.removeLast(); //End
 
                 if (peekPath.peek() != next) {
@@ -237,8 +238,6 @@ public class RoomUnit {
             }
 
             HabboItem item = room.getTopItemAt(next.x, next.y);
-
-            //if(!(this.path.size() == 0 && canSitNextTile))
             {
                 double height = next.getStackHeight() - this.currentLocation.getStackHeight();
                 if (!room.tileWalkable(next) || (!RoomLayout.ALLOW_FALLING && height < -RoomLayout.MAXIMUM_STEP_HEIGHT) || (next.state == RoomTileState.OPEN && height > RoomLayout.MAXIMUM_STEP_HEIGHT)) {
@@ -272,11 +271,6 @@ public class RoomUnit {
             }
 
             double zHeight = 0.0D;
-
-            /*if (((habbo != null && habbo.getHabboInfo().getRiding() != null) || isRiding) && next.equals(this.goalLocation) && (next.state == RoomTileState.SIT || next.state == RoomTileState.LAY)) {
-                this.status.remove(RoomUnitStatus.MOVE);
-                return false;
-            }*/
 
             if (habbo != null) {
                 if (habbo.getHabboInfo().getRiding() != null) {

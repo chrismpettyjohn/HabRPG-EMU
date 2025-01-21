@@ -30,6 +30,8 @@ import com.eu.habbo.habbohotel.permissions.Permission;
 import com.eu.habbo.habbohotel.pets.Pet;
 import com.eu.habbo.habbohotel.pets.PetManager;
 import com.eu.habbo.habbohotel.pets.RideablePet;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterRepository;
 import com.eu.habbo.habbohotel.users.*;
 import com.eu.habbo.habbohotel.wired.WiredHandler;
 import com.eu.habbo.habbohotel.wired.WiredTriggerType;
@@ -1662,6 +1664,7 @@ public class Room implements Comparable<Room>, ISerialize, Runnable {
 
     private boolean cycleRoomUnit(RoomUnit unit, RoomUnitType type) {
         boolean update = unit.needsStatusUpdate();
+
         if (unit.hasStatus(RoomUnitStatus.SIGN)) {
             this.sendComposer(new RoomUserStatusComposer(unit).compose());
             unit.removeStatus(RoomUnitStatus.SIGN);
@@ -1702,7 +1705,11 @@ public class Room implements Comparable<Room>, ISerialize, Runnable {
         if (!unit.isWalking() && !unit.cmdLay) {
             HabboItem topItem = this.getTopItemAt(unit.getX(), unit.getY());
 
-            if (topItem == null || !topItem.getBaseItem().allowLay()) {
+            if (topItem == null) {
+                return true;
+            }
+
+            if (!topItem.getBaseItem().allowLay()) {
                 if (unit.hasStatus(RoomUnitStatus.LAY)) {
                     unit.removeStatus(RoomUnitStatus.LAY);
                     update = true;
