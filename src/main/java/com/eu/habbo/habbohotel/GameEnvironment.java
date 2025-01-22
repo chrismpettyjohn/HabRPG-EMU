@@ -18,6 +18,8 @@ import com.eu.habbo.habbohotel.navigation.NavigatorManager;
 import com.eu.habbo.habbohotel.permissions.PermissionsManager;
 import com.eu.habbo.habbohotel.pets.PetManager;
 import com.eu.habbo.habbohotel.polls.PollManager;
+import com.eu.habbo.habbohotel.roleplay.RoleplayManager;
+import com.eu.habbo.habbohotel.roleplay.item.RoleplayItemManager;
 import com.eu.habbo.habbohotel.rooms.RoomChatBubbleManager;
 import com.eu.habbo.habbohotel.rooms.RoomManager;
 import com.eu.habbo.habbohotel.users.HabboManager;
@@ -54,6 +56,7 @@ public class GameEnvironment {
     private WordFilter wordFilter;
     private CraftingManager craftingManager;
     private PollManager pollManager;
+    private RoleplayManager roleplayManager;
     private SubscriptionManager subscriptionManager;
     private RoomChatBubbleManager roomChatBubbleManager;
 
@@ -80,6 +83,7 @@ public class GameEnvironment {
         this.wordFilter = new WordFilter();
         this.craftingManager = new CraftingManager();
         this.pollManager = new PollManager();
+        this.roleplayManager = RoleplayManager.getInstance();
         this.roomChatBubbleManager = new RoomChatBubbleManager();
 
         this.roomManager.loadPublicRooms();
@@ -113,6 +117,7 @@ public class GameEnvironment {
         this.commandHandler.dispose();
         this.guildManager.dispose();
         this.catalogManager.dispose();
+        this.roleplayManager.dispose();
         this.roomManager.dispose();
         this.itemManager.dispose();
         this.hotelViewManager.dispose();

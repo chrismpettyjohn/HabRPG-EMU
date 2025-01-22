@@ -1,0 +1,40 @@
+package com.eu.habbo.habbohotel.roleplay;
+
+
+import com.eu.habbo.habbohotel.roleplay.item.RoleplayItemManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class RoleplayManager {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RoleplayManager.class);
+    private static RoleplayManager instance;
+
+    public static RoleplayManager getInstance() {
+        if (instance == null) {
+            synchronized (RoleplayManager.class) {
+                if (instance == null) {
+                    instance = new RoleplayManager();
+                }
+            }
+        }
+        return instance;
+    }
+
+    private final RoleplayItemManager roleplayItemManager;
+
+    private RoleplayManager() {
+        LOGGER.info("Roleplay -> loading");
+        long millis = System.currentTimeMillis();
+        this.roleplayItemManager = RoleplayItemManager.getInstance();
+        LOGGER.info("Roleplay -> loaded! (" + (System.currentTimeMillis() - millis) + " MS)");
+    }
+
+    public RoleplayItemManager getRoleplayItemManager() {
+        return this.roleplayItemManager;
+    }
+
+    public void dispose() {
+        this.roleplayItemManager.dispose();
+    }
+}

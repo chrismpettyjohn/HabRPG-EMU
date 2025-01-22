@@ -10,6 +10,7 @@ import com.eu.habbo.messages.outgoing.roleplay.character.CharacterDataComposer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class RoleplayCharacter {
 
@@ -18,6 +19,7 @@ public class RoleplayCharacter {
     private final Pet pet;
 
     private final int id;
+    private final String type;
     private final Integer botId;
     private final Integer userId;
     private final Integer petId;
@@ -27,12 +29,14 @@ public class RoleplayCharacter {
     private int energyMax;
 
     private RoleplayCharacterSkills skills;
+    private List<RoleplayCharacterItem> items;
 
     public RoleplayCharacter(ResultSet set, Bot bot, Habbo habbo, Pet pet) throws SQLException {
         this.bot = bot;
         this.habbo = habbo;
         this.pet = pet;
         this.id = set.getInt("id");
+        this.type = set.getString("type");
         this.botId = set.getInt("bots_id");
         this.userId = set.getInt("users_id");
         this.petId = set.getInt("pets_id");
@@ -42,6 +46,7 @@ public class RoleplayCharacter {
         this.energyMax = set.getInt("energy_max");
 
         this.skills = RoleplayCharacterSkillsRepository.loadByCharacter(this);
+        this.items = RoleplayCharacterItemRepository.loadAllByCharacter(this);
     }
     public Bot getBot() {
         return this.bot;
@@ -57,6 +62,8 @@ public class RoleplayCharacter {
     public int getId() {
         return this.id;
     }
+
+    public String getType() { return this.type; }
 
     public Integer getBotId() {
         return this.botId;
@@ -142,6 +149,10 @@ public class RoleplayCharacter {
         return this.skills;
     }
 
+    public List<RoleplayCharacterItem> getItems() {
+        return this.items;
+    }
+
     private void notifyRoom() {
         if (this.bot != null) {
             this.bot.getRoom().sendResponse(new CharacterDataComposer(this));
@@ -151,6 +162,11 @@ public class RoleplayCharacter {
         if (this.habbo != null) {
             this.habbo.getRoomUnit().getRoom().sendResponse(new CharacterDataComposer(this));
         }
+    }
+
+    public void dispose() {
+        RoleplayCharacterRepository.updateByCharacter(this);
+        RoleplayCharacterItemRepository.updateAll(this.items);
     }
 
 }

@@ -91,4 +91,39 @@ public class RoleplayCharacterRepository {
             System.err.println("Caught SQL exception: " + e.getMessage());
         }
     }
+
+    public static void updateByCharacter(RoleplayCharacter character) {
+        String query = """
+        UPDATE rp_characters SET 
+            type = ?, 
+            bots_id = ?, 
+            users_id = ?, 
+            pets_id = ?, 
+            health_now = ?, 
+            health_max = ?, 
+            energy_now = ?, 
+            energy_max = ?
+        WHERE id = ?
+    """;
+
+        try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, character.getType());
+            statement.setInt(2, character.getBotId());
+            statement.setInt(3, character.getUserId());
+            statement.setInt(4, character.getPetId());
+            statement.setInt(5, character.getHealthNow());
+            statement.setInt(6, character.getHealthMax());
+            statement.setInt(7, character.getEnergyNow());
+            statement.setInt(8, character.getEnergyMax());
+            statement.setInt(9, character.getId());
+            statement.addBatch();
+
+            statement.executeBatch();
+
+        } catch (SQLException e) {
+            System.err.println("Caught SQL exception: " + e.getMessage());
+        }
+    }
 }

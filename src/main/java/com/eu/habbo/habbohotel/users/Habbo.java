@@ -202,6 +202,7 @@ public class Habbo implements Runnable {
             this.getInventory().dispose();
             this.messenger.connectionChanged(this, false, false);
             this.messenger.dispose();
+            this.roleplayCharacter.dispose();
             this.disconnected = true;
             AchievementManager.saveAchievements(this);
 
