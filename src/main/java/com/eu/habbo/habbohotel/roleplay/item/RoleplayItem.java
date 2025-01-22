@@ -59,79 +59,159 @@ public class RoleplayItem {
         return this.uniqueName;
     }
 
+    public void setUniqueName(String uniqueName) {
+        this.uniqueName = uniqueName;
+    }
+
     public String getDisplayName() {
         return this.displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public String getType() {
         return this.type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getEffect() {
         return this.effect;
+    }
+
+    public void setEffect(String effect) {
+        this.effect = effect;
     }
 
     public int getAccuracy() {
         return this.accuracy;
     }
 
+    public void setAccuracy(int accuracy) {
+        this.accuracy = accuracy;
+    }
+
     public int getAmmoSize() {
         return this.ammoSize;
+    }
+
+    public void setAmmoSize(int ammoSize) {
+        this.ammoSize = ammoSize;
     }
 
     public int getAmmoCapacity() {
         return this.ammoCapacity;
     }
 
+    public void setAmmoCapacity(int ammoCapacity) {
+        this.ammoCapacity = ammoCapacity;
+    }
+
     public String getAttackMessage() {
         return this.attackMessage;
+    }
+
+    public void setAttackMessage(String attackMessage) {
+        this.attackMessage = attackMessage;
     }
 
     public int getCooldownSeconds() {
         return this.cooldownSeconds;
     }
 
+    public void setCooldownSeconds(int cooldownSeconds) {
+        this.cooldownSeconds = cooldownSeconds;
+    }
+
     public int getEquipHandItem() {
         return this.equipHandItem;
+    }
+
+    public void setEquipHandItem(int equipHandItem) {
+        this.equipHandItem = equipHandItem;
     }
 
     public int getEquipEffect() {
         return this.equipEffect;
     }
 
+    public void setEquipEffect(int equipEffect) {
+        this.equipEffect = equipEffect;
+    }
+
     public String getEquipMessage() {
         return this.equipMessage;
+    }
+
+    public void setEquipMessage(String equipMessage) {
+        this.equipMessage = equipMessage;
     }
 
     public int getMaxDamage() {
         return this.maxDamage;
     }
 
+    public void setMaxDamage(int maxDamage) {
+        this.maxDamage = maxDamage;
+    }
+
     public int getMinDamage() {
         return this.minDamage;
+    }
+
+    public void setMinDamage(int minDamage) {
+        this.minDamage = minDamage;
     }
 
     public int getRangeInTiles() {
         return this.rangeInTiles;
     }
 
+    public void setRangeInTiles(int rangeInTiles) {
+        this.rangeInTiles = rangeInTiles;
+    }
+
     public String getReloadMessage() {
         return this.reloadMessage;
+    }
+
+    public void setReloadMessage(String reloadMessage) {
+        this.reloadMessage = reloadMessage;
     }
 
     public int getReloadTime() {
         return this.reloadTime;
     }
 
+    public void setReloadTime(int reloadTime) {
+        this.reloadTime = reloadTime;
+    }
+
     public String getUnequipMessage() {
         return this.unequipMessage;
+    }
+
+    public void setUnequipMessage(String unequipMessage) {
+        this.unequipMessage = unequipMessage;
     }
 
     public int getWeight() {
         return this.weight;
     }
 
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
     public int getValue() {
         return this.value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }

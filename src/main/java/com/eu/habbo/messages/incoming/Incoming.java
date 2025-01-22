@@ -368,4 +368,9 @@ public class Incoming {
     public static final int AttackEvent = 4003;
     public static final int CallParamedicEvent = 4004;
     public static final int HealEvent = 4005;
+    public static final int CharacterLookupRoleplayItemsEvent = 4006;
+    public static final int RoleplayItemAddOneEvent = 4007;
+    public static final int RoleplayItemDeleteOneEvent = 4008;
+    public static final int RoleplayItemLookupByTypeEvent = 4009;
+    public static final int RoleplayItemUpdateOneEvent = 4010;
 }

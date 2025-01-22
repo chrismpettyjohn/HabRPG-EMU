@@ -450,6 +450,11 @@ public class Outgoing {
 
     public final static int CharacterDataComposer = 4001;
     public final static int CharacterSkillsDataComposer = 4002;
+    public final static int CharacterRoleplayItemsDataComposer = 4003;
+    public final static int RoleplayItemsDataEvent = 4004;
+    public final static int RoleplayItemsListEvent = 4005;
+    public final static int RoleplayItemCreated = 4006;
+    public final static int RoleplayItemDeleted = 4007;
 
 
 }
