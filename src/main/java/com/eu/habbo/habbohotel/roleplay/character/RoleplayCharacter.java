@@ -85,6 +85,14 @@ public class RoleplayCharacter {
         return this.healthMax;
     }
 
+    public void setHealthNow(int healthNow) {
+        this.healthNow = healthNow;
+    }
+
+    public void setHealthMax(int healthMax) {
+        this.healthMax = healthMax;
+    }
+
     public void addHealth(int points) {
         int healthBefore = this.healthNow;
         this.healthNow = Math.min(this.healthNow + points, this.healthMax);
@@ -95,7 +103,6 @@ public class RoleplayCharacter {
 
         this.notifyRoom();
     }
-
     public void depleteHealth(int points) {
         this.healthNow = Math.max(this.healthNow - points, 0);
 
@@ -112,6 +119,14 @@ public class RoleplayCharacter {
 
     public int getEnergyMax() {
         return this.energyMax;
+    }
+
+    public void setEnergyNow(int energyNow) {
+        this.energyNow = energyNow;
+    }
+
+    public void setEnergyMax(int energyMax) {
+        this.healthMax = energyMax;
     }
 
     public void addEnergy(int points) {
@@ -167,6 +182,10 @@ public class RoleplayCharacter {
     public void dispose() {
         RoleplayCharacterRepository.updateByCharacter(this);
         RoleplayCharacterItemRepository.updateAll(this.items);
+    }
+
+    public void save() {
+        RoleplayCharacterRepository.updateByCharacter(this);
     }
 
 }
