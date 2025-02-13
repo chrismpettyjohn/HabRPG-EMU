@@ -16,9 +16,9 @@ public class CharacterDataComposer extends MessageComposer {
     protected ServerMessage composeInternal() {
         this.response.init(Outgoing.CharacterDataComposer);
         this.response.appendInt(this.character.getId());
-        this.response.appendInt(this.character.getBotId());
-        this.response.appendInt(this.character.getUserId());
-        this.response.appendInt(this.character.getPetId());
+        this.response.appendInt(this.character.getBotId() == null ? -1 : this.character.getBotId());
+        this.response.appendInt(this.character.getUserId() == null ? -1 : this.character.getUserId());
+        this.response.appendInt(this.character.getPetId() == null ? -1 : this.character.getPetId());
         this.response.appendBoolean(this.character.isDead());
         this.response.appendBoolean(this.character.isExhausted());
         this.response.appendInt(this.character.getHealthNow());

@@ -19,10 +19,10 @@ public class CharacterUpdateByIdEvent extends MessageHandler {
             return;
         }
 
-        habbo.getRoleplayCharacter().setEnergyNow(this.packet.readInt());
-        habbo.getRoleplayCharacter().setEnergyMax(this.packet.readInt());
         habbo.getRoleplayCharacter().setHealthNow(this.packet.readInt());
         habbo.getRoleplayCharacter().setHealthMax(this.packet.readInt());
+        habbo.getRoleplayCharacter().setEnergyNow(this.packet.readInt());
+        habbo.getRoleplayCharacter().setEnergyMax(this.packet.readInt());
         habbo.getRoleplayCharacter().save();
 
         this.client.sendResponse(new CharacterDataComposer(habbo.getRoleplayCharacter()));

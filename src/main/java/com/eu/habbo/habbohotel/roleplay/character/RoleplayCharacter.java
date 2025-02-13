@@ -85,32 +85,32 @@ public class RoleplayCharacter {
         return this.healthMax;
     }
 
-    public void setHealthNow(int healthNow) {
-        this.healthNow = healthNow;
-    }
-
-    public void setHealthMax(int healthMax) {
-        this.healthMax = healthMax;
-    }
-
-    public void addHealth(int points) {
+    public void setHealthNow(int points) {
         int healthBefore = this.healthNow;
-        this.healthNow = Math.min(this.healthNow + points, this.healthMax);
+        this.healthNow = Math.max(0, Math.min(points, this.healthMax));
 
         if (healthBefore <= 0 && this.healthNow > 0) {
             new CharacterHealedAction(this);
         }
-
-        this.notifyRoom();
-    }
-    public void depleteHealth(int points) {
-        this.healthNow = Math.max(this.healthNow - points, 0);
 
         if (this.isDead()) {
             new CharacterDiedAction(this);
         }
 
         this.notifyRoom();
+    }
+
+    public void setHealthMax(int points) {
+        this.healthMax = points;
+        this.notifyRoom();
+    }
+
+    public void addHealth(int points) {
+        this.setHealthNow(this.getHealthNow() + points);
+    }
+
+    public void depleteHealth(int points) {
+        this.setHealthNow(this.getHealthNow() - points);
     }
 
     public int getEnergyNow() {
@@ -121,27 +121,27 @@ public class RoleplayCharacter {
         return this.energyMax;
     }
 
-    public void setEnergyNow(int energyNow) {
-        this.energyNow = energyNow;
-    }
-
-    public void setEnergyMax(int energyMax) {
-        this.healthMax = energyMax;
-    }
-
-    public void addEnergy(int points) {
-        this.energyNow += points;
-        this.notifyRoom();
-    }
-
-    public void depleteEnergy(int points) {
-        this.energyNow -= points;
+    public void setEnergyNow(int points) {
+        this.energyNow = Math.max(0, Math.min(points, this.energyMax));
 
         if (this.isExhausted()) {
             new CharacterExhaustedAction(this);
         }
 
         this.notifyRoom();
+    }
+
+    public void setEnergyMax(int points) {
+        this.energyMax = points;
+        this.notifyRoom();
+    }
+
+    public void addEnergy(int points) {
+        this.setEnergyNow(this.getEnergyNow() + points);
+    }
+
+    public void depleteEnergy(int points) {
+       this.setEnergyNow(this.getEnergyNow() - points);
     }
 
     public boolean isDead() {
