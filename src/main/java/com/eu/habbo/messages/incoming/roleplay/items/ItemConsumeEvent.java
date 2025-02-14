@@ -5,6 +5,7 @@ import com.eu.habbo.habbohotel.items.interactions.roleplay.BaseConsumableInterac
 import com.eu.habbo.habbohotel.users.HabboItem;
 import com.eu.habbo.messages.incoming.MessageHandler;
 import com.eu.habbo.messages.outgoing.inventory.InventoryRefreshComposer;
+import com.eu.habbo.threading.runnables.QueryDeleteHabboItem;
 
 public class ItemConsumeEvent extends MessageHandler {
     @Override
@@ -23,6 +24,7 @@ public class ItemConsumeEvent extends MessageHandler {
         }
 
         this.client.getHabbo().getInventory().getItemsComponent().removeHabboItem(item);
+        Emulator.getThreading().run(new QueryDeleteHabboItem(item.getId()));
         consumableInteraction.onConsume(this.client);
         this.client.sendResponse(new InventoryRefreshComposer());
     }
