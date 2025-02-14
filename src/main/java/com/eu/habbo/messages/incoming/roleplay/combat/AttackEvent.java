@@ -4,6 +4,7 @@ import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.bots.Bot;
 import com.eu.habbo.habbohotel.pets.Pet;
 import com.eu.habbo.habbohotel.pets.PetVocal;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterKillsRepository;
 import com.eu.habbo.habbohotel.rooms.RoomTile;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.incoming.MessageHandler;
@@ -54,6 +55,9 @@ public class AttackEvent extends MessageHandler {
                     continue;
                 }
                 habbo.getRoleplayCharacter().depleteHealth(damage);
+                if (habbo.getRoleplayCharacter().isDead()) {
+                    RoleplayCharacterKillsRepository.create(this.client.getHabbo().getRoleplayCharacter(), habbo.getRoleplayCharacter());
+                }
                 if (!habbo.getRoleplayCharacter().isDead()) {
                     habbo.shout(
                             Emulator.getTexts().getValue("rp.damage_received")
@@ -77,6 +81,9 @@ public class AttackEvent extends MessageHandler {
                     continue;
                 }
                 bot.getRoleplayCharacter().depleteHealth(damage);
+                if (bot.getRoleplayCharacter().isDead()) {
+                    RoleplayCharacterKillsRepository.create(this.client.getHabbo().getRoleplayCharacter(), bot.getRoleplayCharacter());
+                }
                 if (!bot.getRoleplayCharacter().isDead()) {
                     bot.shout(
                             Emulator.getTexts().getValue("rp.damage_received")
@@ -92,6 +99,9 @@ public class AttackEvent extends MessageHandler {
 
         if (!petsAtTile.isEmpty()) {
             for (Pet pet : petsAtTile) {
+                if (pet.getRoleplayCharacter().isDead()) {
+                    RoleplayCharacterKillsRepository.create(this.client.getHabbo().getRoleplayCharacter(), pet.getRoleplayCharacter());
+                }
                 if (pet.getRoleplayCharacter().isDead()) {
                     this.client.getHabbo().whisper( Emulator.getTexts()
                             .getValue("rp.cant_attack")
