@@ -351,6 +351,8 @@ public class ItemManager {
         this.interactionsList.add(new ItemInteraction(InteractionFishingLine.INTERACTION_TYPE, InteractionFishingLine.class));
         this.interactionsList.add(new ItemInteraction(InteractionCaughtFish.INTERACTION_TYPE, InteractionCaughtFish.class));
         this.interactionsList.add(new ItemInteraction(InteractionFishingSource.INTERACTION_TYPE, InteractionFishingSource.class));
+        this.interactionsList.add(new ItemInteraction(InteractionCorn.INTERACTION_TYPE, InteractionCorn.class));
+        this.interactionsList.add(new ItemInteraction(InteractionCornField.INTERACTION_TYPE, InteractionCornField.class));
     }
 
 
