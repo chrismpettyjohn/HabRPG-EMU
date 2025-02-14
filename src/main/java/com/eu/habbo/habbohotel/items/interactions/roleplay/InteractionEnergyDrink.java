@@ -8,15 +8,15 @@ import com.eu.habbo.habbohotel.users.Habbo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EnergyDrinkInteraction extends BaseConsumableInteraction {
+public class InteractionEnergyDrink extends BaseConsumableInteraction {
 
     public static final String INTERACTION_TYPE = "rp_energy_drink";
 
-    public EnergyDrinkInteraction(ResultSet set, Item baseItem) throws SQLException {
+    public InteractionEnergyDrink(ResultSet set, Item baseItem) throws SQLException {
         super(set, baseItem);
     }
 
-    public EnergyDrinkInteraction(int id, int userId, Item item, String extradata, int limitedStack, int limitedSells) {
+    public InteractionEnergyDrink(int id, int userId, Item item, String extradata, int limitedStack, int limitedSells) {
         super(id, userId, item, extradata, limitedStack, limitedSells);
     }
 

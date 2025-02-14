@@ -1,7 +1,7 @@
 package com.eu.habbo.messages.incoming.roleplay.paramedic;
 
 import com.eu.habbo.Emulator;
-import com.eu.habbo.habbohotel.items.interactions.roleplay.FirstAidKitInteraction;
+import com.eu.habbo.habbohotel.items.interactions.roleplay.InteractionFirstAidKit;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.habbohotel.users.HabboItem;
 import com.eu.habbo.messages.incoming.MessageHandler;
@@ -34,7 +34,7 @@ public class HealEvent extends MessageHandler {
         }
 
         HabboItem firstAidKit = this.client.getHabbo().getInventory().getItemsComponent().getItems().valueCollection().stream()
-                .filter(i -> i instanceof FirstAidKitInteraction && i.getRoomId() == 0)
+                .filter(i -> i instanceof InteractionFirstAidKit && i.getRoomId() == 0)
                 .findFirst()
                 .orElse(null);
 

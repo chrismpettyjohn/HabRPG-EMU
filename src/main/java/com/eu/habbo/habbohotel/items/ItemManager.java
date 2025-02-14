@@ -39,8 +39,10 @@ import com.eu.habbo.habbohotel.items.interactions.games.tag.icetag.InteractionIc
 import com.eu.habbo.habbohotel.items.interactions.games.tag.icetag.InteractionIceTagPole;
 import com.eu.habbo.habbohotel.items.interactions.games.tag.rollerskate.InteractionRollerskateField;
 import com.eu.habbo.habbohotel.items.interactions.pets.*;
-import com.eu.habbo.habbohotel.items.interactions.roleplay.EnergyDrinkInteraction;
-import com.eu.habbo.habbohotel.items.interactions.roleplay.FirstAidKitInteraction;
+import com.eu.habbo.habbohotel.items.interactions.roleplay.InteractionCaughtFish;
+import com.eu.habbo.habbohotel.items.interactions.roleplay.InteractionEnergyDrink;
+import com.eu.habbo.habbohotel.items.interactions.roleplay.InteractionFirstAidKit;
+import com.eu.habbo.habbohotel.items.interactions.roleplay.InteractionFishingLine;
 import com.eu.habbo.habbohotel.items.interactions.totems.InteractionTotemHead;
 import com.eu.habbo.habbohotel.items.interactions.totems.InteractionTotemLegs;
 import com.eu.habbo.habbohotel.items.interactions.totems.InteractionTotemPlanet;
@@ -347,8 +349,10 @@ public class ItemManager {
         this.interactionsList.add(new ItemInteraction("totem_head", InteractionTotemHead.class));
         this.interactionsList.add(new ItemInteraction("totem_planet", InteractionTotemPlanet.class));
 
-        this.interactionsList.add(new ItemInteraction(FirstAidKitInteraction.INTERACTION_TYPE, FirstAidKitInteraction.class));
-        this.interactionsList.add(new ItemInteraction(EnergyDrinkInteraction.INTERACTION_TYPE, EnergyDrinkInteraction.class));
+        this.interactionsList.add(new ItemInteraction(InteractionFirstAidKit.INTERACTION_TYPE, InteractionFirstAidKit.class));
+        this.interactionsList.add(new ItemInteraction(InteractionEnergyDrink.INTERACTION_TYPE, InteractionEnergyDrink.class));
+        this.interactionsList.add(new ItemInteraction(InteractionFishingLine.INTERACTION_TYPE, InteractionFishingLine.class));
+        this.interactionsList.add(new ItemInteraction(InteractionCaughtFish.INTERACTION_TYPE, InteractionCaughtFish.class));
     }
 
 
