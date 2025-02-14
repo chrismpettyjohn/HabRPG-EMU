@@ -37,6 +37,11 @@ public class AttackEvent extends MessageHandler {
             return;
         }
 
+        if (Math.sqrt(Math.pow(this.client.getHabbo().getRoomUnit().getCurrentLocation().x - tile.x, 2) + Math.pow(this.client.getHabbo().getRoomUnit().getCurrentLocation().y - tile.y, 2)) > 1.5) {
+            this.client.getHabbo().whisper(Emulator.getTexts().getValue("roleplay.attack_too_far_away"));
+            return;
+        }
+
         List<Habbo> habbosAtTile = this.client.getHabbo().getRoomUnit().getRoom().getHabbosAt(tile).stream().toList();
 
         if (!habbosAtTile.isEmpty()) {
