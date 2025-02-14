@@ -97,7 +97,7 @@ public class InteractionFishingSource extends InteractionWater {
 
     private void onFishingComplete(Habbo habbo) {
         habbo.getHabboInfo().run();
-        habbo.shout(Emulator.getTexts().getValue("rp_fishing_success"));
+        habbo.shout(Emulator.getTexts().getValue("rp.fishing_success"));
         habbo.getRoomUnit().setHandItem(FISHING_HAND_ITEM_CAUGHT);
 
         Emulator.getThreading().run(() -> {

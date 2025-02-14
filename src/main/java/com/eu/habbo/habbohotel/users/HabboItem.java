@@ -10,7 +10,6 @@ import com.eu.habbo.habbohotel.items.IEventTriggers;
 import com.eu.habbo.habbohotel.items.Item;
 import com.eu.habbo.habbohotel.items.interactions.*;
 import com.eu.habbo.habbohotel.items.interactions.games.InteractionGameTimer;
-import com.eu.habbo.habbohotel.items.interactions.roleplay.BaseConsumableInteraction;
 import com.eu.habbo.habbohotel.rooms.*;
 import com.eu.habbo.habbohotel.wired.WiredEffectType;
 import com.eu.habbo.habbohotel.wired.WiredHandler;

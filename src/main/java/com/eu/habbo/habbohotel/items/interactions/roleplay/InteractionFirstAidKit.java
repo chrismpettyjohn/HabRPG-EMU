@@ -3,6 +3,7 @@ package com.eu.habbo.habbohotel.items.interactions.roleplay;
 import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.gameclients.GameClient;
 import com.eu.habbo.habbohotel.items.Item;
+import com.eu.habbo.habbohotel.items.interactions.base.BaseConsumableInteraction;
 import com.eu.habbo.habbohotel.users.Habbo;
 
 import java.sql.ResultSet;

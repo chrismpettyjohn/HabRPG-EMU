@@ -2,7 +2,7 @@ package com.eu.habbo.messages.outgoing.inventory;
 
 import com.eu.habbo.habbohotel.items.FurnitureType;
 import com.eu.habbo.habbohotel.items.interactions.InteractionGift;
-import com.eu.habbo.habbohotel.items.interactions.roleplay.BaseConsumableInteraction;
+import com.eu.habbo.habbohotel.items.interactions.base.BaseConsumableInteraction;
 import com.eu.habbo.habbohotel.users.HabboItem;
 import com.eu.habbo.messages.ServerMessage;
 import com.eu.habbo.messages.outgoing.MessageComposer;

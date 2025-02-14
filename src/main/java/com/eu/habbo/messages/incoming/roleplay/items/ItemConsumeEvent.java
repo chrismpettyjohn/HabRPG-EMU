@@ -1,7 +1,7 @@
 package com.eu.habbo.messages.incoming.roleplay.items;
 
 import com.eu.habbo.Emulator;
-import com.eu.habbo.habbohotel.items.interactions.roleplay.BaseConsumableInteraction;
+import com.eu.habbo.habbohotel.items.interactions.base.BaseConsumableInteraction;
 import com.eu.habbo.habbohotel.users.HabboItem;
 import com.eu.habbo.messages.incoming.MessageHandler;
 import com.eu.habbo.messages.outgoing.inventory.InventoryRefreshComposer;
