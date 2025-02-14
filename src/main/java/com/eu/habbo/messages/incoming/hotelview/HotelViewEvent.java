@@ -11,7 +11,7 @@ public class HotelViewEvent extends MessageHandler {
         this.client.getHabbo().getHabboInfo().setLoadingRoom(0);
 
         if (this.client.getHabbo().getHabboInfo().getCurrentRoom() != null) {
-            Emulator.getGameEnvironment().getRoomManager().leaveRoom(this.client.getHabbo(), this.client.getHabbo().getHabboInfo().getCurrentRoom());
+            this.client.getHabbo().whisper(Emulator.getTexts().getValue("rp.cant_leave_room"));
         }
 
         if (this.client.getHabbo().getHabboInfo().getRoomQueueId() != 0) {

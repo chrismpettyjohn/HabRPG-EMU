@@ -8,7 +8,6 @@ import com.eu.habbo.habbohotel.rooms.RoomTile;
 import com.eu.habbo.habbohotel.rooms.RoomUnit;
 import com.eu.habbo.habbohotel.users.HabboItem;
 import com.eu.habbo.messages.ServerMessage;
-import com.eu.habbo.threading.runnables.CannonKickAction;
 import com.eu.habbo.threading.runnables.CannonResetCooldownAction;
 
 import java.sql.ResultSet;
@@ -72,7 +71,6 @@ public class InteractionCannon extends HabboItem {
             this.cooldown = true;
             this.setExtradata(this.getExtradata().equals("1") ? "0" : "1");
             room.updateItemState(this);
-            Emulator.getThreading().run(new CannonKickAction(this, room, client), 750);
             Emulator.getThreading().run(new CannonResetCooldownAction(this), 2000);
         }
     }

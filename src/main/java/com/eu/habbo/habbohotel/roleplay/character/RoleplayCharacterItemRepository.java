@@ -14,7 +14,7 @@ public class RoleplayCharacterItemRepository {
     public static List<RoleplayCharacterItem> loadAllByCharacter(RoleplayCharacter character) {
         List<RoleplayCharacterItem> items = new ArrayList<>();
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM rp_characters_items WHERE character_id = ?")) {
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM rp_characters_items WHERE characters_id = ?")) {
 
             statement.setInt(1, character.getId());
 

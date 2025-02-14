@@ -1230,7 +1230,6 @@ public class Room implements Comparable<Room>, ISerialize, Runnable {
                 this.idleCycles = 0;
 
                 THashSet<RoomUnit> updatedUnit = new THashSet<>();
-                ArrayList<Habbo> toKick = new ArrayList<>();
 
                 final Room room = this;
 
@@ -1241,7 +1240,6 @@ public class Room implements Comparable<Room>, ISerialize, Runnable {
                         foundRightHolder[0] = habbo.getRoomUnit().getRightsLevel() != RoomRightLevels.NONE;
                     }
 
-                    // The handitem is no longer automatically removed from a user. We can set `Room.HAND_ITEM_TIME` to `0` as a configuration option to prevent it from being removed. (verified on Oct 15, 2024)
                     if (Room.HAND_ITEM_TIME > 0 && habbo.getRoomUnit().getHandItem() > 0 && millis - habbo.getRoomUnit().getHandItemTimestamp() > (Room.HAND_ITEM_TIME * 1000L)) {
                         this.giveHandItem(habbo, 0);
                     }
@@ -1278,12 +1276,6 @@ public class Room implements Comparable<Room>, ISerialize, Runnable {
 
                     if (this.cycleRoomUnit(habbo.getRoomUnit(), RoomUnitType.USER)) {
                         updatedUnit.add(habbo.getRoomUnit());
-                    }
-                }
-
-                if (!toKick.isEmpty()) {
-                    for (Habbo habbo : toKick) {
-                        Emulator.getGameEnvironment().getRoomManager().leaveRoom(habbo, this);
                     }
                 }
 

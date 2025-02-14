@@ -16,18 +16,22 @@ public class ForwardUser extends RCONMessage<ForwardUser.ForwardUserJSON> {
     public void handle(Gson gson, ForwardUserJSON object) {
         Habbo habbo = Emulator.getGameEnvironment().getHabboManager().getHabbo(object.user_id);
 
-        if (habbo != null) {
-            Room room = Emulator.getGameEnvironment().getRoomManager().loadRoom(object.room_id);
-
-            if (room != null) {
-                if (habbo.getHabboInfo().getCurrentRoom() != null) {
-                    Emulator.getGameEnvironment().getRoomManager().leaveRoom(habbo, habbo.getHabboInfo().getCurrentRoom());
-                }
-
-                habbo.getClient().sendResponse(new ForwardToRoomComposer(object.room_id));
-                Emulator.getGameEnvironment().getRoomManager().enterRoom(habbo, object.room_id, "", true);
-            }
+        if (habbo == null) {
+            return;
         }
+
+        Room room = Emulator.getGameEnvironment().getRoomManager().loadRoom(object.room_id);
+
+        if (room == null) {
+            return;
+        }
+
+        if (habbo.getHabboInfo().getCurrentRoom() != null) {
+            Emulator.getGameEnvironment().getRoomManager().leaveRoom(habbo, habbo.getHabboInfo().getCurrentRoom());
+        }
+
+        habbo.getClient().sendResponse(new ForwardToRoomComposer(object.room_id));
+        Emulator.getGameEnvironment().getRoomManager().enterRoom(habbo, object.room_id, "", true);
 
         this.status = RCONMessage.HABBO_NOT_FOUND;
     }

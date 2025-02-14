@@ -11,7 +11,7 @@ public class RoleplayCharacterItem {
 
     public RoleplayCharacterItem(ResultSet set) throws SQLException {
         this.id = set.getInt("id");
-        this.characterId = set.getInt("character_id");
+        this.characterId = set.getInt("characters_id");
         this.itemId = set.getInt("item_id");
     }
 
