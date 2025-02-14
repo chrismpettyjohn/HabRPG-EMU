@@ -78,6 +78,7 @@ public class InventoryItemsComposer extends MessageComposer implements TIntObjec
 
             habboItem.serializeExtradata(this.response);
         }
+        this.response.appendBoolean(habboItem.getBaseItem().allowConsumption());
         this.response.appendBoolean(habboItem.getBaseItem().allowRecyle());
         this.response.appendBoolean(habboItem.getBaseItem().allowTrade());
         this.response.appendBoolean(!habboItem.isLimited() && habboItem.getBaseItem().allowInventoryStack());

@@ -45,10 +45,7 @@ import com.eu.habbo.messages.incoming.roleplay.character.CharacterLookupEvent;
 import com.eu.habbo.messages.incoming.roleplay.character.CharacterLookupRoleplayItemsEvent;
 import com.eu.habbo.messages.incoming.roleplay.character.CharacterUpdateByIdEvent;
 import com.eu.habbo.messages.incoming.roleplay.combat.AttackEvent;
-import com.eu.habbo.messages.incoming.roleplay.items.RoleplayItemAddOneEvent;
-import com.eu.habbo.messages.incoming.roleplay.items.RoleplayItemDeleteOneEvent;
-import com.eu.habbo.messages.incoming.roleplay.items.RoleplayItemLookupByTypeEvent;
-import com.eu.habbo.messages.incoming.roleplay.items.RoleplayItemUpdateOneEvent;
+import com.eu.habbo.messages.incoming.roleplay.items.*;
 import com.eu.habbo.messages.incoming.roleplay.paramedic.CallParamedicEvent;
 import com.eu.habbo.messages.incoming.roleplay.paramedic.HealEvent;
 import com.eu.habbo.messages.incoming.rooms.*;
@@ -654,5 +651,6 @@ public class PacketManager {
         this.registerHandler(Incoming.RoleplayItemLookupByTypeEvent, RoleplayItemLookupByTypeEvent.class);
         this.registerHandler(Incoming.RoleplayItemUpdateOneEvent, RoleplayItemUpdateOneEvent.class);
         this.registerHandler(Incoming.CharacterUpdateByIdEvent, CharacterUpdateByIdEvent.class);
+        this.registerHandler(Incoming.ItemConsumeEvent, ItemConsumeEvent.class);
     }
 }

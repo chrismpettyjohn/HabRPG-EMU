@@ -374,4 +374,5 @@ public class Incoming {
     public static final int RoleplayItemLookupByTypeEvent = 4009;
     public static final int RoleplayItemUpdateOneEvent = 4010;
     public static final int CharacterUpdateByIdEvent = 4011;
+    public static final int ItemConsumeEvent = 4012;
 }

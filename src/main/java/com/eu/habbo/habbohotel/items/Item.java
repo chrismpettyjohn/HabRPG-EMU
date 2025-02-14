@@ -2,6 +2,8 @@ package com.eu.habbo.habbohotel.items;
 
 import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.items.interactions.InteractionMultiHeight;
+import com.eu.habbo.habbohotel.items.interactions.InteractionTeleport;
+import com.eu.habbo.habbohotel.items.interactions.roleplay.BaseConsumableInteraction;
 import com.eu.habbo.habbohotel.users.HabboItem;
 import com.eu.habbo.messages.ISerialize;
 import com.eu.habbo.messages.ServerMessage;
@@ -183,6 +185,10 @@ public class Item implements ISerialize {
 
     public boolean allowTrade() {
         return this.allowTrade;
+    }
+
+    public boolean allowConsumption() {
+        return BaseConsumableInteraction.class.isAssignableFrom(this.getInteractionType().getType());
     }
 
     public boolean allowMarketplace() {
