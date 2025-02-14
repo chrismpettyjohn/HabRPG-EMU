@@ -14,8 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CallParamedicAction {
+    private final Habbo habbo;
     
     public CallParamedicAction(Habbo habbo) {
+        this.habbo = habbo;
+    }
+    
+    public void execute() {
         try {
             HabboInfo systemUser = Emulator.getGameEnvironment().getHabboManager().getHabboInfo(Emulator.getConfig().getInt("rp.system_user_id"));
             Bot baseBot = new Bot(0, "Paramedic", "[Working] Paramedic", Emulator.getConfig().getValue("rp.paramedic_figure"), HabboGender.M, systemUser.getId(), systemUser.getUsername());
@@ -23,48 +28,52 @@ public class CallParamedicAction {
 
             ParamedicBot paramedicBot = new ParamedicBot(baseBot);
 
-            RoomTile targetTile = habbo.getRoomUnit().getCurrentLocation();
-            RoomTile spawnTile = habbo.getRoomUnit().getRoom().getLayout().getTileInFront(targetTile, habbo.getRoomUnit().getBodyRotation().getValue());
+            RoomTile targetTile = this.habbo.getRoomUnit().getCurrentLocation();
+            RoomTile spawnTile = this.habbo.getRoomUnit().getRoom().getLayout().getTileInFront(targetTile, this.habbo.getRoomUnit().getBodyRotation().getValue());
 
-            if (spawnTile != null && spawnTile.isWalkable()) {
-                paramedicBot.setRoomUnit(new RoomUnit());
-                paramedicBot.getRoomUnit().setLocation(spawnTile);
-                paramedicBot.getRoomUnit().setZ(spawnTile.getStackHeight());
-                paramedicBot.getRoomUnit().setRotation(habbo.getRoomUnit().getBodyRotation());
+            if (spawnTile == null || spawnTile.isWalkable()) {
+                this.habbo.whisper(Emulator.getTexts().getValue("rp.paramedic_cant_reach_you"));
+                this.habbo.getRoleplayCharacter().addHealth(5);
+                return;
+            }
 
-                RoomTile nearestTile = habbo.getRoomUnit().getClosestAdjacentTile(habbo.getRoomUnit().getX(), habbo.getRoomUnit().getY(), true);
+            paramedicBot.setRoomUnit(new RoomUnit());
+            paramedicBot.getRoomUnit().setLocation(spawnTile);
+            paramedicBot.getRoomUnit().setZ(spawnTile.getStackHeight());
+            paramedicBot.getRoomUnit().setRotation(habbo.getRoomUnit().getBodyRotation());
 
-                Emulator.getGameEnvironment().getBotManager().placeBot(
-                        paramedicBot,
-                        habbo,
-                        habbo.getHabboInfo().getCurrentRoom(),
-                        nearestTile
+            RoomTile nearestTile = this.habbo.getRoomUnit().getClosestAdjacentTile(this.habbo.getRoomUnit().getX(), this.habbo.getRoomUnit().getY(), true);
+
+            Emulator.getGameEnvironment().getBotManager().placeBot(
+                    paramedicBot,
+                    this.habbo,
+                    this.habbo.getHabboInfo().getCurrentRoom(),
+                    nearestTile
+            );
+
+            List<Runnable> tasks = new ArrayList<>();
+            tasks.add(() -> {
+                paramedicBot.heal(this.habbo);
+
+                Emulator.getThreading().run(() -> {
+                    this.habbo.getRoomUnit().getRoom().removeBot(paramedicBot);
+                }, 5000);
+            });
+
+            // Walk to target if needed
+            if (spawnTile.distance(targetTile) > 1) {
+                Emulator.getThreading().run(
+                        new RoomUnitWalkToRoomUnit(
+                                paramedicBot.getRoomUnit(),
+                                this.habbo.getRoomUnit(),
+                                this.habbo.getRoomUnit().getRoom(),
+                                tasks,
+                                null,
+                                1
+                        )
                 );
-
-                List<Runnable> tasks = new ArrayList<>();
-                tasks.add(() -> {
-                    paramedicBot.heal(habbo);
-
-                    Emulator.getThreading().run(() -> {
-                        habbo.getRoomUnit().getRoom().removeBot(paramedicBot);
-                    }, 5000);
-                });
-
-                // Walk to target if needed
-                if (spawnTile.distance(targetTile) > 1) {
-                    Emulator.getThreading().run(
-                            new RoomUnitWalkToRoomUnit(
-                                    paramedicBot.getRoomUnit(),
-                                    habbo.getRoomUnit(),
-                                    habbo.getRoomUnit().getRoom(),
-                                    tasks,
-                                    null,
-                                    1
-                            )
-                    );
-                } else {
-                    tasks.forEach(Runnable::run);
-                }
+            } else {
+                tasks.forEach(Runnable::run);
             }
         } catch (Exception e) {
             Emulator.getLogging().logErrorLine(e);

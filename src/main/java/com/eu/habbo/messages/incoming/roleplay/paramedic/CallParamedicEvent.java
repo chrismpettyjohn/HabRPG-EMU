@@ -13,7 +13,6 @@ public class CallParamedicEvent extends MessageHandler {
         }
 
         int paramedicCost = Emulator.getConfig().getInt("rp.paramedic_cost");
-        int paramedicWaitSecs = Emulator.getConfig().getInt("rp.paramedic_wait_secs");
 
         if (this.client.getHabbo().getHabboInfo().getCredits() < paramedicCost) {
             this.client.getHabbo().whisper(Emulator.getTexts().getValue("rp.cant_afford"));
@@ -31,9 +30,9 @@ public class CallParamedicEvent extends MessageHandler {
 
         this.client.getHabbo().whisper(Emulator.getTexts()
                 .getValue("rp.paramedic_called")
-                .replace(":secs", String.valueOf(paramedicWaitSecs))
+                .replace(":secs", String.valueOf(1))
         );
 
-        new CallParamedicAction(this.client.getHabbo());
+        new CallParamedicAction(this.client.getHabbo()).execute();
     }
 }
