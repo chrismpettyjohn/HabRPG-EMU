@@ -26,8 +26,6 @@ public class ForwardUser extends RCONMessage<ForwardUser.ForwardUserJSON> {
 
                 habbo.getClient().sendResponse(new ForwardToRoomComposer(object.room_id));
                 Emulator.getGameEnvironment().getRoomManager().enterRoom(habbo, object.room_id, "", true);
-            } else {
-                this.status = RCONMessage.ROOM_NOT_FOUND;
             }
         }
 

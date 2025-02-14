@@ -7,8 +7,6 @@ import com.eu.habbo.habbohotel.items.interactions.*;
 import com.eu.habbo.habbohotel.items.interactions.interfaces.ConditionalGate;
 import com.eu.habbo.habbohotel.pets.Pet;
 import com.eu.habbo.habbohotel.pets.RideablePet;
-import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
-import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterRepository;
 import com.eu.habbo.habbohotel.users.DanceType;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.habbohotel.users.HabboItem;
@@ -18,7 +16,6 @@ import com.eu.habbo.plugin.events.roomunit.RoomUnitLookAtPointEvent;
 import com.eu.habbo.plugin.events.roomunit.RoomUnitSetGoalEvent;
 import com.eu.habbo.plugin.events.users.UserIdleEvent;
 import com.eu.habbo.plugin.events.users.UserTakeStepEvent;
-import com.eu.habbo.threading.runnables.RoomUnitKick;
 import com.eu.habbo.util.pathfinding.Rotation;
 import gnu.trove.map.TMap;
 import gnu.trove.map.hash.THashMap;
@@ -47,8 +44,6 @@ public class RoomUnit {
     public boolean cmdLay = false;
     public boolean sitUpdate = false;
     public boolean isTeleporting = false;
-    public boolean isKicked;
-    public int kickCount = 0;
     private int id;
     private RoomTile startLocation;
     private RoomTile previousLocation;
@@ -92,7 +87,6 @@ public class RoomUnit {
         this.handItemTimestamp = 0;
         this.walkTimeOut = Emulator.getIntUnixTimestamp();
         this.effectId = 0;
-        this.isKicked = false;
         this.overridableTiles = new THashSet<>();
     }
 
@@ -142,7 +136,7 @@ public class RoomUnit {
             }
 
 
-            if (!this.isWalking() && !this.isKicked) {
+            if (!this.isWalking()) {
                 if (this.status.remove(RoomUnitStatus.MOVE) == null) {
                     Habbo habboT = room.getHabbo(this);
                     if (habboT != null) {
@@ -346,19 +340,6 @@ public class RoomUnit {
             this.setZ(zHeight);
             this.setCurrentLocation(room.getLayout().getTile(next.x, next.y));
             this.resetIdleTimer();
-
-            if (habbo != null) {
-                HabboItem topItem = room.getTopItemAt(next.x, next.y);
-
-                boolean isAtDoor = next.x == room.getLayout().getDoorX() && next.y == room.getLayout().getDoorY();
-                boolean publicRoomKicks = !room.isPublicRoom() || Emulator.getConfig().getBoolean("hotel.room.public.doortile.kick");
-                boolean invalidated = topItem != null && topItem.invalidatesToRoomKick();
-
-                if (this.canLeaveRoomByDoor && isAtDoor && publicRoomKicks && !invalidated) {
-                    Emulator.getThreading().run(new RoomUnitKick(habbo, room, false), 500);
-                }
-            }
-
             return false;
 
         } catch (Exception e) {
@@ -741,14 +722,6 @@ public class RoomUnit {
 
     public void clearOverrideTiles() {
         this.overridableTiles.clear();
-    }
-
-    public boolean canLeaveRoomByDoor() {
-        return canLeaveRoomByDoor;
-    }
-
-    public void setCanLeaveRoomByDoor(boolean canLeaveRoomByDoor) {
-        this.canLeaveRoomByDoor = canLeaveRoomByDoor;
     }
 
     public boolean canForcePosture() {

@@ -1250,15 +1250,6 @@ public class Room implements Comparable<Room>, ISerialize, Runnable {
                         this.giveEffect(habbo, 0, -1);
                     }
 
-                    if (habbo.getRoomUnit().isKicked) {
-                        habbo.getRoomUnit().kickCount++;
-
-                        if (habbo.getRoomUnit().kickCount >= 5) {
-                            this.scheduledTasks.add(() -> Emulator.getGameEnvironment().getRoomManager().leaveRoom(habbo, room));
-                            continue;
-                        }
-                    }
-
                     if (Emulator.getConfig().getBoolean("hotel.rooms.auto.idle")) {
                         if (!habbo.getRoomUnit().isIdle()) {
                             habbo.getRoomUnit().increaseIdleTimer();
@@ -1272,15 +1263,6 @@ public class Room implements Comparable<Room>, ISerialize, Runnable {
                             }
                         } else {
                             habbo.getRoomUnit().increaseIdleTimer();
-
-                            if (!this.isOwner(habbo) && habbo.getRoomUnit().getIdleTimer() >= Room.IDLE_CYCLES_KICK) {
-                                UserExitRoomEvent event = new UserExitRoomEvent(habbo, UserExitRoomEvent.UserExitRoomReason.KICKED_IDLE);
-                                Emulator.getPluginManager().fireEvent(event);
-
-                                if (!event.isCancelled()) {
-                                    toKick.add(habbo);
-                                }
-                            }
                         }
                     }
 
@@ -2692,20 +2674,6 @@ public class Room implements Comparable<Room>, ISerialize, Runnable {
             this.currentHabbos.put(habbo.getHabboInfo().getId(), habbo);
             this.unitCounter++;
             this.updateDatabaseUserCount();
-        }
-    }
-
-    public void kickHabbo(Habbo habbo, boolean alert) {
-        if (alert) {
-            habbo.getClient().sendResponse(new GenericErrorMessagesComposer(GenericErrorMessagesComposer.KICKED_OUT_OF_THE_ROOM));
-        }
-
-        habbo.getRoomUnit().isKicked = true;
-        habbo.getRoomUnit().setGoalLocation(this.layout.getDoorTile());
-
-        if (habbo.getRoomUnit().getPath() == null || habbo.getRoomUnit().getPath().size() <= 1 || this.isPublicRoom()) {
-            habbo.getRoomUnit().setCanWalk(true);
-            Emulator.getGameEnvironment().getRoomManager().leaveRoom(habbo, this);
         }
     }
 

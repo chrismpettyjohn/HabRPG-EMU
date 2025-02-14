@@ -243,7 +243,6 @@ public class CommandHandler {
         addCommand(new RoomDanceCommand());
         addCommand(new RoomEffectCommand());
         addCommand(new RoomItemCommand());
-        addCommand(new RoomKickCommand());
         addCommand(new RoomMuteCommand());
         addCommand(new RoomPixelsCommand());
         addCommand(new RoomPointsCommand());
@@ -290,7 +289,6 @@ public class CommandHandler {
         addCommand(new WordQuizCommand());
         addCommand(new UpdateYoutubePlaylistsCommand());
         addCommand(new AddYoutubePlaylistCommand());
-        addCommand(new SoftKickCommand());
         addCommand(new SubscriptionCommand());
         addCommand(new UpdateChatBubblesCommand());
 

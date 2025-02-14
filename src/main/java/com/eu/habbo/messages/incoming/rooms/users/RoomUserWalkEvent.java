@@ -44,10 +44,6 @@ public class RoomUserWalkEvent extends MessageHandler {
             if (roomUnit.isTeleporting)
                 return;
 
-            // If habbo is being kicked dont calculate a new path
-            if (roomUnit.isKicked)
-                return;
-
             // If habbo has control (im assuming admin, do something else, but we dont care about this part here)
             if (roomUnit.getCacheable().get("control") != null) {
                 habbo = (Habbo) roomUnit.getCacheable().get("control");

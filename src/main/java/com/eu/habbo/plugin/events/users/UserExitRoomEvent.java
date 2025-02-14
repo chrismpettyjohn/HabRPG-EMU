@@ -12,9 +12,6 @@ public class UserExitRoomEvent extends UserEvent {
 
 
     public enum UserExitRoomReason {
-        DOOR(false),
-        KICKED_HABBO(false),
-        KICKED_IDLE(true),
         TELEPORT(false);
 
         public final boolean cancellable;

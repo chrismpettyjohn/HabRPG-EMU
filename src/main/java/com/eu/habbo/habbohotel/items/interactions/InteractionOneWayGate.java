@@ -87,7 +87,6 @@ public class InteractionOneWayGate extends HabboItem {
                     List<Runnable> onFail = new ArrayList<Runnable>();
 
                     onSuccess.add(() -> {
-                        unit.setCanLeaveRoomByDoor(false);
                         walkable = this.getBaseItem().allowWalk();
                         RoomTile tile = room.getLayout().getTileInFront(room.getLayout().getTile(this.getX(), this.getY()), this.getRotation() + 4);
                         unit.setGoalLocation(tile);
@@ -97,7 +96,6 @@ public class InteractionOneWayGate extends HabboItem {
                     });
 
                     onFail.add(() -> {
-                        unit.setCanLeaveRoomByDoor(true);
                         walkable = this.getBaseItem().allowWalk();
                         room.updateTile(currentLocation);
                         room.sendComposer(new ItemIntStateComposer(this.getId(), 0).compose());

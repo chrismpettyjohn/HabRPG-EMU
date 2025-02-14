@@ -6,8 +6,6 @@ public enum SupportUserAlertedReason {
 
     CAUTION(1),
 
-    KICKED(2),
-
     AMBASSADOR(3);
 
     private final int code;

@@ -615,7 +615,6 @@ public class RoomManager {
                 habbo.getRoomUnit().setBodyRotation(RoomUserRotation.values()[room.getLayout().getDoorDirection()]);
                 habbo.getRoomUnit().setHeadRotation(RoomUserRotation.values()[room.getLayout().getDoorDirection()]);
             } else {
-                habbo.getRoomUnit().setCanLeaveRoomByDoor(false);
                 habbo.getRoomUnit().isTeleporting = true;
                 HabboItem topItem = room.getTopItemAt(doorLocation.x, doorLocation.y);
                 if (topItem != null) {
@@ -699,10 +698,9 @@ public class RoomManager {
 
         habbo.getRoomUnit().setRightsLevel(RoomRightLevels.NONE);
         room.refreshRightsForHabbo(habbo);
-        if (habbo.getRoomUnit().isKicked && !habbo.getRoomUnit().canWalk()) {
+        if (!habbo.getRoomUnit().canWalk()) {
             habbo.getRoomUnit().setCanWalk(true);
         }
-        habbo.getRoomUnit().isKicked = false;
 
         if (habbo.getRoomUnit().getCurrentLocation() == null && !habbo.getRoomUnit().isTeleporting) {
             RoomTile doorTile = room.getLayout().getTile(room.getLayout().getDoorX(), room.getLayout().getDoorY());
@@ -940,21 +938,13 @@ public class RoomManager {
     }
 
     public void leaveRoom(Habbo habbo, Room room) {
-        this.leaveRoom(habbo, room, true);
-    }
-
-    public void leaveRoom(Habbo habbo, Room room, boolean redirectToHotelView) {
         if (habbo.getHabboInfo().getCurrentRoom() != null && habbo.getHabboInfo().getCurrentRoom() == room) {
             habbo.getRoomUnit().setPathFinderRoom(null);
 
             this.logExit(habbo);
             room.removeHabbo(habbo, true);
 
-            if (redirectToHotelView) {
-                habbo.getClient().sendResponse(new HotelViewComposer());
-            }
             habbo.getHabboInfo().setCurrentRoom(null);
-            habbo.getRoomUnit().isKicked = false;
 
             if (room.getOwnerId() != habbo.getHabboInfo().getId()) {
                 AchievementManager.progressAchievement(room.getOwnerId(), Emulator.getGameEnvironment().getAchievementManager().getAchievement("RoomDecoHosting"), (int) Math.floor((Emulator.getIntUnixTimestamp() - habbo.getHabboStats().roomEnterTimestamp) / 60000));
@@ -965,7 +955,7 @@ public class RoomManager {
     }
 
     public void logExit(Habbo habbo) {
-        Emulator.getPluginManager().fireEvent(new UserExitRoomEvent(habbo, UserExitRoomEvent.UserExitRoomReason.DOOR));
+        Emulator.getPluginManager().fireEvent(new UserExitRoomEvent(habbo, UserExitRoomEvent.UserExitRoomReason.TELEPORT));
         if (habbo.getRoomUnit().getCacheable().containsKey("control")) {
             Habbo control = (Habbo) habbo.getRoomUnit().getCacheable().remove("control");
             control.getRoomUnit().getCacheable().remove("controller");

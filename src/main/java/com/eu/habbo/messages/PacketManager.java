@@ -421,7 +421,6 @@ public class PacketManager {
         this.registerHandler(Incoming.TriggerColorWheelEvent, TriggerColorWheelEvent.class);
         this.registerHandler(Incoming.RedeemItemEvent, RedeemItemEvent.class);
         this.registerHandler(Incoming.PetPlaceEvent, PetPlaceEvent.class);
-        this.registerHandler(Incoming.RoomUserKickEvent, RoomUserKickEvent.class);
         this.registerHandler(Incoming.SetStackHelperHeightEvent, SetStackHelperHeightEvent.class);
         this.registerHandler(Incoming.TriggerOneWayGateEvent, TriggerOneWayGateEvent.class);
         this.registerHandler(Incoming.HandleDoorbellEvent, HandleDoorbellEvent.class);
@@ -481,7 +480,6 @@ public class PacketManager {
         this.registerHandler(Incoming.ModToolReleaseTicketEvent, ModToolReleaseTicketEvent.class);
         this.registerHandler(Incoming.ModToolAlertEvent, ModToolAlertEvent.class);
         this.registerHandler(Incoming.ModToolWarnEvent, ModToolWarnEvent.class);
-        this.registerHandler(Incoming.ModToolKickEvent, ModToolKickEvent.class);
         this.registerHandler(Incoming.ModToolRoomAlertEvent, ModToolRoomAlertEvent.class);
         this.registerHandler(Incoming.ModToolChangeRoomSettingsEvent, ModToolChangeRoomSettingsEvent.class);
         this.registerHandler(Incoming.ModToolRequestRoomVisitsEvent, ModToolRequestRoomVisitsEvent.class);

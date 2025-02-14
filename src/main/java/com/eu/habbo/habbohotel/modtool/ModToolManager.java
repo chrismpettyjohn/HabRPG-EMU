@@ -405,15 +405,6 @@ public class ModToolManager {
             alertedEvent.target.getClient().sendResponse(new ModToolIssueHandledComposer(alertedEvent.message));
     }
 
-    public void kick(Habbo moderator, Habbo target, String message) {
-        if (moderator.hasPermission(Permission.ACC_SUPPORTTOOL) && !target.hasPermission(Permission.ACC_UNKICKABLE)) {
-            if (target.getHabboInfo().getCurrentRoom() != null) {
-                Emulator.getGameEnvironment().getRoomManager().leaveRoom(target, target.getHabboInfo().getCurrentRoom());
-            }
-            this.alert(moderator, target, message, SupportUserAlertedReason.KICKED);
-        }
-    }
-
     public List<ModToolBan> ban(int targetUserId, Habbo moderator, String reason, int duration, ModToolBanType type, int cfhTopic) {
         if (moderator == null)
             return null;
@@ -484,14 +475,6 @@ public class ModToolManager {
         if (roomActionEvent.lockDoor) {
             room.setState(RoomState.LOCKED);
             room.setNeedsUpdate(true);
-        }
-
-        if (roomActionEvent.kickUsers) {
-            for (Habbo habbo : room.getHabbos()) {
-                if (!(habbo.hasPermission(Permission.ACC_UNKICKABLE) || habbo.hasPermission(Permission.ACC_SUPPORTTOOL) || room.isOwner(habbo))) {
-                    room.kickHabbo(habbo, false);
-                }
-            }
         }
     }
 
