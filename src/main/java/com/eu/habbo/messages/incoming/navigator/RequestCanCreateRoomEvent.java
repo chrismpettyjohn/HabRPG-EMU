@@ -8,6 +8,9 @@ import com.eu.habbo.messages.outgoing.navigator.CanCreateRoomComposer;
 public class RequestCanCreateRoomEvent extends MessageHandler {
     @Override
     public void handle() throws Exception {
+        if (this.client.getHabbo().getHabboInfo().getRank().hasPermission("acc_create_room", false)) {
+            return;
+        }
         int count = Emulator.getGameEnvironment().getRoomManager().getRoomsForHabbo(this.client.getHabbo()).size();
         int max = this.client.getHabbo().getHabboStats().hasActiveClub() ? RoomManager.MAXIMUM_ROOMS_HC : RoomManager.MAXIMUM_ROOMS_USER;
         this.client.sendResponse(new CanCreateRoomComposer(count, max));

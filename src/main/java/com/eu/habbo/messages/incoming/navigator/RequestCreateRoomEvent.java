@@ -16,6 +16,10 @@ public class RequestCreateRoomEvent extends MessageHandler {
 
     @Override
     public void handle() throws Exception {
+        if (!this.client.getHabbo().getHabboInfo().getRank().hasPermission("acc_create_room", false)) {
+            return;
+        }
+
         String name = this.packet.readString();
         String description = this.packet.readString();
         String modelName = this.packet.readString();
