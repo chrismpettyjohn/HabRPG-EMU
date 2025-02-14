@@ -39,10 +39,7 @@ import com.eu.habbo.habbohotel.items.interactions.games.tag.icetag.InteractionIc
 import com.eu.habbo.habbohotel.items.interactions.games.tag.icetag.InteractionIceTagPole;
 import com.eu.habbo.habbohotel.items.interactions.games.tag.rollerskate.InteractionRollerskateField;
 import com.eu.habbo.habbohotel.items.interactions.pets.*;
-import com.eu.habbo.habbohotel.items.interactions.roleplay.InteractionCaughtFish;
-import com.eu.habbo.habbohotel.items.interactions.roleplay.InteractionEnergyDrink;
-import com.eu.habbo.habbohotel.items.interactions.roleplay.InteractionFirstAidKit;
-import com.eu.habbo.habbohotel.items.interactions.roleplay.InteractionFishingLine;
+import com.eu.habbo.habbohotel.items.interactions.roleplay.*;
 import com.eu.habbo.habbohotel.items.interactions.totems.InteractionTotemHead;
 import com.eu.habbo.habbohotel.items.interactions.totems.InteractionTotemLegs;
 import com.eu.habbo.habbohotel.items.interactions.totems.InteractionTotemPlanet;
@@ -353,6 +350,7 @@ public class ItemManager {
         this.interactionsList.add(new ItemInteraction(InteractionEnergyDrink.INTERACTION_TYPE, InteractionEnergyDrink.class));
         this.interactionsList.add(new ItemInteraction(InteractionFishingLine.INTERACTION_TYPE, InteractionFishingLine.class));
         this.interactionsList.add(new ItemInteraction(InteractionCaughtFish.INTERACTION_TYPE, InteractionCaughtFish.class));
+        this.interactionsList.add(new ItemInteraction(InteractionFishingSource.INTERACTION_TYPE, InteractionFishingSource.class));
     }
 
 
@@ -640,6 +638,23 @@ public class ItemManager {
         } catch (SQLException e) {
             LOGGER.error("Caught SQL exception", e);
         }
+    }
+
+    public Item getItemByInteractionType(Class<? extends HabboItem> interactionType) {
+        TIntObjectIterator<Item> item = this.items.iterator();
+
+        for (int i = this.items.size(); i-- > 0; ) {
+            try {
+                item.advance();
+                if (item.value().getInteractionType().getType() == interactionType) {
+                    return item.value();
+                }
+            } catch (NoSuchElementException e) {
+                break;
+            }
+        }
+
+        return null;
     }
 
     public int[] getTargetTeleportRoomId(HabboItem item) {
