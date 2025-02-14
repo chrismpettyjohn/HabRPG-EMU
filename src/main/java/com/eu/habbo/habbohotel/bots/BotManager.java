@@ -1,7 +1,8 @@
 package com.eu.habbo.habbohotel.bots;
 
 import com.eu.habbo.Emulator;
-import com.eu.habbo.habbohotel.items.Item;
+import com.eu.habbo.habbohotel.bots.roleplay.FishMerchantBot;
+import com.eu.habbo.habbohotel.bots.roleplay.ParamedicBot;
 import com.eu.habbo.habbohotel.permissions.Permission;
 import com.eu.habbo.habbohotel.rooms.*;
 import com.eu.habbo.habbohotel.users.Habbo;
@@ -42,6 +43,8 @@ public class BotManager {
         addBotDefinition("generic", Bot.class);
         addBotDefinition("bartender", ButlerBot.class);
         addBotDefinition("visitor_log", VisitorBot.class);
+        addBotDefinition("paramedic", ParamedicBot.class);
+        addBotDefinition("fish_merchant", FishMerchantBot.class);
 
         this.reload();
 

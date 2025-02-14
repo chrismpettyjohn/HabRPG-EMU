@@ -1,6 +1,7 @@
-package com.eu.habbo.habbohotel.bots;
+package com.eu.habbo.habbohotel.bots.roleplay;
 
 import com.eu.habbo.Emulator;
+import com.eu.habbo.habbohotel.bots.Bot;
 import com.eu.habbo.habbohotel.rooms.Room;
 import com.eu.habbo.habbohotel.users.Habbo;
 import gnu.trove.map.hash.THashMap;

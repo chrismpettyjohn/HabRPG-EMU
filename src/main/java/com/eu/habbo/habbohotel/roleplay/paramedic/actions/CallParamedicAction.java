@@ -2,7 +2,7 @@ package com.eu.habbo.habbohotel.roleplay.paramedic.actions;
 
 import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.bots.Bot;
-import com.eu.habbo.habbohotel.bots.ParamedicBot;
+import com.eu.habbo.habbohotel.bots.roleplay.ParamedicBot;
 import com.eu.habbo.habbohotel.rooms.RoomTile;
 import com.eu.habbo.habbohotel.rooms.RoomUnit;
 import com.eu.habbo.habbohotel.users.Habbo;
