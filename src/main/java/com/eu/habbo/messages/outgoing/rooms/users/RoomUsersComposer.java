@@ -135,6 +135,7 @@ public class RoomUsersComposer extends MessageComposer {
                 this.response.appendString(bot.getGender().name().toUpperCase());
                 this.response.appendInt(bot.getOwnerId());
                 this.response.appendString(bot.getOwnerName());
+                this.response.appendString("fish_merchant");
                 this.response.appendInt(10);
                 this.response.appendShort(0);
                 this.response.appendShort(1);
