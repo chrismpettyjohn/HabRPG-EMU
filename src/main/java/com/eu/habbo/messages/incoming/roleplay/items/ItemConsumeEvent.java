@@ -22,9 +22,8 @@ public class ItemConsumeEvent extends MessageHandler {
             return;
         }
 
-        consumableInteraction.onConsume(this.client);
-
         this.client.getHabbo().getInventory().getItemsComponent().removeHabboItem(item);
+        consumableInteraction.onConsume(this.client);
         this.client.sendResponse(new InventoryRefreshComposer());
     }
 }

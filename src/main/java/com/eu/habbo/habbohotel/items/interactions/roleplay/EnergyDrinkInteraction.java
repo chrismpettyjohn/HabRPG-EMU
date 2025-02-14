@@ -28,12 +28,12 @@ public class EnergyDrinkInteraction extends BaseConsumableInteraction {
 
     @Override
     public void onConsume(GameClient client) {
-        int healthGained = Emulator.getConfig().getInt("rp.energy_drink.health_points", 0);
+        int energyGained = Emulator.getConfig().getInt("rp.energy_drink.health_points", 0);
         client.getHabbo().shout(Emulator.getTexts()
                 .getValue("rp.energy_drink_used")
-                .replace(":points", String.valueOf(healthGained))
+                .replace(":points", String.valueOf(energyGained))
         );
-        client.getHabbo().getRoleplayCharacter().addHealth(healthGained);
+        client.getHabbo().getRoleplayCharacter().addEnergy(energyGained);
     }
 
 }
