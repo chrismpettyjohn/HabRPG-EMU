@@ -2,6 +2,7 @@ package com.eu.habbo.messages.outgoing.inventory;
 
 import com.eu.habbo.habbohotel.items.FurnitureType;
 import com.eu.habbo.habbohotel.items.interactions.InteractionGift;
+import com.eu.habbo.habbohotel.items.interactions.roleplay.BaseConsumableInteraction;
 import com.eu.habbo.habbohotel.users.HabboItem;
 import com.eu.habbo.messages.ServerMessage;
 import com.eu.habbo.messages.outgoing.MessageComposer;
@@ -78,7 +79,7 @@ public class InventoryItemsComposer extends MessageComposer implements TIntObjec
 
             habboItem.serializeExtradata(this.response);
         }
-        this.response.appendBoolean(habboItem.getBaseItem().allowConsumption());
+        this.response.appendBoolean(habboItem instanceof BaseConsumableInteraction && ((BaseConsumableInteraction) habboItem).canConsume());
         this.response.appendBoolean(habboItem.getBaseItem().allowRecyle());
         this.response.appendBoolean(habboItem.getBaseItem().allowTrade());
         this.response.appendBoolean(!habboItem.isLimited() && habboItem.getBaseItem().allowInventoryStack());

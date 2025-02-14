@@ -17,7 +17,10 @@ public class BaseConsumableInteraction extends InteractionDefault {
         super(id, userId, item, extradata, limitedStack, limitedSells);
     }
 
-    public void onConsume(GameClient client) throws Exception {
-        throw new Exception("not configured");
+    public boolean canConsume() {
+        return false;
+    }
+
+    public void onConsume(GameClient client) {
     }
 }

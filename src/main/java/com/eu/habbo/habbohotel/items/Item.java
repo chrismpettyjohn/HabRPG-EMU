@@ -187,10 +187,6 @@ public class Item implements ISerialize {
         return this.allowTrade;
     }
 
-    public boolean allowConsumption() {
-        return BaseConsumableInteraction.class.isAssignableFrom(this.getInteractionType().getType());
-    }
-
     public boolean allowMarketplace() {
         return this.allowMarketplace;
     }

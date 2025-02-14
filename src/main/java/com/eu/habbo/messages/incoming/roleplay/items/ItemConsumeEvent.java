@@ -15,12 +15,13 @@ public class ItemConsumeEvent extends MessageHandler {
             return;
         }
 
-        if (!item.getBaseItem().allowConsumption()) {
+        BaseConsumableInteraction consumableInteraction = (BaseConsumableInteraction) item;
+
+        if (!consumableInteraction.canConsume()) {
             this.client.getHabbo().whisper(Emulator.getTexts().getValue("rp.not_consumable_item"));
             return;
         }
 
-        BaseConsumableInteraction consumableInteraction = (BaseConsumableInteraction) item;
         consumableInteraction.onConsume(this.client);
 
         this.client.getHabbo().getInventory().getItemsComponent().removeHabboItem(item);
