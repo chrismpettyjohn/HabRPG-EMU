@@ -376,4 +376,5 @@ public class Incoming {
     public static final int CharacterUpdateByIdEvent = 4011;
     public static final int ItemConsumeEvent = 4012;
     public static final int SellCaughtFish = 4013;
+    public static final int SellFarmedCorn = 4014;
 }

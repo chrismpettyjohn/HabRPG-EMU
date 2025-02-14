@@ -8,7 +8,7 @@ import com.eu.habbo.messages.incoming.MessageHandler;
 import com.eu.habbo.messages.outgoing.inventory.InventoryRefreshComposer;
 import com.eu.habbo.threading.runnables.QueryDeleteHabboItem;
 
-public class SellCaughtFish extends MessageHandler {
+public class SellCaughtFishEvent extends MessageHandler {
     @Override
     public void handle() throws Exception {
         int botId = this.packet.readInt();

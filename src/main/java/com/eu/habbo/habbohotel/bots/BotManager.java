@@ -1,6 +1,7 @@
 package com.eu.habbo.habbohotel.bots;
 
 import com.eu.habbo.Emulator;
+import com.eu.habbo.habbohotel.bots.roleplay.FarmerMerchantBot;
 import com.eu.habbo.habbohotel.bots.roleplay.FishMerchantBot;
 import com.eu.habbo.habbohotel.bots.roleplay.ParamedicBot;
 import com.eu.habbo.habbohotel.permissions.Permission;
@@ -45,6 +46,7 @@ public class BotManager {
         addBotDefinition("visitor_log", VisitorBot.class);
         addBotDefinition("paramedic", ParamedicBot.class);
         addBotDefinition("fish_merchant", FishMerchantBot.class);
+        addBotDefinition("farmer_merchant", FarmerMerchantBot.class);
 
         this.reload();
 

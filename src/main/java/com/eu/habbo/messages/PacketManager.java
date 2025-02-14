@@ -45,7 +45,8 @@ import com.eu.habbo.messages.incoming.roleplay.character.CharacterLookupEvent;
 import com.eu.habbo.messages.incoming.roleplay.character.CharacterLookupRoleplayItemsEvent;
 import com.eu.habbo.messages.incoming.roleplay.character.CharacterUpdateByIdEvent;
 import com.eu.habbo.messages.incoming.roleplay.combat.AttackEvent;
-import com.eu.habbo.messages.incoming.roleplay.fishing.SellCaughtFish;
+import com.eu.habbo.messages.incoming.roleplay.farming.SellFarmedCornEvent;
+import com.eu.habbo.messages.incoming.roleplay.fishing.SellCaughtFishEvent;
 import com.eu.habbo.messages.incoming.roleplay.items.*;
 import com.eu.habbo.messages.incoming.roleplay.paramedic.CallParamedicEvent;
 import com.eu.habbo.messages.incoming.roleplay.paramedic.HealEvent;
@@ -651,6 +652,7 @@ public class PacketManager {
         this.registerHandler(Incoming.RoleplayItemUpdateOneEvent, RoleplayItemUpdateOneEvent.class);
         this.registerHandler(Incoming.CharacterUpdateByIdEvent, CharacterUpdateByIdEvent.class);
         this.registerHandler(Incoming.ItemConsumeEvent, ItemConsumeEvent.class);
-        this.registerHandler(Incoming.SellCaughtFish, SellCaughtFish.class);
+        this.registerHandler(Incoming.SellCaughtFish, SellCaughtFishEvent.class);
+        this.registerHandler(Incoming.SellFarmedCorn, SellFarmedCornEvent.class);
     }
 }
