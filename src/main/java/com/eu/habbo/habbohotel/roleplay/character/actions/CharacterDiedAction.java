@@ -3,11 +3,16 @@ package com.eu.habbo.habbohotel.roleplay.character.actions;
 import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.pets.PetVocal;
 import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
+import com.eu.habbo.habbohotel.roleplay.paramedic.actions.CallParamedicAction;
 import com.eu.habbo.habbohotel.rooms.RoomUnitStatus;
+import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.outgoing.rooms.users.RoomUserStatusComposer;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class CharacterDiedAction {
 
@@ -16,7 +21,6 @@ public class CharacterDiedAction {
             character.getBot().shout(Emulator.getTexts().getValue("rp.died"));
             character.getBot().getRoomUnit().setStatus(RoomUnitStatus.LAY, "0.5");
             character.getBot().getRoom().sendComposer(new RoomUserStatusComposer(character.getBot().getRoomUnit()).compose());
-            startRevivalCheck(character);
             return;
         }
 
@@ -31,27 +35,42 @@ public class CharacterDiedAction {
             character.getPet().say(new PetVocal(Emulator.getTexts().getValue("rp.died")));
             character.getPet().getRoomUnit().setStatus(RoomUnitStatus.LAY, "0.5");
             character.getPet().getRoom().sendComposer(new RoomUserStatusComposer(character.getPet().getRoomUnit()).compose());
-            startRevivalCheck(character);
         }
     }
 
     private void startRevivalCheck(RoleplayCharacter character) {
-        Timer timer = new Timer();
+        if (character.getHabbo() == null) {
+            return;
+        }
+
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
         final int[] elapsed = {0};
 
         int waitUntilParamedicIsFree = Emulator.getConfig().getInt("rp.paramedic_wait_secs");
 
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (!character.isDead()) {
-                    timer.cancel();
-                } else if (elapsed[0] >= waitUntilParamedicIsFree) {
-                    System.out.println("Character " + character.getHabbo().getHabboInfo().getUsername() + " has been dead for " + waitUntilParamedicIsFree + " seconds.");
-                    timer.cancel();
-                }
-                elapsed[0] += 10;
+        character.getHabbo().whisper(Emulator.getTexts()
+                .getValue("rp.paramedic_free_dispatch")
+                .replace(":secs", String.valueOf(waitUntilParamedicIsFree - elapsed[0]))
+        );
+
+        scheduler.scheduleAtFixedRate(() -> {
+            elapsed[0] += 10;
+
+            if (!character.isDead()) {
+                scheduler.shutdown();
+                return;
             }
-        }, 10000, 10000);
+
+            if (elapsed[0] >= waitUntilParamedicIsFree) {
+                new CallParamedicAction(character.getHabbo()).execute();
+                scheduler.shutdown();
+                return;
+            }
+            character.getHabbo().whisper(Emulator.getTexts()
+                    .getValue("rp.paramedic_free_wait")
+                    .replace(":secs", String.valueOf(waitUntilParamedicIsFree - elapsed[0]))
+            );
+        }, 10, 10, TimeUnit.SECONDS);
     }
+
 }
