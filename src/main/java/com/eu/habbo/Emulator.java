@@ -9,7 +9,6 @@ import com.eu.habbo.database.Database;
 import com.eu.habbo.habbohotel.GameEnvironment;
 import com.eu.habbo.networking.camera.CameraClient;
 import com.eu.habbo.networking.gameserver.GameServer;
-import com.eu.habbo.networking.rconserver.RCONServer;
 import com.eu.habbo.plugin.PluginManager;
 import com.eu.habbo.plugin.events.emulator.EmulatorConfigUpdatedEvent;
 import com.eu.habbo.plugin.events.emulator.EmulatorLoadedEvent;
@@ -54,7 +53,6 @@ public final class Emulator {
     private static CryptoConfig crypto;
     private static TextsManager texts;
     private static GameServer gameServer;
-    private static RCONServer rconServer;
     private static CameraClient cameraClient;
     private static Logging logging;
     private static Database database;
@@ -131,13 +129,10 @@ public final class Emulator {
             Emulator.texts = new TextsManager();
             new CleanerThread();
             Emulator.gameServer = new GameServer(getConfig().getValue("game.host", "127.0.0.1"), getConfig().getInt("game.port", 30000));
-            Emulator.rconServer = new RCONServer(getConfig().getValue("rcon.host", "127.0.0.1"), getConfig().getInt("rcon.port", 30001));
             Emulator.gameEnvironment = new GameEnvironment();
             Emulator.gameEnvironment.load();
             Emulator.gameServer.initializePipeline();
             Emulator.gameServer.connect();
-            Emulator.rconServer.initializePipeline();
-            Emulator.rconServer.connect();
             Emulator.badgeImager = new BadgeImager();
 
             LOGGER.info("ArcturusRP has successfully loaded.");
@@ -237,12 +232,6 @@ public final class Emulator {
         }
 
         try {
-            if (Emulator.rconServer != null)
-                Emulator.rconServer.stop();
-        } catch (Exception e) {
-        }
-
-        try {
             if (Emulator.gameEnvironment != null)
                 Emulator.gameEnvironment.dispose();
         } catch (Exception e) {
@@ -317,10 +306,6 @@ public final class Emulator {
 
     public static GameServer getGameServer() {
         return gameServer;
-    }
-
-    public static RCONServer getRconServer() {
-        return rconServer;
     }
 
     /**

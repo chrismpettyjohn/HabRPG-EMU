@@ -22,7 +22,6 @@ public abstract class ConsoleCommand {
         addCommand(new ConsoleTestCommand());
         addCommand(new ConsoleReconnectCameraCommand());
         addCommand(new ShowInteractionsCommand());
-        addCommand(new ShowRCONCommands());
         addCommand(new ThankyouArcturusCommand());
     }
 

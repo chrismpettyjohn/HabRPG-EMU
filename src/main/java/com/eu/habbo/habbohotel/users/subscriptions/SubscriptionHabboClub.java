@@ -100,7 +100,7 @@ public class SubscriptionHabboClub extends Subscription {
     }
 
     /**
-     * Called when the subscription is extended by manual action (by admin command or RCON)
+     * Called when the subscription is extended by manual action (by admin command)
      * Actions:
      * - Extend duration of the subscription
      * - Send associated HC packets to client
