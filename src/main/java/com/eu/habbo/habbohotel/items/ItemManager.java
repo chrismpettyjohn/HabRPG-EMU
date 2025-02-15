@@ -355,6 +355,7 @@ public class ItemManager {
         this.interactionsList.add(new ItemInteraction(InteractionCornField.INTERACTION_TYPE, InteractionCornField.class));
         this.interactionsList.add(new ItemInteraction(InteractionCornSeedBag.INTERACTION_TYPE, InteractionCornSeedBag.class));
         this.interactionsList.add(new ItemInteraction(InteractionWateringCan.INTERACTION_TYPE, InteractionWateringCan.class));
+        this.interactionsList.add(new ItemInteraction(InteractionTaxiStand.INTERACTION_TYPE, InteractionTaxiStand.class));
     }
 
     public void addItemInteraction(ItemInteraction itemInteraction) {
