@@ -25,6 +25,11 @@ public class CorpFireUserEvent extends MessageHandler {
             return;
         }
 
+        if (this.client.getHabbo().getRoleplayCharacter().getCorpRole().getOrderId() <= targetHabbo.getRoleplayCharacter().getCorpRole().getOrderId()) {
+            this.client.getHabbo().whisper(Emulator.getTexts().getValue("generic.cannot_do_that"));
+            return;
+        }
+
         targetHabbo.getRoleplayCharacter().setCorpId(Emulator.getConfig().getInt("rp.default_corp_id"));
         targetHabbo.getRoleplayCharacter().setCorpRoleId(Emulator.getConfig().getInt("rp.default_corp_role_id"));
         targetHabbo.whisper(Emulator.getTexts().getValue("rp.corp_you_were_fired"));

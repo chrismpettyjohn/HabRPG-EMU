@@ -1,6 +1,8 @@
 package com.eu.habbo.messages.incoming.roleplay.corp;
 
 import com.eu.habbo.Emulator;
+import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpRole;
+import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpRoleManager;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.incoming.MessageHandler;
 
@@ -25,6 +27,24 @@ public class CorpDemoteUserEvent extends MessageHandler {
             this.client.getHabbo().whisper(Emulator.getTexts().getValue("generic.user_not_found"));
             return;
         }
+
+        if (this.client.getHabbo().getRoleplayCharacter().getCorpRole().getOrderId() <= targetHabbo.getRoleplayCharacter().getCorpRole().getOrderId()) {
+            this.client.getHabbo().whisper(Emulator.getTexts().getValue("generic.cannot_do_that"));
+            return;
+        }
+
+        RoleplayCorpRole demotionCorpRole = RoleplayCorpRoleManager.getInstance().getCorpRoles()
+                .stream().filter(r -> r.getCorpId() == this.client.getHabbo().getRoleplayCharacter().getCorpId() && r.getOrderId() == targetHabbo.getRoleplayCharacter().getCorpRole().getOrderId() - 1)
+                .findFirst()
+                .orElse(null);
+
+        if (demotionCorpRole == null) {
+            this.client.getHabbo().whisper(Emulator.getTexts().getValue("generic.cannot_do_that"));
+            return;
+        }
+
+        targetHabbo.getRoleplayCharacter().setCorpRoleId(demotionCorpRole.getId());
+
 
         targetHabbo.whisper(Emulator.getTexts()
                 .getValue("rp.corp_you_were_demoted")
