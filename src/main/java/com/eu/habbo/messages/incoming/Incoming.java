@@ -379,4 +379,8 @@ public class Incoming {
     public static final int SellFarmedCorn = 4014;
     public static final int CorpListAll = 4015;
     public static final int CorpRoleListAll = 4016;
+    public static final int CorpHireUser= 4017;
+    public static final int CorpFireUser = 4018;
+    public static final int CorpPromoteUser = 4019;
+    public static final int CorpDemoteUser = 4020;
 }

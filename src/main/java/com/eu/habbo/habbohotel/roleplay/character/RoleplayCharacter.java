@@ -35,6 +35,8 @@ public class RoleplayCharacter {
     private int energyNow;
     private int energyMax;
 
+    private boolean isWorking;
+
     private RoleplayCharacterSkills skills;
     private List<RoleplayCharacterItem> items;
 
@@ -53,6 +55,7 @@ public class RoleplayCharacter {
         this.healthMax = set.getInt("health_max");
         this.energyNow = set.getInt("energy_now");
         this.energyMax = set.getInt("energy_max");
+        this.isWorking = false;
 
         this.skills = RoleplayCharacterSkillsRepository.loadByCharacter(this);
         this.items = RoleplayCharacterItemRepository.loadAllByCharacter(this);
@@ -175,6 +178,14 @@ public class RoleplayCharacter {
 
     public void depleteEnergy(int points) {
        this.setEnergyNow(this.getEnergyNow() - points);
+    }
+
+    public boolean isWorking() {
+        return this.isWorking;
+    }
+
+    public void setIsWorking(boolean working) {
+        this.isWorking = working;
     }
 
     public boolean isDead() {
