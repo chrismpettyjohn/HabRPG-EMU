@@ -7,7 +7,6 @@ import com.eu.habbo.habbohotel.bots.BotManager;
 import com.eu.habbo.habbohotel.catalog.CatalogManager;
 import com.eu.habbo.habbohotel.commands.CommandHandler;
 import com.eu.habbo.habbohotel.crafting.CraftingManager;
-import com.eu.habbo.habbohotel.guides.GuideManager;
 import com.eu.habbo.habbohotel.guilds.GuildManager;
 import com.eu.habbo.habbohotel.hotelview.HotelViewManager;
 import com.eu.habbo.habbohotel.items.ItemManager;
@@ -19,7 +18,6 @@ import com.eu.habbo.habbohotel.permissions.PermissionsManager;
 import com.eu.habbo.habbohotel.pets.PetManager;
 import com.eu.habbo.habbohotel.polls.PollManager;
 import com.eu.habbo.habbohotel.roleplay.RoleplayManager;
-import com.eu.habbo.habbohotel.roleplay.item.RoleplayItemManager;
 import com.eu.habbo.habbohotel.rooms.RoomChatBubbleManager;
 import com.eu.habbo.habbohotel.rooms.RoomManager;
 import com.eu.habbo.habbohotel.users.HabboManager;
@@ -52,7 +50,6 @@ public class GameEnvironment {
     private ModToolSanctions modToolSanctions;
     private PetManager petManager;
     private AchievementManager achievementManager;
-    private GuideManager guideManager;
     private WordFilter wordFilter;
     private CraftingManager craftingManager;
     private PollManager pollManager;
@@ -79,7 +76,6 @@ public class GameEnvironment {
         this.modToolSanctions = new ModToolSanctions();
         this.achievementManager = new AchievementManager();
         this.achievementManager.reload();
-        this.guideManager = new GuideManager();
         this.wordFilter = new WordFilter();
         this.craftingManager = new CraftingManager();
         this.pollManager = new PollManager();
@@ -179,10 +175,6 @@ public class GameEnvironment {
 
     public AchievementManager getAchievementManager() {
         return this.achievementManager;
-    }
-
-    public GuideManager getGuideManager() {
-        return this.guideManager;
     }
 
     public WordFilter getWordFilter() {

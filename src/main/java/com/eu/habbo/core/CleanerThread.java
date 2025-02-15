@@ -76,11 +76,6 @@ public class CleanerThread implements Runnable {
             LAST_INACTIVE_GUILDS_CLEARED = time;
         }
 
-        if (time - LAST_INACTIVE_TOURS_CLEARED > REMOVE_INACTIVE_TOURS) {
-            Emulator.getGameEnvironment().getGuideManager().cleanup();
-            LAST_INACTIVE_TOURS_CLEARED = time;
-        }
-
         if (time - LAST_ERROR_LOGS_SAVED > SAVE_ERROR_LOGS) {
             Emulator.getDatabaseLogger().save();
             LAST_ERROR_LOGS_SAVED = time;

@@ -195,7 +195,6 @@ public class Habbo implements Runnable {
         }
 
         try {
-            Emulator.getGameEnvironment().getGuideManager().userLogsOut(this);
             this.isOnline(false);
             this.needsUpdate(true);
             this.run();

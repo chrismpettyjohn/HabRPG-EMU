@@ -20,10 +20,6 @@ import com.eu.habbo.messages.incoming.floorplaneditor.FloorPlanEditorRequestBloc
 import com.eu.habbo.messages.incoming.floorplaneditor.FloorPlanEditorRequestDoorSettingsEvent;
 import com.eu.habbo.messages.incoming.floorplaneditor.FloorPlanEditorSaveEvent;
 import com.eu.habbo.messages.incoming.friends.*;
-import com.eu.habbo.messages.incoming.guardians.GuardianAcceptRequestEvent;
-import com.eu.habbo.messages.incoming.guardians.GuardianNoUpdatesWantedEvent;
-import com.eu.habbo.messages.incoming.guardians.GuardianVoteEvent;
-import com.eu.habbo.messages.incoming.guides.*;
 import com.eu.habbo.messages.incoming.guilds.*;
 import com.eu.habbo.messages.incoming.guilds.forums.*;
 import com.eu.habbo.messages.incoming.handshake.*;
@@ -120,7 +116,6 @@ public class PacketManager {
         this.registerAchievements();
         this.registerFloorPlanEditor();
         this.registerAmbassadors();
-        this.registerGuides();
         this.registerCrafting();
         this.registerCamera();
         this.registerRoleplay();
@@ -495,8 +490,6 @@ public class PacketManager {
         this.registerHandler(Incoming.ModToolIssueDefaultSanctionEvent, ModToolIssueDefaultSanctionEvent.class);
 
         this.registerHandler(Incoming.RequestReportRoomEvent, RequestReportRoomEvent.class);
-        this.registerHandler(Incoming.RequestReportUserBullyingEvent, RequestReportUserBullyingEvent.class);
-        this.registerHandler(Incoming.ReportBullyEvent, ReportBullyEvent.class);
         this.registerHandler(Incoming.ReportEvent, ReportEvent.class);
         this.registerHandler(Incoming.ReportFriendPrivateChatEvent, ReportFriendPrivateChatEvent.class);
         this.registerHandler(Incoming.ReportThreadEvent, ReportThreadEvent.class);
@@ -592,24 +585,6 @@ public class PacketManager {
     void registerAchievements() throws Exception {
         this.registerHandler(Incoming.RequestAchievementsEvent, RequestAchievementsEvent.class);
         this.registerHandler(Incoming.RequestAchievementConfigurationEvent, RequestAchievementConfigurationEvent.class);
-    }
-
-    void registerGuides() throws Exception {
-        this.registerHandler(Incoming.RequestGuideToolEvent, RequestGuideToolEvent.class);
-        this.registerHandler(Incoming.RequestGuideAssistanceEvent, RequestGuideAssistanceEvent.class);
-        this.registerHandler(Incoming.GuideUserTypingEvent, GuideUserTypingEvent.class);
-        this.registerHandler(Incoming.GuideReportHelperEvent, GuideReportHelperEvent.class);
-        this.registerHandler(Incoming.GuideRecommendHelperEvent, GuideRecommendHelperEvent.class);
-        this.registerHandler(Incoming.GuideUserMessageEvent, GuideUserMessageEvent.class);
-        this.registerHandler(Incoming.GuideCancelHelpRequestEvent, GuideCancelHelpRequestEvent.class);
-        this.registerHandler(Incoming.GuideHandleHelpRequestEvent, GuideHandleHelpRequestEvent.class);
-        this.registerHandler(Incoming.GuideInviteUserEvent, GuideInviteUserEvent.class);
-        this.registerHandler(Incoming.GuideVisitUserEvent, GuideVisitUserEvent.class);
-        this.registerHandler(Incoming.GuideCloseHelpRequestEvent, GuideCloseHelpRequestEvent.class);
-
-        this.registerHandler(Incoming.GuardianNoUpdatesWantedEvent, GuardianNoUpdatesWantedEvent.class);
-        this.registerHandler(Incoming.GuardianAcceptRequestEvent, GuardianAcceptRequestEvent.class);
-        this.registerHandler(Incoming.GuardianVoteEvent, GuardianVoteEvent.class);
     }
 
     void registerCrafting() throws Exception {
