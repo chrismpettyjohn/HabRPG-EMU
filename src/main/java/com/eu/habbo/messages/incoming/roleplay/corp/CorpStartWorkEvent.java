@@ -11,9 +11,10 @@ public class CorpStartWorkEvent extends MessageHandler {
             return;
         }
 
+        this.client.getHabbo().getRoleplayCharacter().setIsWorking(true);
         this.client.getHabbo().shout(Emulator.getTexts()
                 .getValue("rp.corp_start_work_success")
-                .replace(":role", "")
+                .replace(":role", this.client.getHabbo().getRoleplayCharacter().getCorpRole().getName())
         );
     }
 }

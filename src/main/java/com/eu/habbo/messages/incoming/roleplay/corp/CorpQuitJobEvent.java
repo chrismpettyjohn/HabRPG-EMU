@@ -11,12 +11,14 @@ public class CorpQuitJobEvent extends MessageHandler {
             return;
         }
 
+        String oldCorpRoleName =  this.client.getHabbo().getRoleplayCharacter().getCorpRole().getName();
+
         this.client.getHabbo().getRoleplayCharacter().setCorpId(Emulator.getConfig().getInt("rp.default_corp_id"));
         this.client.getHabbo().getRoleplayCharacter().setCorpRoleId(Emulator.getConfig().getInt("rp.default_corp_role_id"));
 
         this.client.getHabbo().shout(Emulator.getTexts()
                 .getValue("rp.corp_quit_job_success")
-                .replace(":role", "")
+                .replace(":role", oldCorpRoleName)
         );
     }
 }

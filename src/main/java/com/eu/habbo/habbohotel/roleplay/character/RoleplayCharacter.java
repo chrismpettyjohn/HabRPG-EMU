@@ -200,6 +200,7 @@ public class RoleplayCharacter {
 
     public void setIsWorking(boolean working) {
         this.isWorking = working;
+        this.notifyRoom();
     }
 
     public boolean isDead() {

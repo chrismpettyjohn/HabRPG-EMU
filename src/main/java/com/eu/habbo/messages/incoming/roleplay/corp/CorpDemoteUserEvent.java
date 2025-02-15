@@ -43,17 +43,19 @@ public class CorpDemoteUserEvent extends MessageHandler {
             return;
         }
 
+        String oldCorpRoleName = targetHabbo.getRoleplayCharacter().getCorpRole().getName();
+
         targetHabbo.getRoleplayCharacter().setCorpRoleId(demotionCorpRole.getId());
 
 
         targetHabbo.whisper(Emulator.getTexts()
                 .getValue("rp.corp_you_were_demoted")
-                .replace(":role", "")
+                .replace(":role", oldCorpRoleName)
         );
         this.client.getHabbo().shout(Emulator.getTexts()
                 .getValue("rp_corp_demote_success")
                 .replace(":username", targetHabbo.getHabboInfo().getUsername())
-                .replace(":role", "")
+                .replace(":role", oldCorpRoleName)
         );
     }
 }
