@@ -383,4 +383,6 @@ public class Incoming {
     public static final int CorpFireUser = 4018;
     public static final int CorpPromoteUser = 4019;
     public static final int CorpDemoteUser = 4020;
+    public static final int CorpStartWork = 4021;
+    public static final int CorpQuitJob = 4022;
 }

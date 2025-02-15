@@ -1,6 +1,8 @@
 package com.eu.habbo.messages.incoming.roleplay.corp;
 
 import com.eu.habbo.Emulator;
+import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpRole;
+import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpRoleManager;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.incoming.MessageHandler;
 
@@ -26,14 +28,31 @@ public class CorpPromoteUserEvent extends MessageHandler {
             return;
         }
 
+        if (this.client.getHabbo().getRoleplayCharacter().getCorpRole().getOrderId() <= targetHabbo.getRoleplayCharacter().getCorpRole().getOrderId()) {
+            this.client.getHabbo().whisper(Emulator.getTexts().getValue("generic.cannot_do_that"));
+            return;
+        }
+
+        RoleplayCorpRole promotionCorpRole = RoleplayCorpRoleManager.getInstance().getCorpRoles()
+                .stream().filter(r -> r.getCorpId() == this.client.getHabbo().getRoleplayCharacter().getCorpId() && r.getOrderId() == targetHabbo.getRoleplayCharacter().getCorpRole().getOrderId() + 1)
+                        .findFirst()
+                                .orElse(null);
+
+        if (promotionCorpRole == null) {
+            this.client.getHabbo().whisper(Emulator.getTexts().getValue("generic.cannot_do_that"));
+            return;
+        }
+
+        targetHabbo.getRoleplayCharacter().setCorpRoleId(promotionCorpRole.getId());
+
         targetHabbo.whisper(Emulator.getTexts()
                 .getValue("rp.corp_you_were_promoted")
-                .replace(":role", "")
+                .replace(":role", promotionCorpRole.getName())
         );
         this.client.getHabbo().shout(Emulator.getTexts()
                 .getValue("rp_corp_promote_success")
                 .replace(":username", targetHabbo.getHabboInfo().getUsername())
-                .replace(":role", "")
+                .replace(":role", promotionCorpRole.getName())
         );
     }
 }

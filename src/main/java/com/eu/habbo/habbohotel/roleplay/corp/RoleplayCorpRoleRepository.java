@@ -7,21 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoleplayCorpRoleRepository {
-    public static RoleplayCorpRole create(int corpId, String name, String description, boolean canHire, boolean canFire, boolean canPromote, boolean canDemote, boolean canEdit) {
+    public static RoleplayCorpRole create(int corpId, int orderId, String name, String description, boolean canHire, boolean canFire, boolean canPromote, boolean canDemote, boolean canEdit) {
         RoleplayCorpRole role = null;
-        String query = "INSERT INTO rp_corp_roles (corp_id, name, description, can_hire, can_fire, can_promote, can_demote, can_edit) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO rp_corp_roles (corp_id, prder_id, name, description, can_hire, can_fire, can_promote, can_demote, can_edit) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             statement.setInt(1, corpId);
-            statement.setString(2, name);
-            statement.setString(3, description);
-            statement.setString(4, canHire ? "yes" : "no");
-            statement.setString(5, canFire ? "yes" : "no");
-            statement.setString(6, canPromote ? "yes" : "no");
-            statement.setString(7, canDemote ? "yes" : "no");
-            statement.setString(8, canEdit ? "yes" : "no");
+            statement.setInt(2, orderId);
+            statement.setString(3, name);
+            statement.setString(4, description);
+            statement.setString(5, canHire ? "yes" : "no");
+            statement.setString(6, canFire ? "yes" : "no");
+            statement.setString(7, canPromote ? "yes" : "no");
+            statement.setString(8, canDemote ? "yes" : "no");
+            statement.setString(9, canEdit ? "yes" : "no");
 
             statement.executeUpdate();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
@@ -96,13 +97,14 @@ public class RoleplayCorpRoleRepository {
     }
 
     public static void updateByRole(RoleplayCorpRole role) {
-        String query = "UPDATE rp_corp_roles SET corp_id = ?, name = ?, description = ?, can_hire = ?, can_fire = ?, can_promote = ?, can_demote = ?, can_edit = ? WHERE id = ?";
+        String query = "UPDATE rp_corp_roles SET corp_id = ?, order_id = ?, name = ?, description = ?, can_hire = ?, can_fire = ?, can_promote = ?, can_demote = ?, can_edit = ? WHERE id = ?";
 
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, role.getCorpId());
-            statement.setString(2, role.getName());
+            statement.setInt(2, role.getOrderId());
+            statement.setString(3, role.getName());
             statement.setString(4, role.canHire() ? "yes" : "no");
             statement.setString(5, role.canFire() ? "yes" : "no");
             statement.setString(6, role.canPromote() ? "yes" : "no");

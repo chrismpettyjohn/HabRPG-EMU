@@ -661,5 +661,7 @@ public class PacketManager {
         this.registerHandler(Incoming.CorpFireUser, CorpFireUserEvent.class);
         this.registerHandler(Incoming.CorpPromoteUser, CorpPromoteUserEvent.class);
         this.registerHandler(Incoming.CorpDemoteUser, CorpDemoteUserEvent.class);
+        this.registerHandler(Incoming.CorpStartWork, CorpStartWorkEvent.class);
+        this.registerHandler(Incoming.CorpQuitJob, CorpQuitJobEvent.class);
     }
 }

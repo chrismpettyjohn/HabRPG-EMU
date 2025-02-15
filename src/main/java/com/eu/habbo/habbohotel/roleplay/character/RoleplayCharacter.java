@@ -99,6 +99,8 @@ public class RoleplayCharacter {
 
     public void setCorpId(int corpId) {
         this.corpId = corpId;
+
+        this.notifyRoom();
     }
 
     public RoleplayCorpRole getCorpRole() {
@@ -111,6 +113,8 @@ public class RoleplayCharacter {
 
     public void setCorpRoleId(int corpRoleId) {
         this.corpRoleId = corpRoleId;
+
+        this.notifyRoom();
     }
 
     public int getHealthNow() {

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 public class RoleplayCorpRole {
     private final int id;
     private int corpId;
+    private int orderId;
     private String name;
     private boolean canHire;
     private boolean canFire;
@@ -16,6 +17,7 @@ public class RoleplayCorpRole {
     public RoleplayCorpRole(ResultSet set) throws SQLException {
         this.id = set.getInt("id");
         this.corpId = set.getInt("corp_id");
+        this.orderId = set.getInt("order_id");
         this.name = set.getString("name");
         this.canHire = set.getString("can_hire").equals("1");
         this.canFire = set.getString("can_fire").equals("1");
@@ -34,6 +36,14 @@ public class RoleplayCorpRole {
 
     public void setCorpId(int corpId) {
         this.corpId = corpId;
+    }
+
+    public int getOrderId() {
+        return this.orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public String getName() {
