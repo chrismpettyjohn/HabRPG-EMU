@@ -2,6 +2,7 @@ package com.eu.habbo.habbohotel.roleplay.corp;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class RoleplayCorp {
     private final int id;
@@ -11,6 +12,8 @@ public class RoleplayCorp {
     private String description;
     private int createdAt;
     private int updatedAt;
+    private List<RoleplayCorpRole> roles;
+    private List<RoleplayCorpEmployee> employees;
 
     public RoleplayCorp(ResultSet set) throws SQLException {
         this.id = set.getInt("id");
@@ -20,6 +23,14 @@ public class RoleplayCorp {
         this.description = set.getString("description");
         this.createdAt = set.getInt("created_at");
         this.updatedAt = set.getInt("updated_at");
+
+        // Load related roles and employees
+        this.loadRelations();
+    }
+
+    private void loadRelations() {
+        this.roles = RoleplayCorpRoleRepository.getByCorpId(this.id);
+        this.employees = RoleplayCorpEmployeeRepository.getByCorpId(this.id);
     }
 
     public int getId() {
@@ -66,11 +77,34 @@ public class RoleplayCorp {
         return this.updatedAt;
     }
 
+    public List<RoleplayCorpRole> getRoles() {
+        return this.roles;
+    }
+
+    public List<RoleplayCorpEmployee> getEmployees() {
+        return this.employees;
+    }
+
     public void save() {
         RoleplayCorpRepository.updateByCorp(this);
+
+        for (RoleplayCorpRole role : this.roles) {
+            role.save();
+        }
+        for (RoleplayCorpEmployee employee : this.employees) {
+            employee.save();
+        }
     }
 
     public void delete() {
+        for (RoleplayCorpRole role : this.roles) {
+            role.delete();
+        }
+
+        for (RoleplayCorpEmployee employee : this.employees) {
+            employee.delete();
+        }
+
         RoleplayCorpRepository.deleteById(this.id);
     }
 }
