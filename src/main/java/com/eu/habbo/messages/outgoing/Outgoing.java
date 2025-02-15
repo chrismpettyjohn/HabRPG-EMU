@@ -221,8 +221,7 @@ public class Outgoing {
 
     public final static int HotelViewBadgeButtonConfigComposer = 2998; 
     public final static int EpicPopupFrameComposer = 3945; 
-    public final static int BaseJumpLoadGameURLComposer = 2624; 
-    public final static int RoomUserTagsComposer = 1255; 
+    public final static int RoomUserTagsComposer = 1255;
     public final static int RoomInviteErrorComposer = 462; 
     public final static int PostItStickyPoleOpenComposer = 2366; 
     public final static int NewYearResolutionProgressComposer = 3370; 
@@ -398,15 +397,10 @@ public class Outgoing {
     public final static int BotForceOpenContextMenuComposer = 296;
     public final static int EffectsListAddComposer = 2867;
     public final static int OtherTradingDisabledComposer = 1254; 
-    public final static int BaseJumpUnloadGameComposer = 1715; 
-    public final static int GameCenterAccountInfoComposer = 2893;
-    public final static int BaseJumpLoadGameComposer = 3654;
     public final static int NewYearResolutionCompletedComposer = 740;
     public final static int ModToolSanctionInfoComposer = 2221; 
     public final static int GuideSessionPartnerIsPlayingComposer = 448;
-    public final static int BaseJumpLeaveQueueComposer = 1477; 
-    public final static int GameCenterGameListComposer = 222; 
-    public final static int RoomUsersGuildBadgesComposer = 2402; 
+    public final static int RoomUsersGuildBadgesComposer = 2402;
     public final static int UnknownComposer_2698 = 563; 
     public final static int HabboWayQuizComposer1 = 3379;
     public final static int YouTradingDisabledComposer = 3058; 
@@ -421,7 +415,6 @@ public class Outgoing {
 
     public final static int PingComposer = 3928;
     public final static int TradingWaitingConfirmComposer = 2720;
-    public final static int BaseJumpJoinQueueComposer = 2260;
     public final static int ClubCenterDataComposer = 3277;
 
     public final static int SimplePollAnswersComposer = 1066;
@@ -445,8 +438,6 @@ public class Outgoing {
     public final static int HotelViewSecondsUntilComposer = 3926;
     public final static int UnknownRoomDesktopComposer = 69;
     public final static int UnknownGuildComposer3 = 876;
-
-    public final static int GameCenterGameComposer = 3805;
 
     public final static int CharacterDataComposer = 4001;
     public final static int CharacterSkillsDataComposer = 4002;

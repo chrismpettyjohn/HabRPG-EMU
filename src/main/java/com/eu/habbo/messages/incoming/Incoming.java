@@ -319,15 +319,7 @@ public class Incoming {
     public static final int MovePetEvent = 3449;
     public static final int PetPackageNameEvent = 3698;
 
-    public static final int GameCenterRequestGamesEvent = 741;
-    public static final int GameCenterRequestAccountStatusEvent = 3171;
-    public static final int GameCenterRequestGameStatusEvent = 11;
     public static final int CameraPublishToWebEvent = 2068;
-
-    public static final int GameCenterJoinGameEvent = 1458;
-    public static final int GameCenterLoadGameEvent = 1054;
-    public static final int GameCenterEvent = 2914;
-    public static final int GameCenterLeaveGameEvent = 3207;
 
     public static final int ModToolSanctionAlertEvent = 229;
     public static final int ModToolSanctionMuteEvent = 1945;
