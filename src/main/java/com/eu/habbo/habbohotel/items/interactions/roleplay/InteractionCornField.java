@@ -10,7 +10,6 @@ import com.eu.habbo.habbohotel.users.HabboItem;
 import com.eu.habbo.messages.outgoing.inventory.AddHabboItemComposer;
 import com.eu.habbo.messages.outgoing.inventory.InventoryRefreshComposer;
 import com.eu.habbo.messages.outgoing.rooms.users.RoomUserHandItemComposer;
-import com.eu.habbo.threading.runnables.QueryDeleteHabboItem;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,8 +25,6 @@ public class InteractionCornField extends InteractionDefault {
     public static final String NEEDS_WATERED = "1";
     public static final String NEEDS_HARVESTED = "2";
     public static final String IN_COOLDOWN = "3";
-
-    public static final int HAND_ITEM_WATER = 7;
 
     public boolean isGrowing = false;
 
@@ -68,19 +65,13 @@ public class InteractionCornField extends InteractionDefault {
         boolean isNotPlanted = Objects.equals(this.getExtradata(), InteractionCornField.NEEDS_SEEDING);
 
         if (isNotPlanted) {
-            HabboItem ownedCornSeed = client.getHabbo().getInventory().getItemsComponent().getItemsAsValueCollection().stream()
-                    .filter(item -> InteractionCornSeed.class.isAssignableFrom(item.getBaseItem().getInteractionType().getType()))
-                    .findFirst()
-                    .orElse(null);
-
-            if (ownedCornSeed == null) {
+            if (client.getHabbo().getRoomUnit().getHandItem() != InteractionCornSeedBag.CORN_SEED_HAND_ITEM_ID) {
                 client.getHabbo().whisper(Emulator.getTexts().getValue("rp.corn_field_out_of_seeds"));
                 return;
             }
 
-            client.getHabbo().getInventory().getItemsComponent().removeHabboItem(ownedCornSeed);
-            Emulator.getThreading().run(new QueryDeleteHabboItem(ownedCornSeed.getId()));
-            client.sendResponse(new InventoryRefreshComposer());
+            client.getHabbo().getRoomUnit().setHandItem(0);
+            room.sendComposer(new RoomUserHandItemComposer(client.getHabbo().getRoomUnit()).compose());
 
             client.getHabbo().shout(Emulator.getTexts().getValue("rp.corn_field_plants_seeds"));
 
@@ -98,7 +89,7 @@ public class InteractionCornField extends InteractionDefault {
         boolean isNotWatered = Objects.equals(this.getExtradata(), InteractionCornField.NEEDS_WATERED);
 
         if (isNotWatered) {
-            if (client.getHabbo().getRoomUnit().getHandItem() != InteractionCornField.HAND_ITEM_WATER) {
+            if (client.getHabbo().getRoomUnit().getHandItem() != InteractionWateringCan.WATERING_CAN_HAND_ITEM_ID) {
                 client.getHabbo().whisper(Emulator.getTexts().getValue("rp.corn_field_you_need_water"));
                 return;
             }

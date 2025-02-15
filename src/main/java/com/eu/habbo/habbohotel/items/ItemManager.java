@@ -353,10 +353,9 @@ public class ItemManager {
         this.interactionsList.add(new ItemInteraction(InteractionFishingSource.INTERACTION_TYPE, InteractionFishingSource.class));
         this.interactionsList.add(new ItemInteraction(InteractionCorn.INTERACTION_TYPE, InteractionCorn.class));
         this.interactionsList.add(new ItemInteraction(InteractionCornField.INTERACTION_TYPE, InteractionCornField.class));
-        this.interactionsList.add(new ItemInteraction(InteractionCornSeed.INTERACTION_TYPE, InteractionCornSeed.class));
         this.interactionsList.add(new ItemInteraction(InteractionCornSeedBag.INTERACTION_TYPE, InteractionCornSeedBag.class));
+        this.interactionsList.add(new ItemInteraction(InteractionWateringCan.INTERACTION_TYPE, InteractionWateringCan.class));
     }
-
 
     public void addItemInteraction(ItemInteraction itemInteraction) {
         for (ItemInteraction interaction : this.interactionsList) {
