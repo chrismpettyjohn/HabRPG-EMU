@@ -20,7 +20,6 @@ import com.eu.habbo.messages.incoming.floorplaneditor.FloorPlanEditorRequestBloc
 import com.eu.habbo.messages.incoming.floorplaneditor.FloorPlanEditorRequestDoorSettingsEvent;
 import com.eu.habbo.messages.incoming.floorplaneditor.FloorPlanEditorSaveEvent;
 import com.eu.habbo.messages.incoming.friends.*;
-import com.eu.habbo.messages.incoming.gamecenter.*;
 import com.eu.habbo.messages.incoming.guardians.GuardianAcceptRequestEvent;
 import com.eu.habbo.messages.incoming.guardians.GuardianNoUpdatesWantedEvent;
 import com.eu.habbo.messages.incoming.guardians.GuardianVoteEvent;
@@ -124,7 +123,6 @@ public class PacketManager {
         this.registerGuides();
         this.registerCrafting();
         this.registerCamera();
-        this.registerGameCenter();
         this.registerRoleplay();
     }
 
@@ -628,16 +626,6 @@ public class PacketManager {
         this.registerHandler(Incoming.CameraPurchaseEvent, CameraPurchaseEvent.class);
         this.registerHandler(Incoming.CameraRoomThumbnailEvent, CameraRoomThumbnailEvent.class);
         this.registerHandler(Incoming.CameraPublishToWebEvent, CameraPublishToWebEvent.class);
-    }
-
-    void registerGameCenter() throws Exception {
-        this.registerHandler(Incoming.GameCenterRequestGamesEvent, GameCenterRequestGamesEvent.class);
-        this.registerHandler(Incoming.GameCenterRequestAccountStatusEvent, GameCenterRequestAccountStatusEvent.class);
-        this.registerHandler(Incoming.GameCenterJoinGameEvent, GameCenterJoinGameEvent.class);
-        this.registerHandler(Incoming.GameCenterLoadGameEvent, GameCenterLoadGameEvent.class);
-        this.registerHandler(Incoming.GameCenterLeaveGameEvent, GameCenterLeaveGameEvent.class);
-        this.registerHandler(Incoming.GameCenterEvent, GameCenterEvent.class);
-        this.registerHandler(Incoming.GameCenterRequestGameStatusEvent, GameCenterRequestGameStatusEvent.class);
     }
 
     void registerRoleplay() throws Exception {
