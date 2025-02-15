@@ -103,7 +103,6 @@ public class RoleplayCorpRoleRepository {
 
             statement.setInt(1, role.getCorpId());
             statement.setString(2, role.getName());
-            statement.setString(3, role.getDescription());
             statement.setString(4, role.canHire() ? "yes" : "no");
             statement.setString(5, role.canFire() ? "yes" : "no");
             statement.setString(6, role.canPromote() ? "yes" : "no");

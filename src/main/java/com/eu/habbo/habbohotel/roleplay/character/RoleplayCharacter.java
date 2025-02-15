@@ -5,6 +5,9 @@ import com.eu.habbo.habbohotel.pets.Pet;
 import com.eu.habbo.habbohotel.roleplay.character.actions.CharacterDiedAction;
 import com.eu.habbo.habbohotel.roleplay.character.actions.CharacterExhaustedAction;
 import com.eu.habbo.habbohotel.roleplay.character.actions.CharacterHealedAction;
+import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorp;
+import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpManager;
+import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpRole;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.outgoing.roleplay.character.CharacterDataComposer;
 
@@ -23,6 +26,10 @@ public class RoleplayCharacter {
     private final Integer botId;
     private final Integer userId;
     private final Integer petId;
+
+    private int corpId;
+    private int corpRoleId;
+
     private int healthNow;
     private int healthMax;
     private int energyNow;
@@ -40,6 +47,8 @@ public class RoleplayCharacter {
         this.botId = set.getInt("bots_id");
         this.userId = set.getInt("users_id");
         this.petId = set.getInt("pets_id");
+        this.corpId = set.getInt("corp_id");
+        this.corpRoleId = set.getInt("corp_role_id");
         this.healthNow = set.getInt("health_now");
         this.healthMax = set.getInt("health_max");
         this.energyNow = set.getInt("energy_now");
@@ -75,6 +84,30 @@ public class RoleplayCharacter {
 
     public Integer getPetId() {
         return this.petId;
+    }
+
+    public RoleplayCorp getCorp() {
+        return RoleplayCorpManager.getInstance().getCorps().stream().filter(c -> c.getId() == this.corpId).findFirst().orElse(null);
+    }
+
+    public Integer getCorpId() {
+        return this.corpId;
+    }
+
+    public void setCorpId(int corpId) {
+        this.corpId = corpId;
+    }
+
+    public RoleplayCorpRole getCorpRole() {
+        return this.getCorp().getRoles().stream().filter(c -> c.getId() == this.corpRoleId).findFirst().orElse(null);
+    }
+
+    public Integer getCorpRoleId() {
+        return this.corpRoleId;
+    }
+
+    public void setCorpRoleId(int corpRoleId) {
+        this.corpRoleId = corpRoleId;
     }
 
     public int getHealthNow() {

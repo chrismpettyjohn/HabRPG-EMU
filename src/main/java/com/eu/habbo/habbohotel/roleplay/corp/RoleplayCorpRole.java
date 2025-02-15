@@ -7,7 +7,6 @@ public class RoleplayCorpRole {
     private final int id;
     private int corpId;
     private String name;
-    private String description;
     private boolean canHire;
     private boolean canFire;
     private boolean canPromote;
@@ -18,12 +17,11 @@ public class RoleplayCorpRole {
         this.id = set.getInt("id");
         this.corpId = set.getInt("corp_id");
         this.name = set.getString("name");
-        this.description = set.getString("description");
-        this.canHire = set.getString("can_hire").equalsIgnoreCase("yes");
-        this.canFire = set.getString("can_fire").equalsIgnoreCase("yes");
-        this.canPromote = set.getString("can_promote").equalsIgnoreCase("yes");
-        this.canDemote = set.getString("can_demote").equalsIgnoreCase("yes");
-        this.canEdit = set.getString("can_edit").equalsIgnoreCase("yes");
+        this.canHire = set.getString("can_hire").equals("1");
+        this.canFire = set.getString("can_fire").equals("1");
+        this.canPromote = set.getString("can_promote").equals("1");
+        this.canDemote = set.getString("can_demote").equals("1");
+        this.canEdit = set.getString("can_edit").equals("1");
     }
 
     public int getId() {
@@ -44,14 +42,6 @@ public class RoleplayCorpRole {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public boolean canHire() {

@@ -31,7 +31,6 @@ public class RoleplayCorpManager {
     public List<RoleplayCorp> getCorps() {
         return corps;
     }
-
     public void addItem(RoleplayCorp corp) {
         this.corps.add(corp);
     }

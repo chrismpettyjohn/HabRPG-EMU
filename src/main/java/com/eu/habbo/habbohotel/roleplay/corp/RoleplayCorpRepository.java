@@ -7,20 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoleplayCorpRepository {
-    public static RoleplayCorp create(int characterId, String key, String name, String description) {
+    public static RoleplayCorp create(int characterId, String name) {
         RoleplayCorp corp = null;
-        String query = "INSERT INTO rp_corps (character_id, key, name, description, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO rp_corps (character_id, name, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             int timestamp = (int) (System.currentTimeMillis() / 1000);
             statement.setInt(1, characterId);
-            statement.setString(2, key);
-            statement.setString(3, name);
-            statement.setString(4, description);
-            statement.setInt(5, timestamp);
-            statement.setInt(6, timestamp);
+            statement.setString(2, name);
+            statement.setInt(3, timestamp);
+            statement.setInt(4, timestamp);
 
             statement.executeUpdate();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
@@ -74,17 +72,15 @@ public class RoleplayCorpRepository {
     }
 
     public static void updateByCorp(RoleplayCorp corp) {
-        String query = "UPDATE rp_corps SET character_id = ?, key = ?, name = ?, description = ?, updated_at = ? WHERE id = ?";
+        String query = "UPDATE rp_corps SET character_id = ?,name = ?, updated_at = ? WHERE id = ?";
 
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, corp.getCharacterId());
-            statement.setString(2, corp.getKey());
-            statement.setString(3, corp.getName());
-            statement.setString(4, corp.getDescription());
-            statement.setInt(5, (int) (System.currentTimeMillis() / 1000));
-            statement.setInt(6, corp.getId());
+            statement.setString(2, corp.getName());
+            statement.setInt(3, (int) (System.currentTimeMillis() / 1000));
+            statement.setInt(4, corp.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {
