@@ -1,6 +1,8 @@
 package com.eu.habbo.messages.incoming.roleplay.corp;
 
 import com.eu.habbo.Emulator;
+import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpRole;
+import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpRoleManager;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.incoming.MessageHandler;
 
@@ -11,7 +13,6 @@ public class CorpOfferJobEvent extends MessageHandler {
             this.client.getHabbo().whisper(Emulator.getTexts().getValue("rp.corp_must_be_working"));
             return;
         }
-
 
         if (!this.client.getHabbo().getRoleplayCharacter().getCorpRole().canHire()) {
             this.client.getHabbo().whisper(Emulator.getTexts().getValue("generic.cannot_do_that"));
@@ -26,15 +27,31 @@ public class CorpOfferJobEvent extends MessageHandler {
             return;
         }
 
+        if (targetHabbo.getRoleplayCharacter().getJobOfferCorpRoleId() != null) {
+            this.client.getHabbo().whisper(Emulator.getTexts().getValue("generic.cannot_do_that"));
+            return;
+        }
+
+        RoleplayCorpRole startingRole = RoleplayCorpRoleManager.getInstance().getCorpRoles()
+                .stream().filter(r -> r.getCorpId() == targetHabbo.getRoleplayCharacter().getCorpId() && r.getOrderId() == 1)
+                .findFirst()
+                .orElse(null);
+
+        if (startingRole == null) {
+            throw new Exception("Corp " + targetHabbo.getRoleplayCharacter().getCorpId() + " is missing starting role order id 1");
+        }
+
+        targetHabbo.getRoleplayCharacter().setJobOfferCorpRoleId(startingRole.getId());
+
         targetHabbo.whisper(Emulator.getTexts()
                 .getValue("rp.you_were_offered_job")
                 .replace(":corp", "")
-                .replace(":role", "")
+                .replace(":role", startingRole.getName())
         );
         this.client.getHabbo().shout(Emulator.getTexts()
                 .getValue("rp.offer_job_success")
                 .replace(":username", targetHabbo.getHabboInfo().getUsername())
-                .replace(":role", "")
+                .replace(":role", startingRole.getName())
         );
     }
 }

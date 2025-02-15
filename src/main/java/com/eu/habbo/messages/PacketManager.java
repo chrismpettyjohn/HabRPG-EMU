@@ -663,5 +663,6 @@ public class PacketManager {
         this.registerHandler(Incoming.CorpDemoteUser, CorpDemoteUserEvent.class);
         this.registerHandler(Incoming.CorpStartWork, CorpStartWorkEvent.class);
         this.registerHandler(Incoming.CorpQuitJob, CorpQuitJobEvent.class);
+        this.registerHandler(Incoming.CorpAcceptJobOffer, CorpAcceptJobOfferEvent.class);
     }
 }

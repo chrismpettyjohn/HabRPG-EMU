@@ -385,4 +385,5 @@ public class Incoming {
     public static final int CorpDemoteUser = 4020;
     public static final int CorpStartWork = 4021;
     public static final int CorpQuitJob = 4022;
+    public static final int CorpAcceptJobOffer = 4023;
 }

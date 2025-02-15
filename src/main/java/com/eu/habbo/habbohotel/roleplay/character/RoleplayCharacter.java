@@ -40,6 +40,8 @@ public class RoleplayCharacter {
     private RoleplayCharacterSkills skills;
     private List<RoleplayCharacterItem> items;
 
+    private Integer jobOfferCorpRoleId;
+
     public RoleplayCharacter(ResultSet set, Bot bot, Habbo habbo, Pet pet) throws SQLException {
         this.bot = bot;
         this.habbo = habbo;
@@ -182,6 +184,14 @@ public class RoleplayCharacter {
 
     public void depleteEnergy(int points) {
        this.setEnergyNow(this.getEnergyNow() - points);
+    }
+
+    public Integer getJobOfferCorpRoleId() {
+        return this.jobOfferCorpRoleId;
+    }
+
+    public void setJobOfferCorpRoleId(int corpRoleId) {
+        this.jobOfferCorpRoleId = corpRoleId;
     }
 
     public boolean isWorking() {
