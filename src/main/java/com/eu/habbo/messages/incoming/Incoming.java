@@ -377,4 +377,6 @@ public class Incoming {
     public static final int ItemConsumeEvent = 4012;
     public static final int SellCaughtFish = 4013;
     public static final int SellFarmedCorn = 4014;
+    public static final int CorpListAll = 4015;
+    public static final int CorpRoleListAll = 4016;
 }

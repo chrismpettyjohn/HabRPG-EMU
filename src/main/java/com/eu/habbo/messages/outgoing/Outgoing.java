@@ -455,6 +455,8 @@ public class Outgoing {
     public final static int RoleplayItemsListEvent = 4005;
     public final static int RoleplayItemCreated = 4006;
     public final static int RoleplayItemDeleted = 4007;
+    public final static int CorpListAllComposer = 4008;
+    public final static int CorpRoleListAllComposer = 4009;
 
 
 }
