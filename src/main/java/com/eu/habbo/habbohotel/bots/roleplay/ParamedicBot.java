@@ -58,7 +58,7 @@ public class ParamedicBot extends Bot {
     public void heal(Habbo habbo) {
         if (habbo != null && this.getRoom() != null && habbo.getHabboInfo().getCurrentRoom() == this.getRoom()) {
             if (habbo.getRoleplayCharacter() != null) {
-                habbo.getRoleplayCharacter().addHealth(habbo.getRoleplayCharacter().getHealthMax());
+                habbo.getRoleplayCharacter().addHealth(habbo.getRoleplayCharacter().getHealthMax(), this.getRoleplayCharacter());
                 this.talk("*Heals " + habbo.getHabboInfo().getUsername() + "*");
                 this.talk("You're all patched up now!");
             }

@@ -54,7 +54,7 @@ public class AttackEvent extends MessageHandler {
                     );
                     continue;
                 }
-                habbo.getRoleplayCharacter().depleteHealth(damage);
+                habbo.getRoleplayCharacter().depleteHealth(damage, this.client.getHabbo().getRoleplayCharacter());
                 if (habbo.getRoleplayCharacter().isDead()) {
                     RoleplayCharacterKillsRepository.create(this.client.getHabbo().getRoleplayCharacter(), habbo.getRoleplayCharacter());
                 }
@@ -80,7 +80,7 @@ public class AttackEvent extends MessageHandler {
                     );
                     continue;
                 }
-                bot.getRoleplayCharacter().depleteHealth(damage);
+                bot.getRoleplayCharacter().depleteHealth(damage, this.client.getHabbo().getRoleplayCharacter());
                 if (bot.getRoleplayCharacter().isDead()) {
                     RoleplayCharacterKillsRepository.create(this.client.getHabbo().getRoleplayCharacter(), bot.getRoleplayCharacter());
                 }
@@ -109,7 +109,7 @@ public class AttackEvent extends MessageHandler {
                     );
                     continue;
                 }
-                pet.getRoleplayCharacter().depleteHealth(damage);
+                pet.getRoleplayCharacter().depleteHealth(damage, this.client.getHabbo().getRoleplayCharacter());
                 if (!pet.getRoleplayCharacter().isDead()) {
                     pet.say(new PetVocal(
                             Emulator.getTexts().getValue("rp.damage_received")

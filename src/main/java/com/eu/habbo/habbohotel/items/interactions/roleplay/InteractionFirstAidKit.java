@@ -34,7 +34,7 @@ public class InteractionFirstAidKit extends BaseConsumableInteraction {
                 .getValue("rp.first_aid_kit_used")
                 .replace(":points", String.valueOf(healthGained))
         );
-        client.getHabbo().getRoleplayCharacter().addHealth(healthGained);
+        client.getHabbo().getRoleplayCharacter().addHealth(healthGained, client.getHabbo().getRoleplayCharacter());
     }
 
 }

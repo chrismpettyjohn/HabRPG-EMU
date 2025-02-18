@@ -35,7 +35,7 @@ public class InteractionCaughtFish extends BaseConsumableInteraction {
         int healthPoints = Emulator.getConfig().getInt("rp.health_from_fish");
         int energyPoints = Emulator.getConfig().getInt("rp.energy_from_fish");
 
-        client.getHabbo().getRoleplayCharacter().addHealth(healthPoints);
+        client.getHabbo().getRoleplayCharacter().addHealth(healthPoints, client.getHabbo().getRoleplayCharacter());
         client.getHabbo().getRoleplayCharacter().addEnergy(energyPoints);
 
         client.getHabbo().shout(Emulator.getTexts()

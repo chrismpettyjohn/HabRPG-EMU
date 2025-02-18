@@ -50,7 +50,7 @@ public class HealEvent extends MessageHandler {
         Emulator.getThreading().run(new QueryDeleteHabboItem(firstAidKit.getId()));
         this.client.sendResponse(new InventoryRefreshComposer());
 
-        targetHabbo.getRoleplayCharacter().addHealth(Emulator.getConfig().getInt("rp.first_aid_kit_health"));
+        targetHabbo.getRoleplayCharacter().addHealth(Emulator.getConfig().getInt("rp.first_aid_kit_health"), this.client.getHabbo().getRoleplayCharacter());
 
         this.client.getHabbo().shout(Emulator.getTexts()
                 .getValue("rp.first_aid_kit_used")

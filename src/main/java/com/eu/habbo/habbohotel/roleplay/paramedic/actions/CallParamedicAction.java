@@ -33,7 +33,7 @@ public class CallParamedicAction {
 
             if (spawnTile == null || spawnTile.isWalkable()) {
                 this.habbo.whisper(Emulator.getTexts().getValue("rp.paramedic_cant_reach_you"));
-                this.habbo.getRoleplayCharacter().addHealth(5);
+                this.habbo.getRoleplayCharacter().addHealth(5, this.habbo.getRoleplayCharacter());
                 return;
             }
 

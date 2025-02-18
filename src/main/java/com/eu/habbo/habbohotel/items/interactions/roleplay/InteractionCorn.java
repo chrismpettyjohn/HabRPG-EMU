@@ -34,7 +34,7 @@ public class InteractionCorn extends BaseConsumableInteraction {
         int healthPoints = Emulator.getConfig().getInt("rp.health_from_corn");
         int energyPoints = Emulator.getConfig().getInt("rp.energy_from_corn");
 
-        client.getHabbo().getRoleplayCharacter().addHealth(healthPoints);
+        client.getHabbo().getRoleplayCharacter().addHealth(healthPoints, client.getHabbo().getRoleplayCharacter());
         client.getHabbo().getRoleplayCharacter().addEnergy(energyPoints);
 
         client.getHabbo().shout(Emulator.getTexts()

@@ -2,10 +2,13 @@ package com.eu.habbo.habbohotel.roleplay.character.actions;
 
 import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.pets.PetVocal;
+import com.eu.habbo.habbohotel.roleplay.RoleplayHelper;
 import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
 import com.eu.habbo.habbohotel.roleplay.paramedic.actions.CallParamedicAction;
 import com.eu.habbo.habbohotel.rooms.RoomUnitStatus;
 import com.eu.habbo.habbohotel.users.Habbo;
+import com.eu.habbo.messages.outgoing.roleplay.character.CharacterDataComposer;
+import com.eu.habbo.messages.outgoing.roleplay.notification.UserDiedNotification;
 import com.eu.habbo.messages.outgoing.rooms.users.RoomUserStatusComposer;
 
 import java.util.Timer;
@@ -16,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CharacterDiedAction {
 
-    public CharacterDiedAction(RoleplayCharacter character) {
+    public CharacterDiedAction(RoleplayCharacter character, RoleplayCharacter killedBy) {
         if (character.getBot() != null) {
             character.getBot().shout(Emulator.getTexts().getValue("rp.died"));
             character.getBot().getRoomUnit().setStatus(RoomUnitStatus.LAY, "0.5");
@@ -28,6 +31,12 @@ public class CharacterDiedAction {
             character.getHabbo().shout(Emulator.getTexts().getValue("rp.died"));
             character.getHabbo().getRoomUnit().setStatus(RoomUnitStatus.LAY, "0.5");
             character.getHabbo().getRoomUnit().getRoom().sendComposer(new RoomUserStatusComposer(character.getHabbo().getRoomUnit()).compose());
+
+
+            if (killedBy.getHabbo() != null) {
+                RoleplayHelper.notifyOnline(new UserDiedNotification(character.getHabbo(), killedBy.getHabbo()));
+            }
+
             startRevivalCheck(character);
         }
 

@@ -127,7 +127,7 @@ public class RoleplayCharacter {
         return this.healthMax;
     }
 
-    public void setHealthNow(int points) {
+    public void setHealthNow(int points, RoleplayCharacter affectedBy) {
         int healthBefore = this.healthNow;
         this.healthNow = Math.max(0, Math.min(points, this.healthMax));
 
@@ -136,7 +136,7 @@ public class RoleplayCharacter {
         }
 
         if (this.isDead()) {
-            new CharacterDiedAction(this);
+            new CharacterDiedAction(this, affectedBy);
         }
 
         this.notifyRoom();
@@ -147,12 +147,12 @@ public class RoleplayCharacter {
         this.notifyRoom();
     }
 
-    public void addHealth(int points) {
-        this.setHealthNow(this.getHealthNow() + points);
+    public void addHealth(int points, RoleplayCharacter healedBy) {
+        this.setHealthNow(this.getHealthNow() + points, healedBy);
     }
 
-    public void depleteHealth(int points) {
-        this.setHealthNow(this.getHealthNow() - points);
+    public void depleteHealth(int points, RoleplayCharacter attackedBy) {
+        this.setHealthNow(this.getHealthNow() - points, attackedBy);
     }
 
     public int getEnergyNow() {
