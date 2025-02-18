@@ -5,6 +5,7 @@ import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpRole;
 import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpRoleManager;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.incoming.MessageHandler;
+import com.eu.habbo.messages.outgoing.roleplay.corp.JobOfferComposer;
 
 public class CorpOfferJobEvent extends MessageHandler {
     @Override
@@ -53,5 +54,7 @@ public class CorpOfferJobEvent extends MessageHandler {
                 .replace(":username", targetHabbo.getHabboInfo().getUsername())
                 .replace(":role", startingRole.getName())
         );
+
+        targetHabbo.getClient().sendResponse(new JobOfferComposer(targetHabbo));
     }
 }
