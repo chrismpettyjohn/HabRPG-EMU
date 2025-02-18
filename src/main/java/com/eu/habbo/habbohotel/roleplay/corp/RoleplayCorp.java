@@ -14,7 +14,7 @@ public class RoleplayCorp {
 
     public RoleplayCorp(ResultSet set) throws SQLException {
         this.id = set.getInt("id");
-        this.userId = set.getInt("user_id");
+        this.userId = set.getInt("users_id");
         this.name = set.getString("name");
         this.createdAt = set.getInt("created_at");
         this.updatedAt = set.getInt("updated_at");
