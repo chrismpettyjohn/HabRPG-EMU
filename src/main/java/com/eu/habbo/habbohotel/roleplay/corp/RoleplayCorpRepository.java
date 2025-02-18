@@ -77,7 +77,7 @@ public class RoleplayCorpRepository {
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setInt(1, corp.getCharacterId());
+            statement.setInt(1, corp.getUserId());
             statement.setString(2, corp.getName());
             statement.setInt(3, (int) (System.currentTimeMillis() / 1000));
             statement.setInt(4, corp.getId());

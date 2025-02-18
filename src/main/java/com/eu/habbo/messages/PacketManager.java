@@ -627,5 +627,7 @@ public class PacketManager {
         this.registerHandler(Incoming.CorpStartWork, CorpStartWorkEvent.class);
         this.registerHandler(Incoming.CorpQuitJob, CorpQuitJobEvent.class);
         this.registerHandler(Incoming.CorpAcceptJobOffer, CorpAcceptJobOfferEvent.class);
+        this.registerHandler(Incoming.CorpLookupById, CorpLookupByIdEvent.class);
+        this.registerHandler(Incoming.CorpRoleLookupByID, CorpRoleLookupByIdEvent.class);
     }
 }

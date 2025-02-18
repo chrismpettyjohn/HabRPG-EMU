@@ -37,6 +37,7 @@ public class CharacterDataComposer extends MessageComposer {
         this.response.appendBoolean(this.character.isDead());
         this.response.appendBoolean(this.character.isExhausted());
         this.response.appendBoolean(this.character.isWorking());
+        this.response.appendBoolean(this.character.getJobOfferCorpRoleId() != null);
         this.response.appendInt(this.character.getCorpId());
         this.response.appendString(this.character.getCorp().getName());
         this.response.appendInt(this.character.getCorpRoleId());

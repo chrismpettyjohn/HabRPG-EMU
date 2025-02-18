@@ -7,14 +7,14 @@ import java.util.stream.Collectors;
 
 public class RoleplayCorp {
     private final int id;
-    private int characterId;
+    private int userId;
     private String name;
     private int createdAt;
     private int updatedAt;
 
     public RoleplayCorp(ResultSet set) throws SQLException {
         this.id = set.getInt("id");
-        this.characterId = set.getInt("character_id");
+        this.userId = set.getInt("user_id");
         this.name = set.getString("name");
         this.createdAt = set.getInt("created_at");
         this.updatedAt = set.getInt("updated_at");
@@ -24,12 +24,12 @@ public class RoleplayCorp {
         return this.id;
     }
 
-    public int getCharacterId() {
-        return this.characterId;
+    public int getUserId() {
+        return this.userId;
     }
 
-    public void setCharacterId(int characterId) {
-        this.characterId = characterId;
+    public void setUserId(int characterId) {
+        this.userId = characterId;
     }
 
     public String getName() {
