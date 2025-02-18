@@ -7,7 +7,8 @@ public class CorpStartWorkEvent extends MessageHandler {
     @Override
     public void handle() throws Exception {
         if (this.client.getHabbo().getRoleplayCharacter().isWorking()) {
-            this.client.getHabbo().whisper(Emulator.getTexts().getValue("rp.corp_already_working"));
+            this.client.getHabbo().getRoleplayCharacter().setIsWorking(false);
+            this.client.getHabbo().shout(Emulator.getTexts().getValue("rp.corp_stop_work_success"));
             return;
         }
 

@@ -447,8 +447,9 @@ public class Outgoing {
     public final static int RoleplayItemCreated = 4006;
     public final static int RoleplayItemDeleted = 4007;
     public final static int CorpListAllComposer = 4008;
-    public final static int CorpRoleListAllComposer = 4009;;
+    public final static int CorpRoleListAllComposer = 4009;
     public final static int UsedDiedComposer = 4010;
+    public final static int JobOfferComposer = 4011;
 
 
 }
