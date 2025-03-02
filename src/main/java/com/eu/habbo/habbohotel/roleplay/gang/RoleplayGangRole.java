@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class RoleplayGangRole {
     private final int id;
-    private int gabgId;
+    private int gangId;
     private int orderId;
     private String name;
     private boolean canInvite;
@@ -16,7 +16,7 @@ public class RoleplayGangRole {
 
     public RoleplayGangRole(ResultSet set) throws SQLException {
         this.id = set.getInt("id");
-        this.gabgId = set.getInt("gabg_id");
+        this.gangId = set.getInt("gang_id");
         this.orderId = set.getInt("order_id");
         this.name = set.getString("name");
         this.canInvite = set.getString("can_invite").equals("1");
@@ -31,11 +31,11 @@ public class RoleplayGangRole {
     }
 
     public int getGangId() {
-        return this.gabgId;
+        return this.gangId;
     }
 
     public void setGangId(int gabgId) {
-        this.gabgId = gabgId;
+        this.gangId = gabgId;
     }
 
     public int getOrderId() {
@@ -95,10 +95,10 @@ public class RoleplayGangRole {
     }
 
     public void save() {
-        RoleplayGangRoleManager.getInstance().updateByRole(this);
+        RoleplayGangRoleManager.getInstance().updateItem(this);
     }
 
     public void delete() {
-        RoleplayGangRoleManager.getInstance().deleteByRole(this);
+        RoleplayGangRoleManager.getInstance().removeItem(this);
     }
 }

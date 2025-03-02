@@ -49,7 +49,7 @@ public class RoleplayGang {
     }
 
     public List<RoleplayGangRole> getRoles() {
-        return RoleplayGangRoleManager.getInstance().getAll().stream().filter(roleplayGangRole -> roleplayGangRole.getGangId() == this.id).collect(Collectors.toList());
+        return RoleplayGangRoleManager.getInstance().getGangRoles().stream().filter(roleplayGangRole -> roleplayGangRole.getGangId() == this.id).collect(Collectors.toList());
     }
 
     public void save() {

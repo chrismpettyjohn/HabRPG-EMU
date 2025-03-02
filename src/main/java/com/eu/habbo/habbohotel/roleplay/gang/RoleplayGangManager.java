@@ -40,6 +40,7 @@ public class RoleplayGangManager {
     }
 
     public void removeItem(RoleplayGang gang) {
+        RoleplayGangRepository.deleteById(gang.getId());
         this.gangs.remove(gang);
     }
 

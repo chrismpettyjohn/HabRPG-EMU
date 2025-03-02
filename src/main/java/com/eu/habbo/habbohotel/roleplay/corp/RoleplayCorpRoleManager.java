@@ -40,6 +40,7 @@ public class RoleplayCorpRoleManager {
     }
 
     public void removeItem(RoleplayCorpRole corpRole) {
+        RoleplayCorpRoleRepository.deleteById(corpRole.getId());
         this.corpRoles.remove(corpRole);
     }
 
