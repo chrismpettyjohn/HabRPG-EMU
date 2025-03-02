@@ -43,6 +43,8 @@ import com.eu.habbo.messages.incoming.roleplay.combat.AttackEvent;
 import com.eu.habbo.messages.incoming.roleplay.corp.*;
 import com.eu.habbo.messages.incoming.roleplay.farming.SellFarmedCornEvent;
 import com.eu.habbo.messages.incoming.roleplay.fishing.SellCaughtFishEvent;
+import com.eu.habbo.messages.incoming.roleplay.gang.GangListAllEvent;
+import com.eu.habbo.messages.incoming.roleplay.gang.GangRoleListAllEvent;
 import com.eu.habbo.messages.incoming.roleplay.items.*;
 import com.eu.habbo.messages.incoming.roleplay.paramedic.CallParamedicEvent;
 import com.eu.habbo.messages.incoming.roleplay.paramedic.HealEvent;
@@ -629,5 +631,7 @@ public class PacketManager {
         this.registerHandler(Incoming.CorpAcceptJobOffer, CorpAcceptJobOfferEvent.class);
         this.registerHandler(Incoming.CorpLookupById, CorpLookupByIdEvent.class);
         this.registerHandler(Incoming.CorpRoleLookupByID, CorpRoleLookupByIdEvent.class);
+        this.registerHandler(Incoming.GangListAll, GangListAllEvent.class);
+        this.registerHandler(Incoming.GangRoleListAll, GangRoleListAllEvent.class);
     }
 }

@@ -8,6 +8,9 @@ import com.eu.habbo.habbohotel.roleplay.character.actions.CharacterHealedAction;
 import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorp;
 import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpManager;
 import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpRole;
+import com.eu.habbo.habbohotel.roleplay.gang.RoleplayGang;
+import com.eu.habbo.habbohotel.roleplay.gang.RoleplayGangManager;
+import com.eu.habbo.habbohotel.roleplay.gang.RoleplayGangRole;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.messages.outgoing.roleplay.character.CharacterDataComposer;
 
@@ -29,6 +32,9 @@ public class RoleplayCharacter {
 
     private int corpId;
     private int corpRoleId;
+
+    private int gangId;
+    private int gangRoleId;
 
     private int healthNow;
     private int healthMax;
@@ -53,6 +59,8 @@ public class RoleplayCharacter {
         this.petId = set.getInt("pets_id");
         this.corpId = set.getInt("corp_id");
         this.corpRoleId = set.getInt("corp_role_id");
+        this.gangId = set.getInt("gang_id");
+        this.gangRoleId = set.getInt("gang_role_id");
         this.healthNow = set.getInt("health_now");
         this.healthMax = set.getInt("health_max");
         this.energyNow = set.getInt("energy_now");
@@ -115,6 +123,33 @@ public class RoleplayCharacter {
 
     public void setCorpRoleId(int corpRoleId) {
         this.corpRoleId = corpRoleId;
+
+        this.notifyRoom();
+    }
+    public RoleplayGang getGang() {
+        return RoleplayGangManager.getInstance().getGangs().stream().filter(c -> c.getId() == this.gangId).findFirst().orElse(null);
+    }
+
+    public Integer getGangId() {
+        return this.gangId;
+    }
+
+    public void setGangId(int gangId) {
+        this.gangId = gangId;
+
+        this.notifyRoom();
+    }
+
+    public RoleplayGangRole getGangRole() {
+        return this.getGang().getRoles().stream().filter(c -> c.getId() == this.corpRoleId).findFirst().orElse(null);
+    }
+
+    public Integer getGangRoleId() {
+        return this.gangRoleId;
+    }
+
+    public void setGangROleId(int gangRoleId) {
+        this.gangRoleId = gangRoleId;
 
         this.notifyRoom();
     }

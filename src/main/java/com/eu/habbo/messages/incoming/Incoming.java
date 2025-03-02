@@ -380,4 +380,6 @@ public class Incoming {
     public static final int CorpAcceptJobOffer = 4023;
     public static final int CorpLookupById = 4024;
     public static final int CorpRoleLookupByID = 4025;
+    public static final int GangListAll = 4026;
+    public static final int GangRoleListAll = 4027;
 }
