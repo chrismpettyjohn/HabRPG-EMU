@@ -452,6 +452,11 @@ public class Outgoing {
     public final static int JobOfferComposer = 4011;
     public final static int CorpDataComposer = 4012;
     public final static int CorpRoleDataComposer = 4013;
+    public final static int GangDataComposer = 4014;
+    public final static int GangInviteComposer = 4015;
+    public final static int GangListAllComposer = 4016;
+    public final static int GangRoleDataComposer = 4017;
+    public final static int GangRoleListAllComposer = 4018;
 
 
 }

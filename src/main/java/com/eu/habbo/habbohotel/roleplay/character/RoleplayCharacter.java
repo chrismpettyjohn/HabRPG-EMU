@@ -47,6 +47,7 @@ public class RoleplayCharacter {
     private List<RoleplayCharacterItem> items;
 
     private Integer jobOfferCorpRoleId;
+    private Integer gangOfferGangRoleId;
 
     public RoleplayCharacter(ResultSet set, Bot bot, Habbo habbo, Pet pet) throws SQLException {
         this.bot = bot;
@@ -65,7 +66,10 @@ public class RoleplayCharacter {
         this.healthMax = set.getInt("health_max");
         this.energyNow = set.getInt("energy_now");
         this.energyMax = set.getInt("energy_max");
+
         this.isWorking = false;
+        this.jobOfferCorpRoleId = null;
+        this.gangOfferGangRoleId = null;
 
         this.skills = RoleplayCharacterSkillsRepository.loadByCharacter(this);
         this.items = RoleplayCharacterItemRepository.loadAllByCharacter(this);
@@ -148,7 +152,7 @@ public class RoleplayCharacter {
         return this.gangRoleId;
     }
 
-    public void setGangROleId(int gangRoleId) {
+    public void setGangRoleId(int gangRoleId) {
         this.gangRoleId = gangRoleId;
 
         this.notifyRoom();
@@ -227,6 +231,14 @@ public class RoleplayCharacter {
 
     public void setJobOfferCorpRoleId(int corpRoleId) {
         this.jobOfferCorpRoleId = corpRoleId;
+    }
+
+    public Integer getGangOfferGangRoleId() {
+        return this.gangOfferGangRoleId;
+    }
+
+    public void setGangOfferGangRoleId(int gangRoleId) {
+        this.gangOfferGangRoleId = gangRoleId;
     }
 
     public boolean isWorking() {

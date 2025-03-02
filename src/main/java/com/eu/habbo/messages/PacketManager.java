@@ -43,8 +43,7 @@ import com.eu.habbo.messages.incoming.roleplay.combat.AttackEvent;
 import com.eu.habbo.messages.incoming.roleplay.corp.*;
 import com.eu.habbo.messages.incoming.roleplay.farming.SellFarmedCornEvent;
 import com.eu.habbo.messages.incoming.roleplay.fishing.SellCaughtFishEvent;
-import com.eu.habbo.messages.incoming.roleplay.gang.GangListAllEvent;
-import com.eu.habbo.messages.incoming.roleplay.gang.GangRoleListAllEvent;
+import com.eu.habbo.messages.incoming.roleplay.gang.*;
 import com.eu.habbo.messages.incoming.roleplay.items.*;
 import com.eu.habbo.messages.incoming.roleplay.paramedic.CallParamedicEvent;
 import com.eu.habbo.messages.incoming.roleplay.paramedic.HealEvent;
@@ -633,5 +632,17 @@ public class PacketManager {
         this.registerHandler(Incoming.CorpRoleLookupByID, CorpRoleLookupByIdEvent.class);
         this.registerHandler(Incoming.GangListAll, GangListAllEvent.class);
         this.registerHandler(Incoming.GangRoleListAll, GangRoleListAllEvent.class);
+
+        this.registerHandler(Incoming.GangAcceptInvite, GangAcceptInviteEvent.class);
+        this.registerHandler(Incoming.GangChangeOwner, GangChangeOwnerEvent.class);
+        this.registerHandler(Incoming.GangDemoteUser, GangDemoteUserEvent.class);
+        this.registerHandler(Incoming.GangDisband, GangDisbandEvent.class);
+        this.registerHandler(Incoming.GangKickUser, GangKickUserEvent.class);
+        this.registerHandler(Incoming.GangLeave, GangLeaveEvent.class);
+        this.registerHandler(Incoming.GangListAll, GangListAllEvent.class);
+        this.registerHandler(Incoming.GangLookupById, GangLookupByIdEvent.class);
+        this.registerHandler(Incoming.GangPromoteUser, GangPromoteUserEvent.class);
+        this.registerHandler(Incoming.GangRoleListAll, GangRoleListAllEvent.class);
+        this.registerHandler(Incoming.GangRoleLookupById, GangRoleLookupByIdEvent.class);
     }
 }

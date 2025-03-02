@@ -20,7 +20,7 @@ public class JobOfferComposer extends MessageComposer {
                 ? RoleplayCorpRoleManager.getInstance().getCorpRoles().stream().filter(r -> r.getId() == this.habbo.getRoleplayCharacter().getJobOfferCorpRoleId()).findFirst().orElse(null) : null;
 
         this.response.init(Outgoing.JobOfferComposer);
-        this.response.appendBoolean(this.habbo.getRoleplayCharacter().getJobOfferCorpRoleId() != null);
+        this.response.appendBoolean(role != null);
         this.response.appendInt(role != null ? role.getCorpId() : 0);
         this.response.appendInt(role != null ? role.getId() : 0);
 
