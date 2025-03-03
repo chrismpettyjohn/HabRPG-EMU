@@ -21,7 +21,7 @@ public class CorpRoleListByCorp extends MessageComposer {
         this.response.init(Outgoing.CorpRoleListAllComposer);
         this.response.appendInt(corpRoles.size());
         for (RoleplayCorpRole corpRole : corpRoles) {
-            this.response.appendString(corpRole.getId() + ";" + corpRole.getCorpId() + ";" + corpRole.getName());
+            this.response.appendString(corpRole.getId() + ";" + corpRole.getCorpId() + ";" + corpRole.getOrderId() + ";" + corpRole.getName());
         }
         return this.response;
     }

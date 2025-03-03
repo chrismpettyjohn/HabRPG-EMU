@@ -9,7 +9,8 @@ import com.eu.habbo.messages.outgoing.roleplay.corp.CorpRoleDataComposer;
 public class CorpRoleLookupByIdEvent extends MessageHandler {
     @Override
     public void handle() throws Exception {
-        RoleplayCorpRole corpRole = RoleplayCorpRoleManager.getInstance().getCorpRoles().get(this.packet.readInt());
+        int roleId = this.packet.readInt();
+        RoleplayCorpRole corpRole = RoleplayCorpRoleManager.getInstance().getCorpRoles().stream().filter(r -> r.getId() == roleId).findFirst().orElse(null);
         if (corpRole == null) {
             return;
         }

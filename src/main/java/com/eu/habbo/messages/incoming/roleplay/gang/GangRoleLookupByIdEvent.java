@@ -8,7 +8,8 @@ import com.eu.habbo.messages.outgoing.roleplay.gang.GangRoleDataComposer;
 public class GangRoleLookupByIdEvent extends MessageHandler {
     @Override
     public void handle() throws Exception {
-        RoleplayGangRole gangRole = RoleplayGangRoleManager.getInstance().getGangRoles().get(this.packet.readInt());
+        int roleId = this.packet.readInt();
+        RoleplayGangRole gangRole = RoleplayGangRoleManager.getInstance().getGangRoles().stream().filter(g -> g.getId() == roleId).findFirst().orElse(null);
         if (gangRole == null) {
             return;
         }
