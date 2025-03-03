@@ -3,6 +3,7 @@ package com.eu.habbo.habbohotel.pets;
 import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.achievements.AchievementManager;
 import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterManager;
 import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterRepository;
 import com.eu.habbo.habbohotel.rooms.*;
 import com.eu.habbo.habbohotel.users.Habbo;
@@ -83,7 +84,7 @@ public class Pet implements ISerialize, Runnable {
         this.levelHunger = set.getInt("hunger");
         this.level = PetManager.getLevel(this.experience);
 
-        this.character = RoleplayCharacterRepository.loadByPet(this);
+        this.character = RoleplayCharacterManager.getInstance().getByPet(set.getInt("id"));
     }
 
     public Pet(int type, int race, String color, String name, int userId) {
@@ -107,8 +108,6 @@ public class Pet implements ISerialize, Runnable {
         this.levelHunger = 0;
         this.created = Emulator.getIntUnixTimestamp();
         this.level = 1;
-
-        this.character = RoleplayCharacterRepository.loadByPet(this);
     }
 
 

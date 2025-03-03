@@ -2,7 +2,7 @@ package com.eu.habbo.habbohotel.bots;
 
 import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
-import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterRepository;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterManager;
 import com.eu.habbo.habbohotel.rooms.*;
 import com.eu.habbo.habbohotel.users.Habbo;
 import com.eu.habbo.habbohotel.users.HabboGender;
@@ -76,7 +76,7 @@ public class Bot implements Runnable {
         this.room = null;
         this.bubble = RoomChatMessageBubbles.BOT_RENTABLE.getType();
 
-        this.character = RoleplayCharacterRepository.loadByBot(this);
+        this.character = RoleplayCharacterManager.getInstance().getByBot(id);
     }
 
     public Bot(ResultSet set) throws SQLException {
@@ -99,7 +99,7 @@ public class Bot implements Runnable {
         this.needsUpdate = false;
         this.bubble = set.getInt("bubble_id");
 
-        this.character = RoleplayCharacterRepository.loadByBot(this);
+        this.character = RoleplayCharacterManager.getInstance().getByBot(set.getInt("id"));
     }
 
     public Bot(Bot bot) {
@@ -117,7 +117,7 @@ public class Bot implements Runnable {
         this.effect = bot.getEffect();
         this.bubble = bot.getBubbleId();
 
-        this.character = RoleplayCharacterRepository.loadByBot(this);
+        this.character = RoleplayCharacterManager.getInstance().getByBot(bot.getId());
 
         this.needsUpdate = false;
     }

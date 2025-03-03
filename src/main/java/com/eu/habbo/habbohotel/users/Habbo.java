@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -49,12 +50,12 @@ public class Habbo implements Runnable {
     private volatile boolean disconnected = false;
     private volatile boolean disconnecting = false;
 
-    public Habbo(ResultSet set) {
+    public Habbo(ResultSet set) throws SQLException {
         this.client = null;
         this.habboInfo = new HabboInfo(set);
         this.habboStats = HabboStats.load(this.habboInfo);
         this.habboInventory = new HabboInventory(this);
-        this.roleplayCharacter = RoleplayCharacterManager.getInstance().getCharacters().stream().filter(c -> c.getUserId() == this.getHabboInfo().getId()).findFirst().orElse(null);
+        this.roleplayCharacter = RoleplayCharacterManager.getInstance().getByHabbo(set.getInt("id"));
 
         this.messenger = new Messenger();
         this.messenger.loadFriends(this);
