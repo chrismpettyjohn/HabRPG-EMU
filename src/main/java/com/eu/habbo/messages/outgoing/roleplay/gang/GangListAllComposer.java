@@ -15,7 +15,7 @@ public class GangListAllComposer extends MessageComposer {
         this.response.init(Outgoing.GangListAllComposer);
         this.response.appendInt(gangs.size());
         for (RoleplayGang gang : gangs) {
-            this.response.appendString(gang.getId() + ";" + gang.getName());
+            this.response.appendString(gang.getId() + ";" + gang.getName() + ";" + gang.getBadgeCode());
         }
         return this.response;
     }

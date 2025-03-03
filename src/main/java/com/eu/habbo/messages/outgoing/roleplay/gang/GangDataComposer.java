@@ -16,8 +16,11 @@ public class GangDataComposer extends MessageComposer {
     protected ServerMessage composeInternal() {
         this.response.init(Outgoing.GangDataComposer);
         this.response.appendInt(this.gang.getId());
+        this.response.appendInt(this.gang.getRoomId());
         this.response.appendInt(this.gang.getUserId());
         this.response.appendString(this.gang.getName());
+        this.response.appendString(this.gang.getDescription());
+        this.response.appendString(this.gang.getBadgeCode());
         return this.response;
     }
 }

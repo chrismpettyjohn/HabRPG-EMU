@@ -14,7 +14,7 @@ public class CorpListAllComposer extends MessageComposer {
         this.response.init(Outgoing.CorpListAllComposer);
         this.response.appendInt(corps.size());
         for (RoleplayCorp corp : corps) {
-            this.response.appendString(corp.getId() + ";" + corp.getName());
+            this.response.appendString(corp.getId() + ";" + corp.getName() + ";" + corp.getBadgeCode());
         }
         return this.response;
     }

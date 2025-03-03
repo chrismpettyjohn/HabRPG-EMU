@@ -72,15 +72,18 @@ public class RoleplayCorpRepository {
     }
 
     public static void updateByCorp(RoleplayCorp corp) {
-        String query = "UPDATE rp_corps SET character_id = ?,name = ?, updated_at = ? WHERE id = ?";
+        String query = "UPDATE rp_corps SET character_id = ?, rooms_id = ?, name = ?, description = ?, badge_code = ?, updated_at = ? WHERE id = ?";
 
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setInt(1, corp.getUserId());
-            statement.setString(2, corp.getName());
-            statement.setInt(3, (int) (System.currentTimeMillis() / 1000));
-            statement.setInt(4, corp.getId());
+            statement.setInt(1, corp.getRoomId());
+            statement.setInt(2, corp.getUserId());
+            statement.setString(3, corp.getName());
+            statement.setString(4, corp.getDescription());
+            statement.setString(5, corp.getBadgeCode());
+            statement.setInt(6, (int) (System.currentTimeMillis() / 1000));
+            statement.setInt(7, corp.getId());
 
             statement.executeUpdate();
         } catch (SQLException e) {

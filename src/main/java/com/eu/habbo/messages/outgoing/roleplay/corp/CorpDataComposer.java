@@ -16,8 +16,11 @@ public class CorpDataComposer extends MessageComposer {
     protected ServerMessage composeInternal() {
         this.response.init(Outgoing.CorpDataComposer);
         this.response.appendInt(this.corp.getId());
+        this.response.appendInt(this.corp.getRoomId());
         this.response.appendInt(this.corp.getUserId());
         this.response.appendString(this.corp.getName());
+        this.response.appendString(this.corp.getDescription());
+        this.response.appendString(this.corp.getBadgeCode());
         return this.response;
     }
 }

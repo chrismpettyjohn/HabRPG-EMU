@@ -11,14 +11,20 @@ import java.util.stream.Collectors;
 public class RoleplayCorp {
     private final int id;
     private int userId;
+    private int roomId;
     private String name;
+    private String description;
+    private String badgeCode;
     private int createdAt;
     private int updatedAt;
 
     public RoleplayCorp(ResultSet set) throws SQLException {
         this.id = set.getInt("id");
+        this.roomId = set.getInt("rooms_id");
         this.userId = set.getInt("users_id");
         this.name = set.getString("name");
+        this.description = set.getString("description");
+        this.badgeCode = set.getString("badge_code");
         this.createdAt = set.getInt("created_at");
         this.updatedAt = set.getInt("updated_at");
     }
@@ -35,12 +41,36 @@ public class RoleplayCorp {
         this.userId = characterId;
     }
 
+    public int getRoomId() {
+        return this.roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
     public String getName() {
         return this.name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getBadgeCode() {
+        return this.badgeCode;
+    }
+
+    public void setBadgeCode(String badgeCode) {
+        this.badgeCode = badgeCode;
     }
 
     public int getCreatedAt() {
