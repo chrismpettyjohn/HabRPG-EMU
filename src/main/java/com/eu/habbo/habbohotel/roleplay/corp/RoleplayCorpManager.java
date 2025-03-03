@@ -45,9 +45,11 @@ public class RoleplayCorpManager {
     }
 
     public void dispose() {
-        for (RoleplayCorp corp : this.corps) {
-            corp.save();
+        if (this.corps != null) {
+            for (RoleplayCorp corp : this.corps) {
+                corp.save();
+            }
+            this.corps = null;
         }
-        this.corps = null;
     }
 }

@@ -45,9 +45,12 @@ public class RoleplayGangManager {
     }
 
     public void dispose() {
-        for (RoleplayGang gang : this.gangs) {
-            gang.save();
+        if (this.gangs != null) {
+            for (RoleplayGang gang : this.gangs) {
+                gang.save();
+            }
+            this.gangs = null;
         }
-        this.gangs = null;
     }
+
 }

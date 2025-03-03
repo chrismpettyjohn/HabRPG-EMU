@@ -72,13 +72,13 @@ public class RoleplayGangRepository {
     }
 
     public static void updateByGang(RoleplayGang gang) {
-        String query = "UPDATE rp_gangs SET rooms_id = ?, character_id = ?,name = ?, description = ?, badge_code = ?, updated_at = ? WHERE id = ?";
+        String query = "UPDATE rp_gangs SET character_id = ?, rooms_id = ?, name = ?, description = ?, badge_code = ?, updated_at = ? WHERE id = ?";
 
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setInt(1, gang.getRoomId());
-            statement.setInt(2, gang.getUserId());
+            statement.setInt(1, gang.getUserId());
+            statement.setInt(2, gang.getRoomId());
             statement.setString(3, gang.getName());
             statement.setString(4, gang.getDescription());
             statement.setString(5, gang.getBadgeCode());
