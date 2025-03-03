@@ -630,9 +630,6 @@ public class PacketManager {
         this.registerHandler(Incoming.CorpAcceptJobOffer, CorpAcceptJobOfferEvent.class);
         this.registerHandler(Incoming.CorpLookupById, CorpLookupByIdEvent.class);
         this.registerHandler(Incoming.CorpRoleLookupByID, CorpRoleLookupByIdEvent.class);
-        this.registerHandler(Incoming.GangListAll, GangListAllEvent.class);
-        this.registerHandler(Incoming.GangRoleListAll, GangRoleListAllEvent.class);
-
         this.registerHandler(Incoming.GangAcceptInvite, GangAcceptInviteEvent.class);
         this.registerHandler(Incoming.GangChangeOwner, GangChangeOwnerEvent.class);
         this.registerHandler(Incoming.GangDemoteUser, GangDemoteUserEvent.class);
@@ -642,7 +639,8 @@ public class PacketManager {
         this.registerHandler(Incoming.GangListAll, GangListAllEvent.class);
         this.registerHandler(Incoming.GangLookupById, GangLookupByIdEvent.class);
         this.registerHandler(Incoming.GangPromoteUser, GangPromoteUserEvent.class);
-        this.registerHandler(Incoming.GangRoleListAll, GangRoleListAllEvent.class);
+        this.registerHandler(Incoming.GangRoleListByGang, GangRoleListByGangEvent.class);
         this.registerHandler(Incoming.GangRoleLookupById, GangRoleLookupByIdEvent.class);
+        this.registerHandler(Incoming.GangMemberListByGang, GangMemberListByGangEvent.class);
     }
 }

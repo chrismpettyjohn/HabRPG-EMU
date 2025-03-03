@@ -9,8 +9,31 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RoleplayCharacterRepository {
+
+    public static List<RoleplayCharacter> getAll() {
+        List<RoleplayCharacter> characters = new ArrayList<>();
+        String query = "SELECT * FROM rp_characters";
+        try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet set = statement.executeQuery()) {
+            while (set.next()) {
+                Integer botId = set.getInt("bots_id");
+                Integer habboId = set.getInt("users_id");
+                Integer petId = set.getInt("pets_id");
+                Bot bot = botId != null ? Emulator.getGameEnvironment().getBotManager().getById(botId) : null;
+                Habbo habbo = habboId != null ? Emulator.getGameEnvironment().getHabboManager().getHabbo(habboId) : null;
+                Pet pet = petId != null ? Emulator.getGameEnvironment().getPetManager().getById(petId) : null;
+                characters.add(new RoleplayCharacter(set, bot, habbo, pet));
+            }
+        } catch (SQLException e) {
+            System.err.println("Caught SQL exception: " + e.getMessage());
+        }
+        return characters;
+    }
 
     public static RoleplayCharacter loadByBot(Bot bot) {
         RoleplayCharacter character = null;
@@ -126,4 +149,15 @@ public class RoleplayCharacterRepository {
             System.err.println("Caught SQL exception: " + e.getMessage());
         }
     }
+
+    public static void deleteById(int id) {
+        try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM rp_characters WHERE id = ? LIMIT 1")) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Caught SQL exception: " + e.getMessage());
+        }
+    }
+
 }

@@ -76,6 +76,22 @@ public class BotManager {
         return true;
     }
 
+    public Bot getById(int id) {
+        try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM bots WHERE id = ? LIMIT 1")) {
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return loadBot(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error("Caught SQL exception", e);
+        }
+        return null;
+    }
+
+
     public Bot createBot(THashMap<String, String> data, String type) {
         Bot bot = null;
         try (Connection connection = Emulator.getDatabase().getDataSource().getConnection(); PreparedStatement statement = connection.prepareStatement("INSERT INTO bots (user_id, room_id, name, motto, figure, gender, type) VALUES (0, 0, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
@@ -193,7 +209,6 @@ public class BotManager {
                 receiverInfo.getCurrentRoom().removeBot(bot);
                 bot.stopFollowingHabbo();
                 bot.setOwnerId(receiverInfo.getId());
-                bot.setOwnerName(receiverInfo.getUsername());
                 bot.needsUpdate(true);
                 Emulator.getThreading().run(bot);
 

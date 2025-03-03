@@ -1,5 +1,9 @@
 package com.eu.habbo.habbohotel.roleplay.gang;
 
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterManager;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterRepository;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -50,6 +54,9 @@ public class RoleplayGang {
 
     public List<RoleplayGangRole> getRoles() {
         return RoleplayGangRoleManager.getInstance().getGangRoles().stream().filter(roleplayGangRole -> roleplayGangRole.getGangId() == this.id).collect(Collectors.toList());
+    }
+    public List<RoleplayCharacter> getMembers() {
+        return RoleplayCharacterManager.getInstance().getCharacters().stream().filter(roleplayCharacter -> roleplayCharacter.getGangId() == this.id).collect(Collectors.toList());
     }
 
     public void save() {

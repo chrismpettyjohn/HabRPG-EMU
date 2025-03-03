@@ -188,6 +188,22 @@ public class PetManager {
         this.loadPetVocals(connection);
     }
 
+    public Pet getById(int id) {
+        try (Connection connection = Emulator.getDatabase().getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users_pets WHERE id = ? LIMIT 1")) {
+            statement.setInt(1, id);
+            try (ResultSet set = statement.executeQuery()) {
+                if (set.next()) {
+                    return loadPet(set);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error("Caught SQL exception", e);
+        }
+        return null;
+    }
+
+
     private void loadPetItems(Connection connection) {
         try (Statement statement = connection.createStatement(); ResultSet set = statement.executeQuery("SELECT * FROM pet_items")) {
             while (set.next()) {

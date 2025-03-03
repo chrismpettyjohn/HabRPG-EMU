@@ -39,7 +39,6 @@ public class Bot implements Runnable {
     private String figure;
     private HabboGender gender;
     private int ownerId;
-    private String ownerName;
     private Room room;
     private RoomUnit roomUnit;
     private boolean chatAuto;
@@ -62,14 +61,13 @@ public class Bot implements Runnable {
 
     private RoleplayCharacter character;
 
-    public Bot(int id, String name, String motto, String figure, HabboGender gender, int ownerId, String ownerName) {
+    public Bot(int id, String name, String motto, String figure, HabboGender gender, int ownerId) {
         this.id = id;
         this.name = name;
         this.motto = motto;
         this.figure = figure;
         this.gender = gender;
         this.ownerId = ownerId;
-        this.ownerName = ownerName;
         this.chatAuto = false;
         this.chatRandom = false;
         this.chatDelay = 1000;
@@ -88,7 +86,6 @@ public class Bot implements Runnable {
         this.figure = set.getString("figure");
         this.gender = HabboGender.valueOf(set.getString("gender"));
         this.ownerId = set.getInt("user_id");
-        this.ownerName = set.getString("owner_name");
         this.chatAuto = set.getString("chat_auto").equals("1");
         this.chatRandom = set.getString("chat_random").equals("1");
         this.chatDelay = set.getShort("chat_delay");
@@ -111,7 +108,6 @@ public class Bot implements Runnable {
         this.figure = bot.getFigure();
         this.gender = bot.getGender();
         this.ownerId = bot.getOwnerId();
-        this.ownerName = bot.getOwnerName();
         this.chatAuto = true;
         this.chatRandom = false;
         this.chatDelay = 10;
@@ -351,18 +347,6 @@ public class Bot implements Runnable {
 
     public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
-        this.needsUpdate = true;
-
-        if (this.room != null)
-            this.room.sendComposer(new RoomUsersComposer(this).compose());
-    }
-
-    public String getOwnerName() {
-        return this.ownerName;
-    }
-
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
         this.needsUpdate = true;
 
         if (this.room != null)

@@ -1,5 +1,6 @@
 package com.eu.habbo.habbohotel.roleplay;
 
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterManager;
 import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpManager;
 import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpRoleManager;
 import com.eu.habbo.habbohotel.roleplay.gang.RoleplayGangManager;
@@ -24,6 +25,7 @@ public class RoleplayManager {
         return instance;
     }
 
+    private final RoleplayCharacterManager roleplayCharacterManager;
     private final RoleplayItemManager roleplayItemManager;
     private final RoleplayCorpManager roleplayCorpManager;
     private final RoleplayCorpRoleManager roleplayCorpRoleManager;
@@ -34,6 +36,7 @@ public class RoleplayManager {
     private RoleplayManager() {
         LOGGER.info("Roleplay -> loading");
         long millis = System.currentTimeMillis();
+        this.roleplayCharacterManager = RoleplayCharacterManager.getInstance();
         this.roleplayItemManager = RoleplayItemManager.getInstance();
         this.roleplayCorpManager = RoleplayCorpManager.getInstance();
         this.roleplayCorpRoleManager = RoleplayCorpRoleManager.getInstance();
@@ -43,6 +46,7 @@ public class RoleplayManager {
     }
 
     public void dispose() {
+        this.roleplayCharacterManager.dispose();
         this.roleplayItemManager.dispose();
         this.roleplayCorpManager.dispose();
         this.roleplayCorpRoleManager.dispose();

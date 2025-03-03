@@ -380,6 +380,7 @@ public class Incoming {
     public static final int CorpAcceptJobOffer = 4023;
     public static final int CorpLookupById = 4024;
     public static final int CorpRoleLookupByID = 4025;
+
     public static final int GangAcceptInvite = 4026;
     public static final int GangChangeOwner = 4027;
     public static final int GangDemoteUser = 4028;
@@ -388,7 +389,8 @@ public class Incoming {
     public static final int GangLeave = 4031;
     public static final int GangListAll = 4032;
     public static final int GangLookupById = 4033;
-    public static final int GangPromoteUser = 4035;
-    public static final int GangRoleListAll = 4036;
-    public static final int GangRoleLookupById = 4037;
+    public static final int GangPromoteUser = 4034;
+    public static final int GangRoleListByGang = 4035;
+    public static final int GangRoleLookupById = 4036;
+    public static final int GangMemberListByGang = 4037;
 }

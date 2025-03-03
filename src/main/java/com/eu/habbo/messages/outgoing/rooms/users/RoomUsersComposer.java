@@ -107,7 +107,6 @@ public class RoomUsersComposer extends MessageComposer {
             this.response.appendInt(4);
             this.response.appendString(this.bot.getGender().name().toUpperCase());
             this.response.appendInt(this.bot.getOwnerId());
-            this.response.appendString(this.bot.getOwnerName());
             this.response.appendInt(10);
             this.response.appendShort(0);
             this.response.appendShort(1);
@@ -134,7 +133,6 @@ public class RoomUsersComposer extends MessageComposer {
                 this.response.appendInt(4);
                 this.response.appendString(bot.getGender().name().toUpperCase());
                 this.response.appendInt(bot.getOwnerId());
-                this.response.appendString(bot.getOwnerName());
                 this.response.appendString(bot.getType());
                 this.response.appendInt(10);
                 this.response.appendShort(0);

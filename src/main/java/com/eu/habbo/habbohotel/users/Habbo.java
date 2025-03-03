@@ -7,6 +7,7 @@ import com.eu.habbo.habbohotel.gameclients.GameClient;
 import com.eu.habbo.habbohotel.messenger.Messenger;
 import com.eu.habbo.habbohotel.pets.Pet;
 import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterManager;
 import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterRepository;
 import com.eu.habbo.habbohotel.rooms.*;
 import com.eu.habbo.habbohotel.users.inventory.BadgesComponent;
@@ -53,7 +54,7 @@ public class Habbo implements Runnable {
         this.habboInfo = new HabboInfo(set);
         this.habboStats = HabboStats.load(this.habboInfo);
         this.habboInventory = new HabboInventory(this);
-        this.roleplayCharacter = RoleplayCharacterRepository.loadByHabbo(this);
+        this.roleplayCharacter = RoleplayCharacterManager.getInstance().getCharacters().stream().filter(c -> c.getUserId() == this.getHabboInfo().getId()).findFirst().orElse(null);
 
         this.messenger = new Messenger();
         this.messenger.loadFriends(this);
