@@ -21,13 +21,7 @@ public class RoleplayCharacterRepository {
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet set = statement.executeQuery()) {
             while (set.next()) {
-                Integer botId = set.getInt("bots_id");
-                Integer habboId = set.getInt("users_id");
-                Integer petId = set.getInt("pets_id");
-                Bot bot = botId != null ? Emulator.getGameEnvironment().getBotManager().getById(botId) : null;
-                Habbo habbo = habboId != null ? Emulator.getGameEnvironment().getHabboManager().getHabbo(habboId) : null;
-                Pet pet = petId != null ? Emulator.getGameEnvironment().getPetManager().getById(petId) : null;
-                characters.add(new RoleplayCharacter(set, bot, habbo, pet));
+                characters.add(new RoleplayCharacter(set));
             }
         } catch (SQLException e) {
             System.err.println("Caught SQL exception: " + e.getMessage());
@@ -43,7 +37,7 @@ public class RoleplayCharacterRepository {
 
             try (ResultSet set = statement.executeQuery()) {
                 if (set.next()) {
-                    character = new RoleplayCharacter(set, bot, null, null);
+                    character = new RoleplayCharacter(set);
                 }
             }
         } catch (SQLException e) {
@@ -65,7 +59,7 @@ public class RoleplayCharacterRepository {
 
             try (ResultSet set = statement.executeQuery()) {
                 if (set.next()) {
-                    character = new RoleplayCharacter(set, null, habbo, null);
+                    character = new RoleplayCharacter(set);
                 }
             }
         } catch (SQLException e) {
@@ -87,7 +81,7 @@ public class RoleplayCharacterRepository {
 
             try (ResultSet set = statement.executeQuery()) {
                 if (set.next()) {
-                    character = new RoleplayCharacter(set, null, null, pet);
+                    character = new RoleplayCharacter(set);
                 }
             }
         } catch (SQLException e) {

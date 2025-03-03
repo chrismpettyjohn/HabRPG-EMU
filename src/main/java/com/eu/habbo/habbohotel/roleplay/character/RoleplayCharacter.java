@@ -1,5 +1,6 @@
 package com.eu.habbo.habbohotel.roleplay.character;
 
+import com.eu.habbo.Emulator;
 import com.eu.habbo.habbohotel.bots.Bot;
 import com.eu.habbo.habbohotel.pets.Pet;
 import com.eu.habbo.habbohotel.roleplay.character.actions.CharacterDiedAction;
@@ -19,10 +20,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class RoleplayCharacter {
-
-    private final Bot bot;
-    private final Habbo habbo;
-    private final Pet pet;
 
     private final int id;
     private final String type;
@@ -49,10 +46,7 @@ public class RoleplayCharacter {
     private Integer jobOfferCorpRoleId;
     private Integer gangOfferGangRoleId;
 
-    public RoleplayCharacter(ResultSet set, Bot bot, Habbo habbo, Pet pet) throws SQLException {
-        this.bot = bot;
-        this.habbo = habbo;
-        this.pet = pet;
+    public RoleplayCharacter(ResultSet set) throws SQLException {
         this.id = set.getInt("id");
         this.type = set.getString("type");
         this.botId = set.getInt("bots_id");
@@ -75,14 +69,23 @@ public class RoleplayCharacter {
         this.items = RoleplayCharacterItemRepository.loadAllByCharacter(this);
     }
     public Bot getBot() {
-        return this.bot;
+        if (this.botId == null) {
+            return null;
+        }
+        return Emulator.getGameEnvironment().getBotManager().getById(this.botId);
     }
 
     public Habbo getHabbo() {
-        return this.habbo;
+        if (this.userId == null) {
+            return null;
+        }
+        return Emulator.getGameEnvironment().getHabboManager().getHabbo(this.userId);
     }
     public Pet getPet() {
-        return this.pet;
+        if (this.petId == null) {
+            return null;
+        }
+        return Emulator.getGameEnvironment().getPetManager().getById(this.petId);
     }
 
     public int getId() {
@@ -275,13 +278,13 @@ public class RoleplayCharacter {
     }
 
     private void notifyRoom() {
-        if (this.bot != null) {
-            this.bot.getRoom().sendResponse(new CharacterDataComposer(this));
+        if (this.getBot() != null) {
+            this.getBot() .getRoom().sendResponse(new CharacterDataComposer(this));
             return;
         }
 
-        if (this.habbo != null) {
-            this.habbo.getRoomUnit().getRoom().sendResponse(new CharacterDataComposer(this));
+        if (this.getHabbo() != null) {
+            this.getHabbo().getRoomUnit().getRoom().sendResponse(new CharacterDataComposer(this));
         }
     }
 

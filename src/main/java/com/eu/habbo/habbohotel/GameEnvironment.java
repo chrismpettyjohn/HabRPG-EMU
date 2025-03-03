@@ -61,6 +61,7 @@ public class GameEnvironment {
         LOGGER.info("GameEnvironment -> Loading...");
 
         this.permissionsManager = new PermissionsManager();
+        this.roleplayManager = RoleplayManager.getInstance();
         this.habboManager = new HabboManager();
         this.hotelViewManager = new HotelViewManager();
         this.itemManager = new ItemManager();
@@ -79,7 +80,6 @@ public class GameEnvironment {
         this.wordFilter = new WordFilter();
         this.craftingManager = new CraftingManager();
         this.pollManager = new PollManager();
-        this.roleplayManager = RoleplayManager.getInstance();
         this.roomChatBubbleManager = new RoomChatBubbleManager();
 
         this.roomManager.loadPublicRooms();
@@ -109,11 +109,11 @@ public class GameEnvironment {
         this.creditsScheduler.setDisposed(true);
         this.gotwPointsScheduler.setDisposed(true);
         this.craftingManager.dispose();
+        this.roleplayManager.dispose();
         this.habboManager.dispose();
         this.commandHandler.dispose();
         this.guildManager.dispose();
         this.catalogManager.dispose();
-        this.roleplayManager.dispose();
         this.roomManager.dispose();
         this.itemManager.dispose();
         this.hotelViewManager.dispose();
