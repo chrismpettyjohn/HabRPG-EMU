@@ -457,7 +457,8 @@ public class Outgoing {
     public final static int GangListAllComposer = 4016;
     public final static int GangRoleDataComposer = 4017;
     public final static int GangRoleListByGangComposer = 4018;
-    public final static int GangMemberListByGangComposer = 4019;
+    public final static int CorpMemberListByCorpComposer = 4019;
+    public final static int GangMemberListByGangComposer = 4020;
 
 
 }

@@ -1,5 +1,8 @@
 package com.eu.habbo.habbohotel.roleplay.corp;
 
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacter;
+import com.eu.habbo.habbohotel.roleplay.character.RoleplayCharacterManager;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -50,6 +53,10 @@ public class RoleplayCorp {
 
     public List<RoleplayCorpRole> getRoles() {
         return RoleplayCorpRoleManager.getInstance().getCorpRoles().stream().filter(roleplayCorpRole -> roleplayCorpRole.getCorpId() == this.id).collect(Collectors.toList());
+    }
+
+    public List<RoleplayCharacter> getMembers() {
+        return RoleplayCharacterManager.getInstance().getCharacters().stream().filter(roleplayCorpRole -> roleplayCorpRole.getCorpId() == this.id).collect(Collectors.toList());
     }
 
     public void save() {

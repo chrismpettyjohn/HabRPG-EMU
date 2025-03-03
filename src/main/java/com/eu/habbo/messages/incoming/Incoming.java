@@ -392,5 +392,6 @@ public class Incoming {
     public static final int GangPromoteUser = 4034;
     public static final int GangRoleListByGang = 4035;
     public static final int GangRoleLookupById = 4036;
-    public static final int GangMemberListByGang = 4037;
+    public static final int CorpMemberListByCorp = 4037;
+    public static final int GangMemberListByGang = 4038;
 }

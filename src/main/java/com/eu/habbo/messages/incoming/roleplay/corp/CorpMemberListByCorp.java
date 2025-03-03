@@ -3,9 +3,8 @@ package com.eu.habbo.messages.incoming.roleplay.corp;
 import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorp;
 import com.eu.habbo.habbohotel.roleplay.corp.RoleplayCorpManager;
 import com.eu.habbo.messages.incoming.MessageHandler;
-import com.eu.habbo.messages.outgoing.roleplay.corp.CorpRoleListByCorp;
 
-public class CorpRoleListAllEvent extends MessageHandler {
+public class CorpMemberListByCorp extends MessageHandler {
     @Override
     public void handle() throws Exception {
         int corpId = this.packet.readInt();
@@ -15,6 +14,6 @@ public class CorpRoleListAllEvent extends MessageHandler {
             return;
         }
 
-        this.client.sendResponse(new CorpRoleListByCorp(corp));
+        this.client.sendResponse(new com.eu.habbo.messages.outgoing.roleplay.corp.CorpMemberListByCorp(corp));
     }
 }
