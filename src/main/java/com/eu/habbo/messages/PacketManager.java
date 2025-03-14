@@ -643,5 +643,6 @@ public class PacketManager {
         this.registerHandler(Incoming.GangRoleLookupById, GangRoleLookupByIdEvent.class);
         this.registerHandler(Incoming.CorpMemberListByCorp, CorpMemberListByCorp.class);
         this.registerHandler(Incoming.GangMemberListByGang, GangMemberListByGangEvent.class);
+        this.registerHandler(Incoming.GangInviteUser, GangInviteUserEvent.class);
     }
 }
